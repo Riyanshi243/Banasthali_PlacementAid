@@ -14,14 +14,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-         TextView button= (TextView) findViewById(R.id.textView);
-         button.setOnClickListener(new View.OnClickListener(){
-         @Override
-         public void onClick(View v){
-              Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-        startActivity(intent);
-//.set
-         }
+         TextView text= (TextView) findViewById(R.id.textView);
+         text.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 //Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                 //testing
+                 Intent intent = new Intent(MainActivity.this,CreateStudents.class);
+                 startActivity(intent);
+             }
          });
+
+        Intent intent = new Intent(MainActivity.this,CreateStudents.class);
+        startActivity(intent);
     }
 }
