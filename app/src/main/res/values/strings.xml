@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">StudentHelpDesk</string>
     <string name="tap_to_continue">Tap to Continue</string>
+    <string name="create_a_new_user">Create a new User</string>
+    <string name="see_request">SEE REQUEST</string>
+    <string name="lock_the_database">LOCK THE DATABASE</string>
+    <string name="togglebutton">ToggleButton</string>
 </resources>
