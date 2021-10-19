@@ -22,9 +22,8 @@ create_new_member.setOnClickListener(new View.OnClickListener(){
          public void onClick(View v){
               Intent intent = new Intent(Admin_page.this,CreateStudents.class);
         startActivity(intent);
-//.set
          }
          });
     }
 }
-    }
+

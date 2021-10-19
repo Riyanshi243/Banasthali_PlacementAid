@@ -15,14 +15,15 @@ public class CreateStudents extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_students);
         mAuth = FirebaseAuth.getInstance();
+        
     }
 
     public void onStart() {
 
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null) {
-
+        if(currentUser==null){
+            //to LOgin
         }
     }
 }
