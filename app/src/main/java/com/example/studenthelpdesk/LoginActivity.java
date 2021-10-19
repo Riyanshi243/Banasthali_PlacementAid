@@ -10,5 +10,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+EditText EditTextTextPersonName=findViewById(R.id.editTextTextPersonName);
+String editTextTextPersonName= EditTextTextPersonName.getText().toString();
+
+EditText EditTextTextPersonName=findViewById(R.id.editTextTextPersonName);
+String editTextTextPersonName= EditTextTextPersonName.getText().toString();
+
     }
 }
