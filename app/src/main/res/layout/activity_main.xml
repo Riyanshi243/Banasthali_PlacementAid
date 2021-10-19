@@ -11,6 +11,7 @@
         android:id="@+id/textView"
         android:layout_width="498dp"
         android:layout_height="801dp"
+        android:background="@drawable/firstpage__1_"
         android:gravity="bottom|center"
         android:text="@string/tap_to_continue"
         app:layout_constraintBottom_toBottomOf="parent"
