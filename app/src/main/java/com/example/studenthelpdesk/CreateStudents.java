@@ -55,9 +55,7 @@ public class CreateStudents extends AppCompatActivity {
 
         uname = unameet.getText().toString();
         email = Email.getText().toString();
-        Log.w("Hello",uname+email);
 
-        mAuth = FirebaseAuth.getInstance();
         Boolean[] flag = {true};
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         documentReference = db.collection("AllowedUser").document(uname);
@@ -87,7 +85,7 @@ public class CreateStudents extends AppCompatActivity {
         Map<String, Object> user = new HashMap<>();
         user.put("Username", uname);
         user.put("Email", email);
-
+        user.put("New",true);
         documentReference.set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
