@@ -94,12 +94,16 @@ public class SignIn extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<AuthResult> task) {
                                             if(task.isSuccessful())
                                             {
-                                                //intent to fill_data
+                                                //intent to fill data
+                                                Intent intent = new Intent(SignIn.this,FillData.class);
+                                                startActivity(intent);
                                             }
                                             else
                                             {
                                                 Toast.makeText(SignIn.this,"ERROR OCCURED",Toast.LENGTH_SHORT).show();
                                                 //intent to login
+                                                Intent intent = new Intent(SignIn.this,.class);
+                                                startActivity(intent);
                                             }
                                         }
                                     });
