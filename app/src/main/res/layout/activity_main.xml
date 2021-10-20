@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/first_page"
     tools:context=".MainActivity">
 
 
@@ -11,7 +12,7 @@
         android:id="@+id/textView"
         android:layout_width="418dp"
         android:layout_height="730dp"
-        android:background="@drawable/firstpage__1_"
+        android:background="@drawable/first_page"
         android:gravity="bottom|center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
