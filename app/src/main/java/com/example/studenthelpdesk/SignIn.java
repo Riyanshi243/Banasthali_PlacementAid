@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -32,7 +33,7 @@ public class SignIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-        EditText name=(EditText) findViewById(R.id.uname1);
+        EditText name=(EditText) findViewById(R.id.uname2);
         EditText password=(EditText) findViewById(R.id.password2);
         EditText phone=(EditText) findViewById(R.id.phone2);
         EditText email=(EditText) findViewById(R.id.email2);
@@ -102,7 +103,7 @@ public class SignIn extends AppCompatActivity {
                                             {
                                                 Toast.makeText(SignIn.this,"ERROR OCCURED",Toast.LENGTH_SHORT).show();
                                                 //intent to login
-                                                Intent intent = new Intent(SignIn.this,.class);
+                                                Intent intent = new Intent(SignIn.this,SignIn.class);
                                                 startActivity(intent);
                                             }
                                         }
