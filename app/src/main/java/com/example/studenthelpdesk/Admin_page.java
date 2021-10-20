@@ -16,11 +16,14 @@ public class Admin_page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_page);
-    }
-    public void new_user(View v)
-    {
-        Intent intent = new Intent(Admin_page.this,CreateStudents.class);
+        Button create_new_member=(Button) findViewById(R.id.createnew);
+create_new_member.setOnClickListener(new View.OnClickListener(){
+         @Override
+         public void onClick(View v){
+              Intent intent = new Intent(Admin_page.this,CreateStudents.class);
         startActivity(intent);
+         }
+         });
     }
 }
 
