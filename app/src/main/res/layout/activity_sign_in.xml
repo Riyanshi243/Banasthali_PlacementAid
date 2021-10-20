@@ -13,6 +13,7 @@
         android:layout_marginBottom="46dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         android:text="Name"
         app:layout_constraintBottom_toTopOf="@+id/password2"
         app:layout_constraintStart_toStartOf="@+id/password2" />
@@ -25,8 +26,10 @@
         android:layout_marginBottom="42dp"
         android:ems="10"
         android:inputType="textPassword"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/email2"
-        app:layout_constraintEnd_toEndOf="@+id/email2" />
+        app:layout_constraintEnd_toEndOf="@+id/email2"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/email2"
@@ -36,8 +39,10 @@
         android:layout_marginBottom="32dp"
         android:ems="10"
         android:inputType="textEmailAddress"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/phone2"
-        app:layout_constraintEnd_toEndOf="@+id/phone2" />
+        app:layout_constraintEnd_toEndOf="@+id/phone2"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/phone2"
@@ -47,6 +52,19 @@
         android:layout_marginBottom="298dp"
         android:ems="10"
         android:inputType="phone"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="77dp"
+        android:layout_marginBottom="157dp"
+        android:onClick="submit"
+        android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
