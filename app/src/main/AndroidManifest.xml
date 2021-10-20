@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentHelpDesk">
         <activity
+            android:name=".FillData"
+            android:exported="false" />
+        <activity
             android:name=".SignIn"
             android:exported="false" />
         <activity
@@ -19,14 +22,9 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity2"
-            android:exported="false" />
-        <activity
             android:name=".Admin_page"
             android:exported="false" />
-        <activity
-            android:name=".MainActivity2"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
