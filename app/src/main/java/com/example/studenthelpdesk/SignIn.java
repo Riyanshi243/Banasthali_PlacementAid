@@ -33,16 +33,16 @@ public class SignIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-        EditText name=(EditText) findViewById(R.id.uname2);
-        EditText password=(EditText) findViewById(R.id.password2);
-        EditText phone=(EditText) findViewById(R.id.phone2);
-        EditText email=(EditText) findViewById(R.id.email2);
+         name=(EditText) findViewById(R.id.uname2);
+         password=(EditText) findViewById(R.id.password2);
+         phone=(EditText) findViewById(R.id.phone2);
+         email=(EditText) findViewById(R.id.email2);
 
 
     }
     public void submit(View view)
     {
-        if (name.getText().toString().length()==0){
+        /*if (name.getText().toString().length()==0){
             name.setError("NAME IS REQUIRED");
             return;
         }
@@ -64,7 +64,7 @@ public class SignIn extends AppCompatActivity {
         {
             password.setError("MUST BE GREATER THAN 6");
             return;
-        }
+        }*/
         String uname = name.getText().toString();
         String email1 = email.getText().toString();
         Boolean[] flag = {true};
