@@ -26,7 +26,7 @@ import java.util.Map;
 public class SignIn extends AppCompatActivity {
     private DocumentReference documentReference;
     private FirebaseAuth mAuth;
-    private EditText name, email,phone,password;
+    private EditText name, email,password;
     FirebaseAuth firebaseAuth;
     protected Map<String, Object> doc;
     @Override
@@ -35,7 +35,6 @@ public class SignIn extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
          name=(EditText) findViewById(R.id.uname2);
          password=(EditText) findViewById(R.id.password2);
-         phone=(EditText) findViewById(R.id.phone2);
          email=(EditText) findViewById(R.id.email2);
 
 
@@ -86,8 +85,6 @@ public class SignIn extends AppCompatActivity {
                                 {
 
                                     doc.remove("New");
-                                    String phone1=phone.getText().toString();
-                                    doc.put("Phone",phone1);
                                     String password1=password.getText().toString();
                                     firebaseAuth = FirebaseAuth.getInstance();
                                     firebaseAuth.createUserWithEmailAndPassword(email1,password1).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -96,15 +93,17 @@ public class SignIn extends AppCompatActivity {
                                             if(task.isSuccessful())
                                             {
                                                 //intent to fill data
-                                                Intent intent = new Intent(SignIn.this,FillData.class);
+                                                Intent intent = new Intent(SignIn.this,Personal_Details.class);
                                                 startActivity(intent);
                                             }
                                             else
                                             {
                                                 Toast.makeText(SignIn.this,"ERROR OCCURED",Toast.LENGTH_SHORT).show();
                                                 //intent to login
-                                                Intent intent = new Intent(SignIn.this,SignIn.class);
+                                                Intent intent = new Intent(SignIn.this,
+                                                LoginActivity.class);
                                                 startActivity(intent);
+                                                finish();
                                             }
                                         }
                                     });
