@@ -10,7 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentHelpDesk">
         <activity
-            android:name=".FillData"
+            android:name=".SeeMyData"
+            android:exported="false" />
+        <activity
+            android:name=".Upload_data"
+            android:exported="false" />
+        <activity
+            android:name=".Academic_data"
+            android:exported="false" />
+        <activity
+            android:name=".Personal_Details"
+            android:exported="false" />
+        <activity
+            android:name=".SearchStudent"
             android:exported="false" />
         <activity
             android:name=".SignIn"
@@ -24,7 +36,6 @@
         <activity
             android:name=".Admin_page"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true">
