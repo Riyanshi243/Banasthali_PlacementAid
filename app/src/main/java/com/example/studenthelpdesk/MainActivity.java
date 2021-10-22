@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         
         int SPLASH_SCREEN = 4000;
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(MainActivity.this, Admin_page.class);
+            Intent intent = new Intent(MainActivity.this, SignIn.class);
             startActivity(intent);
             finish();
 
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //testinfg
-                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                Intent intent = new Intent(MainActivity.this,Academic_data.class);
                 startActivity(intent);
                 finish();
             }
