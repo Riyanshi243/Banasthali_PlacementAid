@@ -28,6 +28,7 @@ public class SignIn extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private EditText name, email,password;
     FirebaseAuth firebaseAuth;
+    Data data;
     protected Map<String, Object> doc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +94,7 @@ public class SignIn extends AppCompatActivity {
                                             if(task.isSuccessful())
                                             {
                                                 //intent to fill data
+                                                data.setUname(uname);
                                                 Intent intent = new Intent(SignIn.this,Personal_Details.class);
                                                 startActivity(intent);
                                             }

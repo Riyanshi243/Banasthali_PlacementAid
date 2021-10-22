@@ -185,4 +185,12 @@
         app:layout_constraintTop_toBottomOf="@+id/gender"
         tools:ignore="SpeakableTextPresentCheck" />
 
+    <Button
+        android:id="@+id/nxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="168dp"
+        tools:layout_editor_absoluteY="542dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
