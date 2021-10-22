@@ -5,6 +5,4 @@
     <string name="see_request">SEE REQUEST</string>
     <string name="lock_the_database">LOCK THE DATABASE</string>
     <string name="togglebutton">ToggleButton</string>
-    <string name="users" />
-    <string name="transactions" />
 </resources>

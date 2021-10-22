@@ -4,70 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:background="@drawable/background"
     android:onClick="submit"
     tools:context=".SignIn">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="400dp"
-        android:layout_height="111dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/signup" />
-
     <ScrollView
-        android:layout_width="405dp"
-        android:layout_height="596dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="122dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="421dp"
+                android:layout_height="149dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/signup" />
+
             <EditText
                 android:id="@+id/uname2"
-                android:layout_width="340dp"
-                android:layout_height="56dp"
+                android:layout_width="360dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="46dp"
+                android:layout_marginTop="50dp"
                 android:ems="10"
-                android:hint="Enter your name"
+                android:hint="Enter your Username"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/black"
-                android:textColorHint="@color/cardview_dark_background"
+                android:textColorHint="@android:color/darker_gray"
                 android:textColorLink="@color/black" />
 
             <EditText
                 android:id="@+id/email2"
-                android:layout_width="340dp"
-                android:layout_height="56dp"
+                android:layout_width="360dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginTop="20dp"
                 android:ems="10"
                 android:hint="Enter your email"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/black"
-                android:textColorHint="@color/cardview_dark_background"
+                android:textColorHint="@android:color/darker_gray"
                 android:textColorLink="@color/black"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <EditText
                 android:id="@+id/password2"
-                android:layout_width="340dp"
-                android:layout_height="56dp"
+                android:layout_width="360dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
-                android:layout_marginEnd="2dp"
-                android:layout_marginBottom="42dp"
+                android:layout_marginTop="20dp"
                 android:ems="10"
                 android:hint="Password"
                 android:inputType="textPassword"
@@ -76,7 +72,7 @@
                 android:singleLine="false"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/black"
-                android:textColorHint="@color/cardview_dark_background"
+                android:textColorHint="@android:color/darker_gray"
                 android:textColorLink="@color/black"
                 tools:ignore="SpeakableTextPresentCheck" />
 
@@ -89,8 +85,8 @@
                 android:backgroundTint="#2D000000"
                 android:onClick="submit"
                 android:text="SIGN-UP"
-                android:textColor="@color/white" />
-
+                android:layout_marginTop="50dp"
+                android:textColor="@color/black" />
         </LinearLayout>
     </ScrollView>
 
