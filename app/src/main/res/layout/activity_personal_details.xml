@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="savedata"
     tools:context=".Personal_Details">
 
     <TextView
@@ -189,8 +190,11 @@
         android:id="@+id/nxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="66dp"
+        android:onClick="savedata"
         android:text="Button"
-        tools:layout_editor_absoluteX="168dp"
-        tools:layout_editor_absoluteY="542dp" />
+        app:layout_constraintStart_toStartOf="@+id/phoneno"
+        app:layout_constraintTop_toBottomOf="@+id/phoneno" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

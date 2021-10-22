@@ -28,7 +28,7 @@ public class SignIn extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private EditText name, email,password;
     FirebaseAuth firebaseAuth;
-    Data data;
+    static Data data;
     protected Map<String, Object> doc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +42,12 @@ public class SignIn extends AppCompatActivity {
     }
     public void submit(View view)
     {
-        /*if (name.getText().toString().length()==0){
+        data=new Data();
+        if (name.getText().toString().length()==0){
             name.setError("NAME IS REQUIRED");
             return;
         }
-        if (phone.getText().toString().length()!=10){
-            phone.setError("PHONE NUMBER INVALID");
-            return;
-        }
+
 
         if(email.getText().toString().length()==0||!email.getText().toString().contains("@")) {
             email.setError("E-MAIL INVALID");
@@ -64,7 +62,7 @@ public class SignIn extends AppCompatActivity {
         {
             password.setError("MUST BE GREATER THAN 6");
             return;
-        }*/
+        }
         String uname = name.getText().toString();
         String email1 = email.getText().toString();
         Boolean[] flag = {true};
@@ -95,6 +93,7 @@ public class SignIn extends AppCompatActivity {
                                             {
                                                 //intent to fill data
                                                 data.setUname(uname);
+                                                data.setEmail(email1);
                                                 Intent intent = new Intent(SignIn.this,Personal_Details.class);
                                                 startActivity(intent);
                                             }
