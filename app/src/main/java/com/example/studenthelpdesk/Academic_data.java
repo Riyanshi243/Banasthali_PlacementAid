@@ -2,6 +2,7 @@ package com.example.studenthelpdesk;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -41,19 +42,26 @@ public class Academic_data extends AppCompatActivity {
          data.setTen(tenthm);
          twelthm=Float.parseFloat(twelth.getText().toString());
          data.setTen(twelthm);
+                    float cal =cgpa1;
+                    float ten=tenthm;
+                    float twelve=twelthm;
+                     if(cal>10 && cal<0) {
+                         cgpa.setError("INVALID");
+                     }
+                  if(ten>100 && ten<0)
+                  {
+                      tenth.setError("INVALID");
+                      return;
+                  }
+                  if(twelve>100 && twelve<0)
+                  {
+                      twelth.setError("INVALID");
 
-        Toast.makeText(Academic_data.this,"Hello",Toast.LENGTH_SHORT);
+                  }
 
 
-        //testing
-        if(1==data.ToDatabase())
-            Toast.makeText(Academic_data.this,"Success",Toast.LENGTH_SHORT);
-        else
-            Toast.makeText(Academic_data.this,"Failed",Toast.LENGTH_SHORT);
-
-
-
-
+        Intent intent=new Intent(Academic_data.this,SeeMyData.class);
+        startActivity(intent);
     }
 
 }

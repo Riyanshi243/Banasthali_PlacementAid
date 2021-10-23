@@ -123,6 +123,7 @@
                 android:layout_height="65dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:onClick="savedata"
                 android:text="NEXT" />
 
         </LinearLayout>

@@ -14,6 +14,84 @@ public class Data {
     private float cgpa,ten,twel;
 
     private DocumentReference documentReference;
+
+    public String getUname() {
+        return uname;
+    }
+
+    public float getCgpa() {
+        return cgpa;
+    }
+
+    public float getTen() {
+        return ten;
+    }
+
+    public float getTwel() {
+        return twel;
+    }
+
+    public String getAadhar() {
+        return aadhar;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getBranch() {
+        return branch;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getEno() {
+        return eno;
+    }
+
+    public String getFname() {
+        return fname;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getMname() {
+        return mname;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPan() {
+        return Pan;
+    }
+
+    public String getPno() {
+        return Pno;
+    }
+
+    public String getRno() {
+        return rno;
+    }
+
+    public String getSemester() {
+        return semester;
+    }
+    
+
     public void setUname(String s)
     {
         uname=s;
@@ -95,7 +173,7 @@ public class Data {
     {
         Map<String,Object> m=new HashMap<>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        documentReference = db.collection("AllowedUser").document(uname).collection("Change").document("change");
+        documentReference = db.collection("AllowedUser").document(email).collection("Change").document("change");
         m.put("Address",address);
         m.put("PhoneNumber",Pno);
         m.put("Aadhar",aadhar);
