@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentHelpDesk">
         <activity
+            android:name=".Student_viewData"
+            android:exported="false" />
+        <activity
             android:name=".SeeMyData"
             android:exported="false" />
         <activity
