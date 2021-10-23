@@ -1,12 +1,28 @@
 package com.example.studenthelpdesk;
 
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Data {
-    private String uname,name,email,fname,mname,dob,aadhar,Pan,address,Pno,course,branch,semester,rno,eno;
+    private String uname,name,email,fname,mname,dob,aadhar,Pan,address,Pno,course,branch,semester,rno,eno,gender;
     private float cgpa,ten,twel;
+
+    private DocumentReference documentReference;
     public void setUname(String s)
     {
         uname=s;
     }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     public void setName(String s)
     {
         name=s;
@@ -75,8 +91,45 @@ public class Data {
     public void setCgpa(float cgpa) {
         this.cgpa = cgpa;
     }
-    public void ToDatabase()
+    public int ToDatabase()
     {
-        
+        Map<String,Object> m=new HashMap<>();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        documentReference = db.collection("AllowedUser").document(uname).collection("Change").document("change");
+        m.put("Address",address);
+        m.put("PhoneNumber",Pno);
+        m.put("Aadhar",aadhar);
+        m.put("PAN",Pan);
+        m.put("DOB",dob);
+        m.put("Gender",gender);
+        m.put("Semester",semester);
+        int flag[]={0};
+        documentReference.set(m).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                m.clear();
+                m.put("CGPA",cgpa);
+                m.put("Tenth",ten);
+                m.put("Twelth",twel);
+                m.put("Course",course);
+                m.put("Name",name);
+                m.put("Mother Name",mname);
+                m.put("Father Name",fname);
+                m.put("Email",email);
+                m.put("Roll Number",rno);
+                m.put("Enrollment",eno);
+                m.put("Branch",branch);
+                DocumentReference documentReference1 = db.collection("AllowedUser").document(uname).collection("Permanent").document("perm");
+                documentReference1.set(m).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        flag[0]=1;
+                    }
+                });
+            }
+        });
+        return  flag[0];
+
     }
+
 }
