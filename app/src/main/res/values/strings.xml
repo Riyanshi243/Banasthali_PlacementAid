@@ -5,4 +5,6 @@
     <string name="see_request">SEE REQUEST</string>
     <string name="lock_the_database">LOCK THE DATABASE</string>
     <string name="togglebutton">ToggleButton</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
