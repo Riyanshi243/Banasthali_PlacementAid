@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,6 +51,7 @@ public class frag_PersonalDetails extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            //ImageView imageView=(ImageView) findViewById(R.id.)
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
@@ -59,6 +61,9 @@ public class frag_PersonalDetails extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_frag__personal_details, container, false);
+        View v= inflater.inflate(R.layout.fragment_frag__personal_details, container, false);
+        ImageView imageView=(ImageView) v.findViewById(R.id.profile);
+        imageView.setImageResource(R.drawable.profile_pic);
+        return v;
     }
 }
