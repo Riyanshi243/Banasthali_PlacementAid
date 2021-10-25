@@ -7,4 +7,15 @@
     <string name="togglebutton">ToggleButton</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="spinner_edit_fields">dropDownMenuExample</string>
+    <string-array name="edit_details">
+        <item>CHOOSE YOUR DETAILS</item>
+        <item>NAME</item>
+        <item>ROLL NUMBER</item>
+        <item>ENROLLMENT NUMBER</item>
+        <item>10th MARKS</item>
+        <item>12th MARKS</item>
+        <item>CGPA</item>
+
+    </string-array>
 </resources>
