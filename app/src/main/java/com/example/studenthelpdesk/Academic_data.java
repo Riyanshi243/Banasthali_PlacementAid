@@ -45,17 +45,40 @@ public class Academic_data extends AppCompatActivity {
                     float cal =cgpa1;
                     float ten=tenthm;
                     float twelve=twelthm;
-                     if(cal>10 && cal<0) {
-                         cgpa.setError("INVALID");
+                    if(course.getText().toString().length()==0)
+                      {
+               course.setError("ENTER COURSE");
+               return;
                      }
-                  if(ten>100 && ten<0)
+                     if(branch.getText().toString().length()==0)
+                      {
+                      branch.setError("ENTER BRANCH");
+                     return;
+                     }
+                     if(rollno.getText().toString().length()==0)
+                      {
+                      rollno.setError("ENTER  ROLL NUMBER");
+                     return;
+                     }
+                     if(erollno.getText().toString().length()==0)
+                      {
+                      erollno.setError("ENTER ENROLLMENT");
+                     return;
+                     }
+                     if((cal>10 && cal<0) ||Float.toString(cgpa1).length()==0)
+                     {
+                         cgpa.setError("INVALID");
+                         return;
+                     }
+                  if((ten>100 && ten<0) || Float.toString(tenthm).length()==0)
                   {
                       tenth.setError("INVALID");
                       return;
                   }
-                  if(twelve>100 && twelve<0)
+                  if((twelve>100 && twelve<0) || Float.toString(twelthm).length()==0)
                   {
                       twelth.setError("INVALID");
+                      return;
 
                   }
 

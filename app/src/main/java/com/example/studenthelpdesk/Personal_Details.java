@@ -10,8 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class Personal_Details extends AppCompatActivity {
-    private EditText fullname,fathersname,mothersname,gender,dob,aadhar,phoneno;
-    private String fname,fathern,mothern,gender1,dob1,aadar1,phno;
+    private EditText fullname,fathersname,mothersname,gender,dob,aadhar,phoneno,pan;
+    private String fname,fathern,mothern,gender1,dob1,aadar1,phno,pan1;
     Data data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,7 @@ public class Personal_Details extends AppCompatActivity {
         dob=(EditText) findViewById(R.id.dob);
         aadhar=(EditText) findViewById(R.id.aadhar);
         phoneno=(EditText) findViewById(R.id.phoneno);
+        pan=(EditText) findViewById(R.id.pan);
 
 
     }
@@ -44,10 +45,52 @@ public class Personal_Details extends AppCompatActivity {
         data.setAadhar(aadar1);
         phno=phoneno.getText().toString();
         data.setPno(phno);
+        pan1=pan.getText().toString();
+        data.setPno(pan1);
 
            //check the constraits
-
-           String MobilePattern = "[0-9]{10}";
+           if(fullname.getText().toString().length()==0)
+           {
+               fullname.setError("ENTER VALID NAME");
+               return;
+           }
+           if(fathersname.getText().toString().length()==0)
+           {
+               fathersname.setError("ENTER FATHERS NAME");
+               return;
+           }
+            if(mothersname.getText().toString().length()==0)
+           {
+               mothersname.setError("ENTER MOTHERS NAME");
+               return;
+           }
+            if(gender.getText().toString().length()==0)
+           {
+               gender.setError("ENTER GENDER");
+               return;
+           }
+           if(dob.getText().toString().length()==0)
+           {
+              dob.setError("ENTER DOB");
+               return;
+           }
+           if(pan.getText().toString().length()<10 || pan.getText().toString().length()>10)
+           {
+              pan.setError("ENTER VALID PAN");
+               return;
+           }
+              if(phoneno.getText().toString().length()<10|| phoneno.getText().toString().length()>10 ||phoneno.getText().toString().length()==0)
+              {
+                  phoneno.setError("INVALID");
+                  return;
+              }
+              if(aadhar.getText().toString().length()<12||aadhar.getText().toString().length()>12)
+              {
+                  aadhar.setError("INVALID");
+                  return;
+                  
+              }
+          /* String MobilePattern = "[0-9]{10}";
            if(phoneno.getText().toString().matches(MobilePattern)) {
             phoneno.setError("INVALID NUMBER");//aise
             return ;
@@ -55,7 +98,7 @@ public class Personal_Details extends AppCompatActivity {
             } else if(!phoneno.getText().toString().matches(MobilePattern)) {
 
                Toast.makeText(getApplicationContext(), "Please enter valid 10 digit phone number", Toast.LENGTH_SHORT).show();
-           }
+           }*/
 
 
                //move to next page
@@ -65,7 +108,7 @@ public class Personal_Details extends AppCompatActivity {
 
     }
 
-    public boolean isValidAadharNumber(String a)
+   /* public boolean isValidAadharNumber(String a)
     {
         String regex
                 = "^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$";
@@ -79,4 +122,5 @@ public class Personal_Details extends AppCompatActivity {
         return m.matches();
        // return true;
     }
+    */
 }
