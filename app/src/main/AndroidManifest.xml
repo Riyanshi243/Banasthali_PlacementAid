@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentHelpDesk">
         <activity
+            android:name=".student_view_request"
+            android:exported="false" />
+        <activity
+            android:name=".admin_view_requests"
+            android:exported="false" />
+        <activity
             android:name=".Student_page"
             android:exported="false" />
         <activity
