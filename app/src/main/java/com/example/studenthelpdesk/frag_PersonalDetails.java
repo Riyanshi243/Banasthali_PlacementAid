@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.google.firebase.firestore.DocumentReference;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,7 +23,7 @@ public class frag_PersonalDetails extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    TextView name,pno,gender,dob,fname,mname,aadhar;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -64,6 +67,25 @@ public class frag_PersonalDetails extends Fragment {
         View v= inflater.inflate(R.layout.fragment_frag__personal_details, container, false);
         ImageView imageView=(ImageView) v.findViewById(R.id.profile);
         imageView.setImageResource(R.drawable.profile_pic);
+        Data data=Student_page.data;
+        name=v.findViewById(R.id.editName);
+        pno=v.findViewById(R.id.edittwelve);
+        mname=v.findViewById(R.id.editmothersname);
+        fname=v.findViewById(R.id.editfathername);
+        gender=v.findViewById(R.id.editGender);
+        aadhar=v.findViewById(R.id.editaadhar);
+        dob=v.findViewById(R.id.editdob);
+        name.setText(data.getName());
+        pno.setText(data.getPno());
+        mname.setText(data.getMname());
+        fname.setText(data.getFname());
+        gender.setText(data.getGender());
+        aadhar.setText(data.getAadhar());
+        dob.setText(data.getDob());
         return v;
+    }
+    public  void putdata()
+    {
+        DocumentReference documentReference;
     }
 }

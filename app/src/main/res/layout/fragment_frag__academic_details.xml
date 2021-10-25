@@ -146,7 +146,7 @@
                         android:textSize="24dp" />
 
                     <TextView
-                        android:id="@+id/editphonenumber"
+                        android:id="@+id/edittwelve"
                         android:layout_width="300dp"
                         android:layout_height="50dp"
                         android:ems="10"
