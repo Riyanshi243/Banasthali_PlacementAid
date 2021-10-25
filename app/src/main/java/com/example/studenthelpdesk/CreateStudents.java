@@ -64,14 +64,14 @@ public class CreateStudents extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         Boolean[] flag = {true};
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        documentReference = db.collection("AllowedUser").document(uname);
+        documentReference = db.collection("AllowedUser").document(email);
         documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        unameet.setError("This username Already Exists");
+                        unameet.setError("This Email Already Exists");
                         flag[0] = false;
                     }
                     else
@@ -91,13 +91,16 @@ public class CreateStudents extends AppCompatActivity {
         Map<String, Object> user = new HashMap<>();
         user.put("Username", uname);
         user.put("Email", email);
-
+        user.put("New",true);
         documentReference.set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 Toast.makeText(CreateStudents.this, "User Created", Toast.LENGTH_LONG).show();
                 unameet.setText("");
                 Email.setText("");
+                //testing
+                Intent intent=new Intent(CreateStudents.this,SignIn.class);
+                startActivity(intent);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

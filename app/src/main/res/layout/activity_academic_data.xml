@@ -117,10 +117,11 @@
 
             <Button
                 android:id="@+id/next"
-                android:layout_marginTop="20dp"
                 android:layout_width="152dp"
                 android:layout_height="57dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:onClick="savedata"
                 android:text="NEXT" />
         </LinearLayout>
     </ScrollView>

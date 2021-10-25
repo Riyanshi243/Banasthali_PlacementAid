@@ -67,7 +67,7 @@ public class SignIn extends AppCompatActivity {
         String email1 = email.getText().toString();
         Boolean[] flag = {true};
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        documentReference = db.collection("AllowedUser").document(uname);
+        documentReference = db.collection("AllowedUser").document(email1);
         documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -76,14 +76,13 @@ public class SignIn extends AppCompatActivity {
                     if (document.exists()) {
                         //username exist
                         doc = document.getData();
-                        if(doc.containsKey("Email"))
+                        if(doc.containsKey("Username"))
                         {
-                            if(doc.get("Email").toString().equalsIgnoreCase(email1))
+                            if(doc.get("Username").toString().equalsIgnoreCase(uname))
                             {
                                 if(doc.containsKey("New"))
                                 {
-
-                                    doc.remove("New");
+                                    //transfer signin to see data activity after save
                                     String password1=password.getText().toString();
                                     firebaseAuth = FirebaseAuth.getInstance();
                                     firebaseAuth.createUserWithEmailAndPassword(email1,password1).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -116,13 +115,13 @@ public class SignIn extends AppCompatActivity {
                                 }
                             }
                             else {
-                                email.setError("This email doesnot exist");
+                                email.setError("Invalid username");
                             }
                         }
                     }
                     else
                     {
-                        name.setError("THIS IS NOT AN ALLOWED USERNAME");
+                        name.setError("THIS IS NOT AN ALLOWED EMAIL");
                     }
                 }
                 else {
