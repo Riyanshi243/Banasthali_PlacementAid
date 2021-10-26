@@ -78,9 +78,9 @@ public class frag_AcademicDetails extends Fragment {
         enrno.setText(data.getEno());
         course1.setText(data.getCourse());
         branch1.setText(data.getBranch());
-        cgpa1.setText(Float.toString( data.getCgpa()));
-        ten.setText(Float.toString(data.getTen()));
-        twe.setText(Float.toString(data.getTwel()));
+        cgpa1.setText( data.getCgpa()+"");
+        ten.setText(data.getTen()+"");
+        twe.setText(data.getTwel()+"");
         return v;
 
 
