@@ -1,9 +1,14 @@
 package com.example.studenthelpdesk;
 
+import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -169,6 +174,55 @@ public class Data {
     public void setCgpa(float cgpa) {
         this.cgpa = cgpa;
     }
+    public String FromDatabase(String email1)
+    {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        String f[]={null};
+        documentReference = db.collection("AllowedUser").document(email1).collection("Change").document("change");
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Map<String, Object> doc = documentSnapshot.getData();
+                address= (String) doc.get("Address");
+                Pno=(String)doc.get("PhoneNumber");
+                aadhar=(String)doc.get("Aadhar");
+                Pan= (String) doc.get("PAN");
+                dob= (String) doc.get("DOB");
+                gender= (String) doc.get("Gender");
+                semester= (String) doc.get("Semester");
+                DocumentReference documentReference1 = db.collection("AllowedUser").document(email1).collection("Permanent").document("perm");
+                documentReference1.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Map<String, Object> doc = documentSnapshot.getData();
+                        /*cgpa= (float) doc.get("CGPA");
+                        ten= (float) doc.get("Tenth");
+                        twel= (float) doc.get("Twelth");*/
+                        course= (String) doc.get("Course");
+                        name= (String) doc.get("Name");
+                        mname= (String) doc.get("Mother Name");
+                        fname= (String) doc.get("Father Name");
+                        email= (String) doc.get("Email");
+                        rno=(String) doc.get("Roll Number");
+                        eno=(String)doc.get("Enrollment");
+                        branch= (String) doc.get("Branch");
+                        f[0]=null;
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        f[0]= e.getMessage();
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                f[0]= e.getMessage();    
+            }
+        });
+        return f[0];
+    }
     public int ToDatabase()
     {
         Map<String,Object> m=new HashMap<>();
@@ -197,7 +251,7 @@ public class Data {
                 m.put("Roll Number",rno);
                 m.put("Enrollment",eno);
                 m.put("Branch",branch);
-                DocumentReference documentReference1 = db.collection("AllowedUser").document(uname).collection("Permanent").document("perm");
+                DocumentReference documentReference1 = db.collection("AllowedUser").document(email).collection("Permanent").document("perm");
                 documentReference1.set(m).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
