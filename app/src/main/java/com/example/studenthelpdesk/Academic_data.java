@@ -45,39 +45,39 @@ public class Academic_data extends AppCompatActivity {
                     float cal =cgpa1;
                     float ten=tenthm;
                     float twelve=twelthm;
-                    if(course.getText().toString().length()==0)
+                    if(course.getText().toString().trim().length()==0)
                       {
                course.setError("ENTER COURSE");
                return;
                      }
-                     if(branch.getText().toString().length()==0)
+                     if(branch.getText().toString().trim().length()==0)
                       {
                       branch.setError("ENTER BRANCH");
                      return;
                      }
-                     if(rollno.getText().toString().length()==0)
+                     if(rollno.getText().toString().trim().length()==0)
                       {
                       rollno.setError("ENTER  ROLL NUMBER");
                      return;
                      }
-                     if(erollno.getText().toString().length()==0)
+                     if(erollno.getText().toString().trim().length()==0)
                       {
                       erollno.setError("ENTER ENROLLMENT");
                      return;
                      }
-                     if((cal>10 && cal<0) ||Float.toString(cgpa1).length()==0)
+                     if((cal>10 && cal<0) ||Float.toString(cgpa1).trim().length()==0)
                      {
-                         cgpa.setError("INVALID");
+                         cgpa.setError("INVALID CGPA");
                          return;
                      }
-                  if((ten>100 && ten<0) || Float.toString(tenthm).length()==0)
+                  if((ten>100 && ten<0) || Float.toString(tenthm).trim().length()==0)
                   {
-                      tenth.setError("INVALID");
+                      tenth.setError("INVALID MARKS");
                       return;
                   }
-                  if((twelve>100 && twelve<0) || Float.toString(twelthm).length()==0)
+                  if((twelve>100 && twelve<0) || Float.toString(twelthm).trim().length()==0)
                   {
-                      twelth.setError("INVALID");
+                      twelth.setError("INVALID MARKS");
                       return;
 
                   }
