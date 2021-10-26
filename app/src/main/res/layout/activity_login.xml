@@ -68,7 +68,8 @@
                 android:gravity="center"
                 android:onClick="tosignin"
                 android:text="No Account?\nCreate One!"
-                android:textColor="@color/black" />
+                android:textColor="@color/purple_700"
+                android:textStyle="italic" />
         </LinearLayout>
     </ScrollView>
 
