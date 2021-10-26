@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="test"
+    android:background="@drawable/background"
     tools:context=".Student_page"
     tools:ignore="SpeakableTextPresentCheck">
 
     <ScrollView
         android:layout_width="409dp"
         android:layout_height="729dp"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp"
-        tools:ignore="MissingConstraints">
+        tools:layout_editor_absoluteY="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,13 +72,13 @@
                 </androidx.cardview.widget.CardView>
 
 
-
                 <ImageView
                     android:id="@+id/view_my_data"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_row="0"
                     android:layout_column="0"
+                    android:onClick="test"
                     android:src="@drawable/view_my_data"
                     tools:ignore="SpeakableTextPresentCheck" />
 
@@ -120,6 +120,7 @@
                     android:src="@drawable/see_request_status" />
 
             </GridLayout>
+
             <GridLayout
 
                 android:layout_width="match_parent"

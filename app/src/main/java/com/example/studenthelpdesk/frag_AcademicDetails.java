@@ -64,7 +64,7 @@ public class frag_AcademicDetails extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_frag__academic_details, container, false);
-        ImageView imageView=(ImageView) v.findViewById(R.id.profile);
+        //ImageView imageView=(ImageView) v.findViewById(R.id.profile);
         Data data=Student_page.data;
         rno=v.findViewById(R.id.editrollno);
         //rno.setText("Testing");

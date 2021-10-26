@@ -26,20 +26,20 @@ public class MainActivity extends AppCompatActivity {
         
         int SPLASH_SCREEN = 4000;
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(MainActivity.this, Student_viewData.class);
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
-            text.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //testinfg
-                    Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-            });
 
         }, SPLASH_SCREEN);
+        text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //testinfg
+                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 }
