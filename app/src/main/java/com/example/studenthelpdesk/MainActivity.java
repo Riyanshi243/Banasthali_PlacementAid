@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         
         int SPLASH_SCREEN = 4000;
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            Intent intent = new Intent(MainActivity.this, student_view_request.class);
             startActivity(intent);
             finish();
             text.setOnClickListener(new View.OnClickListener() {
