@@ -29,7 +29,7 @@ public class frag_AcademicDetails extends Fragment {
     private String mParam2;
 
     public frag_AcademicDetails() {
-        // Required empty public constructor
+        // Required empty public constructor`
     }
 
     /**
@@ -63,17 +63,17 @@ public class frag_AcademicDetails extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-         View v= inflater.inflate(R.layout.fragment_frag__personal_details, container, false);
+        View v= inflater.inflate(R.layout.fragment_frag__academic_details, container, false);
         ImageView imageView=(ImageView) v.findViewById(R.id.profile);
-        imageView.setImageResource(R.drawable.profile_pic);
         Data data=Student_page.data;
         rno=v.findViewById(R.id.editrollno);
+        //rno.setText("Testing");
         enrno=v.findViewById(R.id.editenrollno);
         course1=v.findViewById(R.id.editcourse);
         branch1=v.findViewById(R.id.editbranch);
+        cgpa1=v.findViewById(R.id.editcgpa);
         ten=v.findViewById(R.id.edittenth);
         twe=v.findViewById(R.id.edittwelve);
-        cgpa1=v.findViewById(R.id.editcgpa);
         rno.setText(data.getRno());
         enrno.setText(data.getEno());
         course1.setText(data.getCourse());

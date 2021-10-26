@@ -190,14 +190,14 @@ public class Data {
                 dob= (String) doc.get("DOB");
                 gender= (String) doc.get("Gender");
                 semester= (String) doc.get("Semester");
-                DocumentReference documentReference1 = db.collection("AllowedUser").document(email).collection("Permanent").document("perm");
+                DocumentReference documentReference1 = db.collection("AllowedUser").document(email1).collection("Permanent").document("perm");
                 documentReference1.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Map<String, Object> doc = documentSnapshot.getData();
-                        cgpa= (float) doc.get("CGPA");
+                        /*cgpa= (float) doc.get("CGPA");
                         ten= (float) doc.get("Tenth");
-                        twel= (float) doc.get("Twelth");
+                        twel= (float) doc.get("Twelth");*/
                         course= (String) doc.get("Course");
                         name= (String) doc.get("Name");
                         mname= (String) doc.get("Mother Name");

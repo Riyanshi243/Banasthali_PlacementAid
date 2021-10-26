@@ -28,6 +28,12 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+    public void tosignin(View view)
+    {
+         Intent intent = new Intent(LoginActivity.this,SignIn.class);
+                startActivity(intent);
+              //  finish();
+    }
     public void login(View view)
     {EditText EditTextTextPersonName=findViewById(R.id.editTextTextPersonName);
 
@@ -41,6 +47,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onSuccess(AuthResult authResult) {
 
                 Toast.makeText(LoginActivity.this,"LOGED IN",Toast.LENGTH_LONG).show();
+                //testing
+                startActivity(new Intent(LoginActivity.this,Student_page.class));
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
