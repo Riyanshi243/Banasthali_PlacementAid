@@ -54,39 +54,39 @@ public class Personal_Details extends AppCompatActivity {
                fullname.setError("ENTER VALID NAME");
                return;
            }
-           if(fathersname.getText().toString().length()==0)
+           if(fathersname.getText().toString().trim().length()==0)
            {
                fathersname.setError("ENTER FATHERS NAME");
                return;
            }
-            if(mothersname.getText().toString().length()==0)
+            if(mothersname.getText().toString().trim().length()==0)
            {
                mothersname.setError("ENTER MOTHERS NAME");
                return;
            }
-            if(gender.getText().toString().length()==0)
+            if(gender.getText().toString().trim().length()==0)
            {
                gender.setError("ENTER GENDER");
                return;
            }
-           if(dob.getText().toString().length()==0)
+           if(dob.getText().toString().trim().length()==0)
            {
               dob.setError("ENTER DOB");
                return;
            }
-           if(pan.getText().toString().length()<10 || pan.getText().toString().length()>10)
+           if(pan.getText().toString().length()<10 || pan.getText().toString().trim().length()>10)
            {
               pan.setError("ENTER VALID PAN");
                return;
            }
-              if(phoneno.getText().toString().length()<10|| phoneno.getText().toString().length()>10 ||phoneno.getText().toString().length()==0)
+              if(phoneno.getText().toString().length()<10|| phoneno.getText().toString().trim().length()>10 ||phoneno.getText().toString().length()==0)
               {
-                  phoneno.setError("INVALID");
+                  phoneno.setError("INVALID NUMBER");
                   return;
               }
-              if(aadhar.getText().toString().length()<12||aadhar.getText().toString().length()>12)
+              if(aadhar.getText().toString().length()<12||aadhar.getText().toString().trim().length()>12)
               {
-                  aadhar.setError("INVALID");
+                  aadhar.setError("INVALID AADHAR");
                   return;
                   
               }
