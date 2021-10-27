@@ -7,34 +7,44 @@
     tools:context=".SearchStudent">
 
     <TableRow
-        android:layout_width="409dp"
+        android:id="@+id/tableRow"
+        android:layout_width="0dp"
         android:layout_height="684dp"
-        tools:layout_editor_absoluteY="47dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
     </TableRow>
 
     <ScrollView
         android:id="@+id/scroll"
-        android:layout_width="417dp"
+        android:layout_width="0dp"
         android:layout_height="669dp"
-        tools:layout_editor_absoluteX="387dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/search"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/uname3"
-        android:layout_width="293dp"
-        android:layout_height="wrap_content"
+        android:layout_width="296dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="4dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         android:text="Name"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="4dp" />
+        app:layout_constraintEnd_toStartOf="@+id/search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button"
-        tools:layout_editor_absoluteX="293dp"
-        tools:layout_editor_absoluteY="4dp" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/uname3"
+        app:layout_constraintEnd_toStartOf="@+id/scroll"
+        app:layout_constraintStart_toEndOf="@+id/uname3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

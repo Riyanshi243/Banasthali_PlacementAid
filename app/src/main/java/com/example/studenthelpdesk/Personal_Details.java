@@ -25,11 +25,24 @@ public class Personal_Details extends AppCompatActivity {
         aadhar=(EditText) findViewById(R.id.aadhar);
         phoneno=(EditText) findViewById(R.id.phoneno);
         pan=(EditText) findViewById(R.id.pan);
-
+        show();
 
     }
-    public void savedata(View V)
+    public void show()
     {
+        data=SignIn.data;
+        fullname.setText(data.getName());
+        fathersname.setText(data.getFname());
+        mothersname.setText(data.getMname());
+        gender.setText(data.getGender());
+        dob.setText(data.getDob());
+        aadhar.setText(data.getAadhar());
+        phoneno.setText(data.getPno());
+        pan.setText(data.getPan());
+    }
+    public void save()
+    {
+
         data=SignIn.data;
         fname=fullname.getText().toString();
         data.setName(fname);
@@ -47,7 +60,10 @@ public class Personal_Details extends AppCompatActivity {
         data.setPno(phno);
         pan1=pan.getText().toString();
         data.setPno(pan1);
-
+    }
+    public void savedata(View V)
+    {
+        save();
            //check the constraits
            if(fullname.getText().toString().length()==0)
            {
@@ -108,19 +124,9 @@ public class Personal_Details extends AppCompatActivity {
 
     }
 
-   /* public boolean isValidAadharNumber(String a)
-    {
-        String regex
-                = "^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$";
-
-        Pattern p = Pattern.compile(regex);
-        if (a == null) {
-            aadhar.setError("INVALID");
-        }
-        Matcher m = p.matcher(a);
-        //condition
-        return m.matches();
-       // return true;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        show();
     }
-    */
 }

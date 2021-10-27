@@ -1,5 +1,6 @@
 package com.example.studenthelpdesk;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,8 +11,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -23,6 +26,7 @@ public class SeeMyData extends AppCompatActivity {
 
     FirebaseFirestore firestore;
     DocumentReference documentReference,documentReference2;
+    FirebaseAuth firebaseAuth;
     Data data;
     TextView name,pno,cgpa,gender,dob,rollno,fathersname,mothersname,pan,email,course,branch,enro,ten,twelve;
     @Override
@@ -104,7 +108,7 @@ public class SeeMyData extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }).setNeutralButton("Uploads", new DialogInterface.OnClickListener() {
+        }).setNegativeButton("Uploads", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Intent intent=new Intent(SeeMyData.this,Upload_data.class);
@@ -121,10 +125,23 @@ public class SeeMyData extends AppCompatActivity {
         ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                data.ToDatabase();
-                Intent intent=new Intent(SeeMyData.this,LoginActivity.class);
-                Toast.makeText(SeeMyData.this,"SIGN UP SUCCESSFULL\nNOW LOGIN",Toast.LENGTH_SHORT).show();
-                finish();
+
+                firebaseAuth=FirebaseAuth.getInstance();
+                firebaseAuth.createUserWithEmailAndPassword(data.getEmail(),SignIn.password1).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        data.ToDatabase();
+                        Intent intent=new Intent(SeeMyData.this,LoginActivity.class);
+                        Toast.makeText(SeeMyData.this,"SIGN UP SUCCESSFULL\nNOW LOGIN",Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(SeeMyData.this,"SIGN UP Failed\nTry Again",Toast.LENGTH_SHORT).show();
+
+                    }
+                });
             }
         }).setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
