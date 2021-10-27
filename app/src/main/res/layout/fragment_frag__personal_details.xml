@@ -21,179 +21,225 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="20dp"
                 tools:src="@tools:sample/avatars" />
 
-            <TableLayout
-                android:layout_width="352dp"
-                android:layout_height="582dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="30dp">
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="NAME"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
 
-                    <TextView
-                        android:id="@+id/name"
-                        android:layout_width="100dp"
-                        android:layout_height="40dp"
-                        android:text="NAME"
-                        android:textColor="@color/black"
-                        android:textSize="24dp" />
-
-                    <TextView
-                        android:id="@+id/editName"
-                        android:layout_width="300dp"
-                        android:layout_height="50dp"
-                        android:ems="10"
-                        android:text="Name"
-                        android:textColor="@color/black"
-                        android:textSize="24dp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/gender"
-                        android:layout_width="100dp"
-                        android:layout_height="40dp"
-                        android:text="GENDER"
-                        android:textColor="@color/black"
-                        android:textSize="24dp" />
-
-                    <TextView
-                        android:id="@+id/editGender"
-                        android:layout_width="300dp"
-                        android:layout_height="50dp"
-                        android:ems="10"
-                        android:text="Gender"
-                        android:textColor="@color/black"
-                        android:textSize="24dp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/dob"
-                        android:layout_width="100dp"
-                        android:layout_height="40dp"
-                        android:text="DOB"
-                        android:textColor="@color/black"
-                        android:textSize="24dp" />
-
-                    <TextView
-                        android:id="@+id/editdob"
-                        android:layout_width="300dp"
-                        android:layout_height="50dp"
-                        android:ems="10"
-                        android:inputType="textPersonName"
-                        android:text="Date of birth"
-                        android:textColor="@color/black"
-                        android:textSize="24dp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/fathername"
-                        android:layout_width="139dp"
-                        android:layout_height="80dp"
-                        android:text="FATHER'S NAME"
-                        android:textColor="@color/black"
-                        android:textSize="24dp" />
-
-                    <TextView
-                        android:id="@+id/editfathername"
-                        android:layout_width="300dp"
-                        android:layout_height="50dp"
-                        android:ems="10"
-                        android:inputType="textPersonName"
-                        android:text="father's name"
-                        android:textColor="@color/black"
-                        android:textSize="24dp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/mothersname"
-                        android:layout_width="100dp"
-                        android:layout_height="70dp"
-                        android:text="MOTHER'S NAME"
-                        android:textColor="@color/black"
-                        android:textSize="24dp" />
-
-                    <TextView
-                        android:id="@+id/editmothersname"
-                        android:layout_width="300dp"
-                        android:layout_height="50dp"
-                        android:ems="10"
-                        android:inputType="textPersonName"
-                        android:text="mother's name"
-                        android:textColor="@color/black"
-                        android:textSize="24dp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="99dp">
-
-                    <TextView
-                        android:id="@+id/phonenumber"
-                        android:layout_width="100dp"
-                        android:layout_height="80dp"
-                        android:text="PHONE NUMBER"
-                        android:textColor="@color/black"
-                        android:textSize="24dp" />
-
-                    <TextView
-                        android:id="@+id/edittwelve"
-                        android:layout_width="300dp"
-                        android:layout_height="50dp"
-                        android:ems="10"
-                        android:inputType="number"
-                        android:text="phonenumber"
-                        android:textColor="@color/black"
-                        android:textSize="24dp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/aadhar"
-                        android:layout_width="100dp"
-                        android:layout_height="89dp"
-                        android:text="AADHAR NUMBER"
-                        android:textColor="@color/black"
-                        android:textSize="24dp" />
-
-                    <TextView
-                        android:id="@+id/editaadhar"
-                        android:layout_width="300dp"
-                        android:layout_height="50dp"
-                        android:ems="10"
-                        android:inputType="number"
-                        android:text="aadhar number"
-                        android:textColor="@color/black"
-                        android:textSize="24dp" />
-                </TableRow>
-                <TableLayout>
-
-                </TableLayout>
+            <TextView
+                android:id="@+id/editName"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/darker_gray"
+                android:ems="10"
+                android:text="Name"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
 
 
-            </TableLayout>
+            <TextView
+                android:id="@+id/gender"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="GENDER"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
 
+            <TextView
+                android:id="@+id/editGender"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:text="Gender"
+                android:background="@android:color/darker_gray"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+
+            <TextView
+                android:id="@+id/dob"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="Date of Birth"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/editdob"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Date of birth"
+                android:background="@android:color/darker_gray"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+
+            <TextView
+                android:id="@+id/fathername"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="FATHER'S NAME"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/editfathername"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="father's name"
+                android:background="@android:color/darker_gray"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+
+            <TextView
+                android:id="@+id/mothersname"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="MOTHER'S NAME"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/editmothersname"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="mother's name"
+                android:background="@android:color/darker_gray"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                android:id="@+id/phonenumber"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="PHONE NUMBER"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+
+            <TextView
+                android:id="@+id/editphone"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:inputType="number"
+                android:text="phonenumber"
+                android:background="@android:color/darker_gray"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="ADDRESS"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/editaddesss"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:background="@android:color/darker_gray"
+                android:text="Address"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+
+            <TextView
+                android:id="@+id/aadhar"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="AADHAR NUMBER"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/editaadhar"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:inputType="number"
+                android:text="aadhar number"
+                android:textColor="@color/black"
+                android:background="@android:color/darker_gray"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/pan"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="PAN NUMBER"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/editpan"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/darker_gray"
+                android:ems="10"
+                android:inputType="number"
+                android:text="pan number"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
         </LinearLayout>
 
     </ScrollView>
