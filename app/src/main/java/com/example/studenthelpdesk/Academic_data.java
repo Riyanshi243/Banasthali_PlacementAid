@@ -24,8 +24,21 @@ public class Academic_data extends AppCompatActivity {
         cgpa=(EditText) findViewById(R.id.cgpa);
         tenth=(EditText) findViewById(R.id.tenth);
         twelth=(EditText) findViewById(R.id.twelth);
+        save();
+        show();
     }
-    public void savedata(View V)
+    public void show()
+    {
+        data=SignIn.data;
+        course.setText(data.getCourse());
+        branch.setText(data.getBranch());
+        rollno.setText(data.getRno());
+        erollno.setText(data.getEno());
+        cgpa.setText(data.getCgpa()+"");
+        tenth.setText(data.getTen()+"");
+        twelth.setText(data.getTwel()+"");
+    }
+    public void save()
     {
         data=SignIn.data;
         course1=course.getText().toString();
@@ -36,12 +49,16 @@ public class Academic_data extends AppCompatActivity {
         data.setRno(rno);
         erno=erollno.getText().toString();
         data.setEno(erno);
-         cgpa1=Float.parseFloat(cgpa.getText().toString());
-         data.setCgpa(cgpa1);
-         tenthm=Float.parseFloat(tenth.getText().toString());
-         data.setTen(tenthm);
-         twelthm=Float.parseFloat(twelth.getText().toString());
-         data.setTen(twelthm);
+        cgpa1=Float.parseFloat(cgpa.getText().toString());
+        data.setCgpa(cgpa1);
+        tenthm=Float.parseFloat(tenth.getText().toString());
+        data.setTen(tenthm);
+        twelthm=Float.parseFloat(twelth.getText().toString());
+        data.setTen(twelthm);
+    }
+    public void savedata(View V)
+    {
+        save();
                     float cal =cgpa1;
                     float ten=tenthm;
                     float twelve=twelthm;
@@ -87,4 +104,9 @@ public class Academic_data extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        show();
+    }
 }

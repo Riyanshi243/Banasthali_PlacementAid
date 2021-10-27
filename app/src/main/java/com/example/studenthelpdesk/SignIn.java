@@ -30,6 +30,7 @@ public class SignIn extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     static Data data;
     protected Map<String, Object> doc;
+    public static String password1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +66,8 @@ public class SignIn extends AppCompatActivity {
         }
         String uname = name.getText().toString();
         String email1 = email.getText().toString();
+        data.setEmail(email1);
+        data.setUname(uname);
         Boolean[] flag = {true};
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         documentReference = db.collection("AllowedUser").document(email1);
@@ -83,30 +86,10 @@ public class SignIn extends AppCompatActivity {
                                 if(doc.containsKey("New"))
                                 {
                                     //transfer signin to see data activity after save
-                                    String password1=password.getText().toString();
-                                    firebaseAuth = FirebaseAuth.getInstance();
-                                    firebaseAuth.createUserWithEmailAndPassword(email1,password1).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<AuthResult> task) {
-                                            if(task.isSuccessful())
-                                            {
-                                                //intent to fill data
-                                                data.setUname(uname);
-                                                data.setEmail(email1);
-                                                Intent intent = new Intent(SignIn.this,Personal_Details.class);
-                                                startActivity(intent);
-                                            }
-                                            else
-                                            {
-                                                Toast.makeText(SignIn.this,"ERROR OCCURED",Toast.LENGTH_SHORT).show();
-                                                //intent to login
-                                                Intent intent = new Intent(SignIn.this,
-                                                LoginActivity.class);
-                                                startActivity(intent);
-                                                finish();
-                                            }
-                                        }
-                                    });
+                                    password1=password.getText().toString();
+
+                                    Intent intent = new Intent(SignIn.this,Personal_Details.class);
+                                    startActivity(intent);
                                 }
                                 else
                                 {
