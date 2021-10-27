@@ -13,178 +13,172 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
-            <TableLayout
-                android:layout_width="352dp"
-                android:layout_height="582dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="50dp">
+            <TextView
+                android:id="@+id/rollno"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:text="ROLL NUMBER"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/editrollno"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/darker_gray"
+                android:ems="10"
+                android:text="roll number"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
 
-                    <TextView
-                        android:id="@+id/rollno"
-                        android:layout_width="172dp"
-                        android:layout_height="40dp"
-                        android:text="ROLL NUMBER"
-                        android:textColor="@color/black"
-                        android:textSize="24dp" />
 
-                    <TextView
-                        android:id="@+id/editrollno"
-                        android:layout_width="300dp"
-                        android:layout_height="50dp"
-                        android:ems="10"
-                        android:text="roll number"
-                        android:textColor="@color/black"
-                        android:textSize="24dp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
 
                     <TextView
                         android:id="@+id/enrollno"
-                        android:layout_width="161dp"
-                        android:layout_height="80dp"
+                        android:layout_width="360dp"
+                        android:layout_height="wrap_content"
                         android:text="ENROLLMENT NUMBER"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
                         android:textColor="@color/black"
-                        android:textSize="24dp" />
+                        android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/editenrollno"
-                        android:layout_width="300dp"
-                        android:layout_height="50dp"
+                        android:layout_width="360dp"
+                        android:layout_height="wrap_content"
                         android:ems="10"
                         android:text="enrollno"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:background="@android:color/darker_gray"
                         android:textColor="@color/black"
                         android:textSize="24dp" />
-                </TableRow>
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
 
                     <TextView
                         android:id="@+id/course"
-                        android:layout_width="100dp"
-                        android:layout_height="40dp"
+                        android:layout_width="360dp"
+                        android:layout_height="wrap_content"
                         android:text="COURSE"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
                         android:textColor="@color/black"
-                        android:textSize="24dp" />
+                        android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/editcourse"
-                        android:layout_width="300dp"
-                        android:layout_height="50dp"
+                        android:layout_width="360dp"
+                        android:layout_height="wrap_content"
                         android:ems="10"
                         android:text="course"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:background="@android:color/darker_gray"
                         android:textColor="@color/black"
-                        android:textSize="24dp" />
-                </TableRow>
+                        android:textSize="20dp" />
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
 
                     <TextView
                         android:id="@+id/branch"
-                        android:layout_width="139dp"
-                        android:layout_height="50dp"
+                        android:layout_width="360dp"
+                        android:layout_height="wrap_content"
                         android:text="BRANCH"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
                         android:textColor="@color/black"
-                        android:textSize="24dp" />
+                        android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/editbranch"
-                        android:layout_width="300dp"
-                        android:layout_height="50dp"
+                        android:layout_width="360dp"
+                        android:layout_height="wrap_content"
                         android:ems="10"
                         android:text="branch"
                         android:textColor="@color/black"
-                        android:textSize="24dp" />
-                </TableRow>
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:background="@android:color/darker_gray"
+                        android:textSize="20dp" />
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
 
                     <TextView
                         android:id="@+id/tenthper"
-                        android:layout_width="100dp"
-                        android:layout_height="80dp"
+                        android:layout_width="360dp"
+                        android:layout_height="wrap_content"
                         android:text="10th PERCENTAGE"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
                         android:textColor="@color/black"
-                        android:textSize="24dp" />
+                        android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/edittenth"
-                        android:layout_width="300dp"
-                        android:layout_height="50dp"
+                        android:layout_width="360dp"
+                        android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="number"
                         android:text="10th percent"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:background="@android:color/darker_gray"
                         android:textColor="@color/black"
-                        android:textSize="24dp" />
-                </TableRow>
+                        android:textSize="20dp" />
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="99dp">
 
                     <TextView
                         android:id="@+id/twelfth"
-                        android:layout_width="100dp"
-                        android:layout_height="80dp"
+                        android:layout_width="360dp"
+                        android:layout_height="wrap_content"
                         android:text="12th PERCENTAGE"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
                         android:textColor="@color/black"
-                        android:textSize="24dp" />
+                        android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/edittwelve"
-                        android:layout_width="300dp"
-                        android:layout_height="50dp"
+                        android:layout_width="360dp"
+                        android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="number"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:background="@android:color/darker_gray"
                         android:text="12th Percentage"
                         android:textColor="@color/black"
-                        android:textSize="24dp" />
-                </TableRow>
+                        android:textSize="20dp" />
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
 
                     <TextView
                         android:id="@+id/cgpa"
-                        android:layout_width="100dp"
-                        android:layout_height="89dp"
+                        android:layout_width="360dp"
+                        android:layout_height="wrap_content"
                         android:text="CURRENT CGPA"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
                         android:textColor="@color/black"
-                        android:textSize="24dp" />
+                        android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/editcgpa"
-                        android:layout_width="300dp"
-                        android:layout_height="50dp"
+                        android:layout_width="360dp"
+                        android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="number"
                         android:text="currentcgpa"
                         android:textColor="@color/black"
-                        android:textSize="24dp" />
-                </TableRow>
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:background="@android:color/darker_gray"
+                        android:textSize="20dp" />
 
-                <TableLayout>
-
-                </TableLayout>
-
-
-            </TableLayout>
 
         </LinearLayout>
 
