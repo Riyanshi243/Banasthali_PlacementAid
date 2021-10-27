@@ -42,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
+                android:background="@android:color/darker_gray"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
@@ -62,6 +63,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
+                android:background="@android:color/darker_gray"
                 android:textSize="20dp" />
 
             <TextView
@@ -81,6 +83,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
+                android:background="@android:color/darker_gray"
                 android:textSize="20dp" />
 
             <TextView
@@ -100,7 +103,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:background="@android:color/darker_gray"/>
 
             <TextView
                 android:id="@+id/_dob"
@@ -119,7 +123,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:background="@android:color/darker_gray"/>
 
             <TextView
                 android:id="@+id/_gender"
@@ -138,7 +143,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:background="@android:color/darker_gray"/>
 
             <TextView
                 android:id="@+id/_aadhar"
@@ -157,7 +163,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:background="@android:color/darker_gray"/>
 
             <TextView
                 android:id="@+id/_pan"
@@ -176,7 +183,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:background="@android:color/darker_gray"/>
 
             <TextView
                 android:id="@+id/_email"
@@ -195,7 +203,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:background="@android:color/darker_gray"/>
 
             <TextView
                 android:id="@+id/_rollno"
@@ -214,7 +223,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:background="@android:color/darker_gray"/>
 
             <TextView
                 android:id="@+id/_enrollno"
@@ -233,7 +243,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:background="@android:color/darker_gray"/>
 
             <TextView
                 android:id="@+id/_course"
@@ -252,7 +263,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:background="@android:color/darker_gray"/>
 
             <TextView
                 android:id="@+id/_branch"
@@ -271,7 +283,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:background="@android:color/darker_gray"/>
 
             <TextView
                 android:id="@+id/_tenth"
@@ -290,7 +303,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:background="@android:color/darker_gray"/>
 
             <TextView
                 android:id="@+id/_twe"
@@ -309,7 +323,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:background="@android:color/darker_gray"/>
 
             <TextView
                 android:id="@+id/_cgpa"
@@ -329,7 +344,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:background="@android:color/darker_gray"/>
 
             <TableRow
                 android:layout_width="match_parent"
