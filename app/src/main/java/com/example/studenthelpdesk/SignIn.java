@@ -98,13 +98,13 @@ public class SignIn extends AppCompatActivity {
                                 }
                             }
                             else {
-                                email.setError("Invalid username");
+                                email.setError("Invalid MAIL");
                             }
                         }
                     }
                     else
                     {
-                        name.setError("THIS IS NOT AN ALLOWED EMAIL");
+                        name.setError("THIS IS NOT AN ALLOWED USERNAME");
                     }
                 }
                 else {

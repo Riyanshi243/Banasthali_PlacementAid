@@ -11,7 +11,7 @@ import android.widget.Toast;
 public class Academic_data extends AppCompatActivity {
     private EditText course,branch,rollno,erollno,cgpa,tenth,twelth;
     private String course1,branch1,rno,erno;
-    private float tenthm,twelthm,cgpa1;
+    private String tenthm,twelthm,cgpa1;
     Data data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,6 @@ public class Academic_data extends AppCompatActivity {
         cgpa=(EditText) findViewById(R.id.cgpa);
         tenth=(EditText) findViewById(R.id.tenth);
         twelth=(EditText) findViewById(R.id.twelth);
-        save();
         show();
     }
     public void show()
@@ -49,19 +48,20 @@ public class Academic_data extends AppCompatActivity {
         data.setRno(rno);
         erno=erollno.getText().toString();
         data.setEno(erno);
-        cgpa1=Float.parseFloat(cgpa.getText().toString());
+        //remove float showing error
+        cgpa1=cgpa.getText().toString();
         data.setCgpa(cgpa1);
-        tenthm=Float.parseFloat(tenth.getText().toString());
+        tenthm=(tenth.getText().toString());
         data.setTen(tenthm);
-        twelthm=Float.parseFloat(twelth.getText().toString());
-        data.setTen(twelthm);
+        twelthm=(twelth.getText().toString());
+        data.setTwel(twelthm);
     }
     public void savedata(View V)
     {
         save();
-                    float cal =cgpa1;
-                    float ten=tenthm;
-                    float twelve=twelthm;
+                    float cal =Float.parseFloat(cgpa1);
+                    float ten=Float.parseFloat(tenthm);
+                    float twelve=Float.parseFloat(twelthm);
                     if(course.getText().toString().trim().length()==0)
                       {
                course.setError("ENTER COURSE");
@@ -82,22 +82,36 @@ public class Academic_data extends AppCompatActivity {
                       erollno.setError("ENTER ENROLLMENT");
                      return;
                      }
-                     if((cal>10 && cal<0) ||Float.toString(cgpa1).trim().length()==0)
+                     if((cal>10 && cal<0))
                      {
                          cgpa.setError("INVALID CGPA");
                          return;
                      }
-                  if((ten>100 && ten<0) || Float.toString(tenthm).trim().length()==0)
+                     else if(Float.toString(cal).trim().length()==0)
+                     {
+                         cgpa.setError("ENTER CGPA");
+                         return;
+                     }
+                  if((ten>100 && ten<0))
                   {
                       tenth.setError("INVALID MARKS");
                       return;
                   }
-                  if((twelve>100 && twelve<0) || Float.toString(twelthm).trim().length()==0)
+                 else if( Float.toString(ten).trim().length()==0)
+                 {
+                    tenth.setError("ENTER MARKS");
+                      return;
+                 }
+                  if((twelve>100 && twelve<0))
                   {
                       twelth.setError("INVALID MARKS");
                       return;
-
                   }
+                 else if( Float.toString(twelve).trim().length()==0)
+                 {
+                  twelth.setError("ENTER MARKS");
+                      return;   
+                 }
 
 
         Intent intent=new Intent(Academic_data.this,SeeMyData.class);

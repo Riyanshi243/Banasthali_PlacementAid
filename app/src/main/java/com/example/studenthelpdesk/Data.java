@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class Data {
     private String uname,name,email,fname,mname,dob,aadhar,Pan,address,Pno,course,branch,semester,rno,eno,gender;
-    private float cgpa,ten,twel;
+    private String cgpa,ten,twel;
 
     private DocumentReference documentReference;
 
@@ -24,15 +24,15 @@ public class Data {
         return uname;
     }
 
-    public float getCgpa() {
+    public String getCgpa() {
         return cgpa;
     }
 
-    public float getTen() {
+    public String getTen() {
         return ten;
     }
 
-    public float getTwel() {
+    public String getTwel() {
         return twel;
     }
 
@@ -123,11 +123,11 @@ public class Data {
         this.address = address;
     }
 
-    public void setTwel(float twel) {
+    public void setTwel(String twel) {
         this.twel = twel;
     }
 
-    public void setTen(float ten) {
+    public void setTen(String ten) {
         this.ten = ten;
     }
 
@@ -171,7 +171,7 @@ public class Data {
         this.course = course;
     }
 
-    public void setCgpa(float cgpa) {
+    public void setCgpa(String cgpa) {
         this.cgpa = cgpa;
     }
     public String FromDatabase(String email1)
@@ -195,9 +195,9 @@ public class Data {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Map<String, Object> doc = documentSnapshot.getData();
-                        /*cgpa= (float) doc.get("CGPA");
-                        ten= (float) doc.get("Tenth");
-                        twel= (float) doc.get("Twelth");*/
+                        cgpa= (String) doc.get("CGPA");
+                        ten= (String) doc.get("Tenth");
+                        twel= (String)  doc.get("Twelth");
                         course= (String) doc.get("Course");
                         name= (String) doc.get("Name");
                         mname= (String) doc.get("Mother Name");

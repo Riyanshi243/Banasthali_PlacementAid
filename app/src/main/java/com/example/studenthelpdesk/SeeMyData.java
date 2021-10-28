@@ -20,6 +20,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.w3c.dom.Text;
+
 import java.util.Map;
 
 public class SeeMyData extends AppCompatActivity {
@@ -28,13 +30,14 @@ public class SeeMyData extends AppCompatActivity {
     DocumentReference documentReference,documentReference2;
     FirebaseAuth firebaseAuth;
     Data data;
-    TextView name,pno,cgpa,gender,dob,rollno,fathersname,mothersname,pan,email,course,branch,enro,ten,twelve;
+    TextView aadhar,name,pno,cgpa,gender,dob,rollno,fathersname,mothersname,pan,email,course,branch,enro,ten,twelve;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_see_my_data);
         name=(TextView)findViewById(R.id.name);
         pno=(TextView) findViewById(R.id.phonenumber);
+        aadhar=(TextView)findViewById(R.id.aadhar);
         cgpa=(TextView) findViewById(R.id.cgpa1);
         gender=(TextView) findViewById(R.id.gender1);
         dob=(TextView) findViewById(R.id.dob1);
@@ -50,15 +53,6 @@ public class SeeMyData extends AppCompatActivity {
         twelve= (TextView) findViewById(R.id.twe);
 
         show();
-        /* documentReference=firestore.collection("AllowedUser").document(email).collection("Change").document("change");
-        documentReference2=firestore.collection("AllowedUser").document(email).collection("Permanent").document("perm");
-        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Map<String, Object> doc = documentSnapshot.getData();
-                show(doc);
-            }
-        });*/
     }
     public void show()
     {
@@ -66,16 +60,19 @@ public class SeeMyData extends AppCompatActivity {
         name.setText(data.getName());
         fathersname.setText(data.getFname());
         mothersname.setText(data.getMname());
-        cgpa.setText(Float.toString(data.getCgpa()));
+        cgpa.setText((data.getCgpa()));
         enro.setText(data.getEno());
         pno.setText(data.getPno());
+        email.setText(data.getEmail());
+        aadhar.setText(data.getAadhar());
         gender.setText(data.getGender());
         branch.setText(data.getBranch());
         course.setText(data.getCourse());
+        pan.setText(data.getPan());
         dob.setText(data.getDob());
         rollno.setText(data.getRno());
-        ten.setText(Float.toString(data.getTen()));
-        twelve.setText(Float.toString(data.getTwel()));
+        ten.setText((data.getTen()));
+        twelve.setText((data.getTwel()));
     }
 
     @Override
