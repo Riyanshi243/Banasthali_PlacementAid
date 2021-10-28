@@ -69,7 +69,7 @@ public class frag_PersonalDetails extends Fragment {
         imageView.setImageResource(R.drawable.profile_pic);
         Data data = Student_page.data;
         name = v.findViewById(R.id.editName);
-        pno = v.findViewById(R.id.edittwelve);
+        pno = v.findViewById(R.id.editphone);
         mname = v.findViewById(R.id.editmothersname);
         fname = v.findViewById(R.id.editfathername);
         gender = v.findViewById(R.id.editGender);

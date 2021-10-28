@@ -21,12 +21,13 @@
                 android:layout_width="274dp"
                 android:layout_height="134dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="20dp"
                 app:srcCompat="@drawable/personal_details" />
 
             <EditText
                 android:id="@+id/fullname"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:ems="10"
@@ -39,7 +40,7 @@
             <EditText
                 android:id="@+id/gender"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:ems="10"
@@ -52,7 +53,7 @@
             <EditText
                 android:id="@+id/dob"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:ems="10"
@@ -65,7 +66,7 @@
             <EditText
                 android:id="@+id/fathersname"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:ems="10"
@@ -78,7 +79,7 @@
             <EditText
                 android:id="@+id/mothersname"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:ems="10"
@@ -89,9 +90,22 @@
                 android:textColorHint="@android:color/darker_gray" />
 
             <EditText
+                android:id="@+id/address"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="Your address"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textColor="@color/black"
+                android:textColorHint="@android:color/darker_gray" />
+
+            <EditText
                 android:id="@+id/phoneno"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:ems="10"
@@ -107,7 +121,7 @@
             <EditText
                 android:id="@+id/aadhar"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="3dp"
@@ -122,7 +136,7 @@
             <EditText
                 android:id="@+id/pan"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="3dp"
