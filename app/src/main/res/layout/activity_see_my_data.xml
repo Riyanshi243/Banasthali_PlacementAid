@@ -105,6 +105,25 @@
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:background="@android:color/darker_gray"/>
+            <TextView
+                android:id="@+id/_address"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="ADDRESS"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:background="@android:color/darker_gray"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/_dob"
@@ -278,6 +297,26 @@
 
             <TextView
                 android:id="@+id/branch1"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:id="@+id/_sem"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="SEMESTER"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/sem"
                 android:layout_width="360dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
