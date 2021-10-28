@@ -19,6 +19,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class LoginActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     String email,editTextPassword;
@@ -40,6 +43,12 @@ public class LoginActivity extends AppCompatActivity {
         editTextPassword= EditTextTextPassword.getText().toString();
         firebaseAuth=FirebaseAuth.getInstance();
         email= EditTextTextPersonName.getText().toString();
+        String regex = "^@(.+)$";
+        Pattern pattern = Pattern.compile(regex);
+/*for(String ){
+    Matcher matcher = pattern.matcher(email);
+}
+*/
         if(editTextPassword.trim().length()==0)
         {
             EditTextTextPassword.setError("ENTER PASSWORD");
