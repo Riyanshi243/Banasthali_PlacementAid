@@ -40,7 +40,15 @@ public class LoginActivity extends AppCompatActivity {
         editTextPassword= EditTextTextPassword.getText().toString();
         firebaseAuth=FirebaseAuth.getInstance();
         email= EditTextTextPersonName.getText().toString();
-
+        if(editTextPassword.trim().length()==0)
+        {
+            EditTextTextPassword.setError("ENTER PASSWORD");
+            return;
+        }
+        else if(editTextPassword.trim().length()<6)
+        {
+            EditTextTextPassword.setError("ENTER ATLEAST 6 CHARACTERS");
+        }
         firebaseAuth.signInWithEmailAndPassword(email,editTextPassword).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {

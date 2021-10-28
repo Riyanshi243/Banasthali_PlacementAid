@@ -59,7 +59,7 @@ public class Personal_Details extends AppCompatActivity {
         phno=phoneno.getText().toString();
         data.setPno(phno);
         pan1=pan.getText().toString();
-        data.setPno(pan1);
+        data.setPan(pan1);
     }
     public void savedata(View V)
     {
@@ -90,14 +90,19 @@ public class Personal_Details extends AppCompatActivity {
               dob.setError("ENTER DOB");
                return;
            }
-           if(pan.getText().toString().length()<10 || pan.getText().toString().trim().length()>10)
+           if((pan.getText().toString().length()!=0)&& (pan.getText().toString().length()<10 || pan.getText().toString().trim().length()>10))
            {
               pan.setError("ENTER VALID PAN");
                return;
            }
-              if(phoneno.getText().toString().length()<10|| phoneno.getText().toString().trim().length()>10 ||phoneno.getText().toString().length()==0)
+              if(phoneno.getText().toString().length()<10|| phoneno.getText().toString().trim().length()>10)
               {
                   phoneno.setError("INVALID NUMBER");
+                  return;
+              }
+              else if(phoneno.getText().toString().length()==0)
+              {
+                phoneno.setError("ENTER NUMBER");
                   return;
               }
               if(aadhar.getText().toString().length()<12||aadhar.getText().toString().trim().length()>12)
@@ -105,19 +110,7 @@ public class Personal_Details extends AppCompatActivity {
                   aadhar.setError("INVALID AADHAR");
                   return;
                   
-              }
-          /* String MobilePattern = "[0-9]{10}";
-           if(phoneno.getText().toString().matches(MobilePattern)) {
-            phoneno.setError("INVALID NUMBER");//aise
-            return ;
-
-            } else if(!phoneno.getText().toString().matches(MobilePattern)) {
-
-               Toast.makeText(getApplicationContext(), "Please enter valid 10 digit phone number", Toast.LENGTH_SHORT).show();
-           }*/
-
-
-               //move to next page
+              }        
                Intent i = new Intent(Personal_Details.this, Academic_data.class);
                startActivity(i);
 
