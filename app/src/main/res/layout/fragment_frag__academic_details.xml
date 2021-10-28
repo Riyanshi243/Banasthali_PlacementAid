@@ -107,6 +107,28 @@
                         android:background="@android:color/darker_gray"
                         android:textSize="20dp" />
 
+            <TextView
+                android:id="@+id/sem"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:text="SEMESTER"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/editsem"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text="semester"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/darker_gray"
+                android:textSize="20dp" />
+
 
                     <TextView
                         android:id="@+id/tenthper"
