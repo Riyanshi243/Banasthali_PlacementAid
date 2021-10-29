@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentHelpDesk">
         <activity
+            android:name=".admin_view_all_data"
+            android:exported="false" />
+        <activity
             android:name=".Student_see_request_status"
             android:exported="false" />
         <activity

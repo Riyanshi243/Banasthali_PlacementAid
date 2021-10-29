@@ -41,6 +41,12 @@ public class SignIn extends AppCompatActivity {
 
 
     }
+    public void tologinin(View view)
+    {
+        Intent intent = new Intent(SignIn.this,LoginActivity.class);
+        startActivity(intent);
+        //  finish();
+    }
     public void submit(View view)
     {
         data=new Data();
