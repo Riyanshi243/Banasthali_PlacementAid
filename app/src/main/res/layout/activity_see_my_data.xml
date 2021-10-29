@@ -316,7 +316,7 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/sem"
+                android:id="@+id/sem1"
                 android:layout_width="360dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

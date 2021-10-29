@@ -8,10 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
+//underline create one
 public class Personal_Details extends AppCompatActivity {
-    private EditText fullname,fathersname,mothersname,gender,dob,aadhar,phoneno,pan;
-    private String fname,fathern,mothern,gender1,dob1,aadar1,phno,pan1;
+    private EditText fullname,fathersname,mothersname,gender,dob,aadhar,phoneno,pan,address;
+    private String fname,fathern,mothern,gender1,dob1,aadar1,phno,pan1,add;
     Data data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +22,11 @@ public class Personal_Details extends AppCompatActivity {
         mothersname=(EditText) findViewById(R.id.mothersname);
         gender=(EditText) findViewById(R.id.gender);
         dob=(EditText) findViewById(R.id.dob);
-        aadhar=(EditText) findViewById(R.id.aadhar);
         phoneno=(EditText) findViewById(R.id.phoneno);
         pan=(EditText) findViewById(R.id.pan);
+        aadhar=(EditText) findViewById(R.id.aadhar);
+        address=(EditText) findViewById(R.id.address);
+        //address=(EditText) findViewById(R.id.add);
         show();
 
     }
@@ -39,6 +41,8 @@ public class Personal_Details extends AppCompatActivity {
         aadhar.setText(data.getAadhar());
         phoneno.setText(data.getPno());
         pan.setText(data.getPan());
+        address.setText(data.getAddress());
+       // address.setText(data.getAddress());
     }
     public void save()
     {
@@ -60,6 +64,9 @@ public class Personal_Details extends AppCompatActivity {
         data.setPno(phno);
         pan1=pan.getText().toString();
         data.setPan(pan1);
+        add=address.getText().toString();
+        data.setAddress(add);
+
     }
     public void savedata(View V)
     {
@@ -68,16 +75,6 @@ public class Personal_Details extends AppCompatActivity {
            if(fullname.getText().toString().length()==0)
            {
                fullname.setError("ENTER VALID NAME");
-               return;
-           }
-           if(fathersname.getText().toString().trim().length()==0)
-           {
-               fathersname.setError("ENTER FATHERS NAME");
-               return;
-           }
-            if(mothersname.getText().toString().trim().length()==0)
-           {
-               mothersname.setError("ENTER MOTHERS NAME");
                return;
            }
             if(gender.getText().toString().trim().length()==0)
@@ -90,11 +87,17 @@ public class Personal_Details extends AppCompatActivity {
               dob.setError("ENTER DOB");
                return;
            }
-           if((pan.getText().toString().length()!=0)&& (pan.getText().toString().length()<10 || pan.getText().toString().trim().length()>10))
+           if(fathersname.getText().toString().trim().length()==0)
            {
-              pan.setError("ENTER VALID PAN");
+               fathersname.setError("ENTER FATHERS NAME");
                return;
            }
+            if(mothersname.getText().toString().trim().length()==0)
+           {
+               mothersname.setError("ENTER MOTHERS NAME");
+               return;
+           }
+
               if(phoneno.getText().toString().length()<10|| phoneno.getText().toString().trim().length()>10)
               {
                   phoneno.setError("INVALID NUMBER");
@@ -105,12 +108,17 @@ public class Personal_Details extends AppCompatActivity {
                 phoneno.setError("ENTER NUMBER");
                   return;
               }
-              if(aadhar.getText().toString().length()<12||aadhar.getText().toString().trim().length()>12)
+               if(aadhar.getText().toString().length()<12||aadhar.getText().toString().trim().length()>12)
               {
                   aadhar.setError("INVALID AADHAR");
                   return;
-                  
-              }        
+
+              }
+           if((pan.getText().toString().length()!=0)&& (pan.getText().toString().length()<10 || pan.getText().toString().trim().length()>10))
+           {
+              pan.setError("ENTER VALID PAN");
+               return;
+           }
                Intent i = new Intent(Personal_Details.this, Academic_data.class);
                startActivity(i);
 
