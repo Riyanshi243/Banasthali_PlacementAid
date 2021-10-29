@@ -87,6 +87,18 @@
                 android:text="SIGN-UP"
                 android:layout_marginTop="50dp"
                 android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/login"
+                android:layout_width="133dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:onClick="tologinin"
+                android:text="Already a user\nLogin instead"
+                android:textAlignment="center"
+                android:textColor="@color/purple_700"
+                android:textStyle="italic" />
         </LinearLayout>
     </ScrollView>
 
