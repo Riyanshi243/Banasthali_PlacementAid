@@ -11,52 +11,64 @@
         android:theme="@style/Theme.StudentHelpDesk">
         <activity
             android:name=".admin_view_all_data"
-            android:exported="false" />
+            android:exported="false"
+            android:label="All Students Data"/>
         <activity
             android:name=".Student_see_request_status"
-            android:exported="false" />
-        <activity
-            android:name=".student_view_request"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Request Status"/>
         <activity
             android:name=".admin_view_requests"
+            android:label="View Requests"
             android:exported="false" />
         <activity
             android:name=".Student_page"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Student Page"/>
         <activity
             android:name=".Student_viewData"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Student Data"/>
         <activity
             android:name=".SeeMyData"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Student Data"/>
         <activity
             android:name=".Upload_data"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Upload Data"/>
         <activity
             android:name=".Academic_data"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Academic Details"/>
         <activity
             android:name=".Personal_Details"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Personal Details"/>
         <activity
             android:name=".SearchStudent"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Search Student"/>
         <activity
             android:name=".SignIn"
-            android:exported="false" />
+            android:exported="false"
+            android:label="SignIn"/>
         <activity
             android:name=".CreateStudents"
-            android:exported="false" />
+            android:exported="false"
+            android:label="New Student Account"/>
         <activity
             android:name=".LoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Login"/>
         <activity
             android:name=".Admin_page"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Admin Page"/>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="StudentHelpDesk">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
