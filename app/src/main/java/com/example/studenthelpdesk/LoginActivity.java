@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(AuthResult authResult) {
 
-                Toast.makeText(LoginActivity.this,"LOGED IN",Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this,"WELCOME TO STUDENT HELPDESK",Toast.LENGTH_LONG).show();
                 //testing
                 startActivity(new Intent(LoginActivity.this,Student_page.class));
             }
