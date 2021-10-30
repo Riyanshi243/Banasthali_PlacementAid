@@ -25,6 +25,7 @@ import java.util.regex.Pattern;
 public class LoginActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     String email,editTextPassword;
+    private long backPressedTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(AuthResult authResult) {
 
-                Toast.makeText(LoginActivity.this,"LOGED IN",Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this,"WELCOME TO STUDENT HELPDESK",Toast.LENGTH_LONG).show();
                 //testing
                 startActivity(new Intent(LoginActivity.this,Student_page.class));
             }
@@ -78,5 +79,21 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+       //public void onBackPressed() {
+        if(backPressedTime+2000>System.currentTimeMillis()){
+            super.onBackPressed();
+            System.exit(1);
+            return;
+        }else {
+            Toast.makeText(LoginActivity.this,"Press again to EXIT", Toast.LENGTH_LONG).show();
+        }
+        backPressedTime=System.currentTimeMillis();
+        //exit app
+        
     }
 }

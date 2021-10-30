@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
+    android:onClick="compulsory"
     tools:context=".frag_AcademicDetails">
 
     <ScrollView
@@ -38,82 +39,84 @@
                 android:textSize="20dp" />
 
 
+            <TextView
+                android:id="@+id/enrollno"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="ENROLLMENT NUMBER"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
 
-                    <TextView
-                        android:id="@+id/enrollno"
-                        android:layout_width="360dp"
-                        android:layout_height="wrap_content"
-                        android:text="ENROLLMENT NUMBER"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="20dp"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
-
-                    <TextView
-                        android:id="@+id/editenrollno"
-                        android:layout_width="360dp"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:text="enrollno"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="5dp"
-                        android:background="@android:color/darker_gray"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
-
-
-                    <TextView
-                        android:id="@+id/course"
-                        android:layout_width="360dp"
-                        android:layout_height="wrap_content"
-                        android:text="COURSE"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="20dp"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
-
-                    <TextView
-                        android:id="@+id/editcourse"
-                        android:layout_width="360dp"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:text="course"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="5dp"
-                        android:background="@android:color/darker_gray"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+            <TextView
+                android:id="@+id/editenrollno"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/darker_gray"
+                android:ems="10"
+                android:onClick="compulsory"
+                android:text="enrollno"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
 
 
-                    <TextView
-                        android:id="@+id/branch"
-                        android:layout_width="360dp"
-                        android:layout_height="wrap_content"
-                        android:text="BRANCH"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="20dp"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+            <TextView
+                android:id="@+id/course"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="COURSE"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
 
-                    <TextView
-                        android:id="@+id/editbranch"
-                        android:layout_width="360dp"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:text="branch"
-                        android:textColor="@color/black"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="5dp"
-                        android:background="@android:color/darker_gray"
-                        android:textSize="20dp" />
+            <TextView
+                android:id="@+id/editcourse"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/darker_gray"
+                android:ems="10"
+                android:onClick="compulsory"
+                android:text="course"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+
+            <TextView
+                android:id="@+id/branch"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="BRANCH"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/editbranch"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/darker_gray"
+                android:ems="10"
+                android:onClick="compulsory"
+                android:text="branch"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/sem1"
                 android:layout_width="360dp"
                 android:layout_height="wrap_content"
-                android:text="SEMESTER"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:text="SEMESTER"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
@@ -121,85 +124,92 @@
                 android:id="@+id/editsem"
                 android:layout_width="360dp"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:text="semester"
-                android:textColor="@color/black"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray"
+                android:ems="10"
+                android:onClick="changeSemester"
+                android:text="semester"
+                android:textColor="@color/black"
                 android:textSize="20dp" />
 
 
-                    <TextView
-                        android:id="@+id/tenthper"
-                        android:layout_width="360dp"
-                        android:layout_height="wrap_content"
-                        android:text="10th PERCENTAGE"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="20dp"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+            <TextView
+                android:id="@+id/tenthper"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="10th PERCENTAGE"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
 
-                    <TextView
-                        android:id="@+id/edittenth"
-                        android:layout_width="360dp"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="number"
-                        android:text="10th percent"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="5dp"
-                        android:background="@android:color/darker_gray"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
-
-
-                    <TextView
-                        android:id="@+id/twelfth"
-                        android:layout_width="360dp"
-                        android:layout_height="wrap_content"
-                        android:text="12th PERCENTAGE"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="20dp"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
-
-                    <TextView
-                        android:id="@+id/edittwelve"
-                        android:layout_width="360dp"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="number"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="5dp"
-                        android:background="@android:color/darker_gray"
-                        android:text="12th Percentage"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+            <TextView
+                android:id="@+id/edittenth"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/darker_gray"
+                android:ems="10"
+                android:inputType="number"
+                android:minHeight="48dp"
+                android:onClick="compulsory"
+                android:text="10th percent"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
 
 
-                    <TextView
-                        android:id="@+id/cgpa"
-                        android:layout_width="360dp"
-                        android:layout_height="wrap_content"
-                        android:text="CURRENT CGPA"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="20dp"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+            <TextView
+                android:id="@+id/twelfth"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="12th PERCENTAGE"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
 
-                    <TextView
-                        android:id="@+id/editcgpa"
-                        android:layout_width="360dp"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="number"
-                        android:text="currentcgpa"
-                        android:textColor="@color/black"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="5dp"
-                        android:background="@android:color/darker_gray"
-                        android:textSize="20dp" />
+            <TextView
+                android:id="@+id/edittwelve"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/darker_gray"
+                android:ems="10"
+                android:inputType="number"
+                android:minHeight="48dp"
+                android:onClick="compulsory"
+                android:text="12th Percentage"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+
+            <TextView
+                android:id="@+id/cgpa"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="CURRENT CGPA"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/editcgpa"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/darker_gray"
+                android:ems="10"
+                android:inputType="number"
+                android:minHeight="48dp"
+                android:onClick="compulsory"
+                android:text="currentcgpa"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
 
 
         </LinearLayout>

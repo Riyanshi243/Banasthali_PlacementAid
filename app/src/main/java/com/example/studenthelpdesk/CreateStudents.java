@@ -112,4 +112,11 @@ public class CreateStudents extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //intent to admin page
+        Intent intent = new Intent(CreateStudents.this,Admin_page.class);
+        startActivity(intent);
+    }
 }

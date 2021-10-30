@@ -28,6 +28,8 @@ public class Personal_Details extends AppCompatActivity {
         address=(EditText) findViewById(R.id.address);
         //address=(EditText) findViewById(R.id.add);
         show();
+        //ONRESUME
+        //ONFINISH
 
     }
     public void show()
@@ -129,5 +131,14 @@ public class Personal_Details extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //alert builder to are you sure you will lose ur data
+        //intent to signin
+        Intent intent = new Intent(Personal_Details.this,SignIn.class);
+        startActivity(intent);
     }
 }

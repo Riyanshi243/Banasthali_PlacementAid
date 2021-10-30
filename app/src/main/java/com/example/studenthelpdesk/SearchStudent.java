@@ -2,6 +2,7 @@ package com.example.studenthelpdesk;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -24,5 +25,13 @@ public class SearchStudent extends AppCompatActivity {
     {
         ScrollView sv=findViewById(R.id.scroll);
         //(View child);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //intent to admin page
+        Intent intent = new Intent(SearchStudent.this,Admin_page.class);
+        startActivity(intent);
     }
 }

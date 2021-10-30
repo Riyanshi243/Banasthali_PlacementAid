@@ -147,4 +147,11 @@ public class SeeMyData extends AppCompatActivity {
         ab.create().show();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //intent to acedemic
+        Intent intent = new Intent(SeeMyData.this,Academic_data.class);
+        startActivity(intent);
+    }
 }
