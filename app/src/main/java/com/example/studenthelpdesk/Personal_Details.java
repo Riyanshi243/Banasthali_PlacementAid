@@ -28,6 +28,8 @@ public class Personal_Details extends AppCompatActivity {
         address=(EditText) findViewById(R.id.address);
         //address=(EditText) findViewById(R.id.add);
         show();
+        //ONRESUME
+        //ONFINISH
 
     }
     public void show()
