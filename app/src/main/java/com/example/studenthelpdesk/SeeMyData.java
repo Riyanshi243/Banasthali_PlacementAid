@@ -13,16 +13,10 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import org.w3c.dom.Text;
-
-import java.util.Map;
 
 public class SeeMyData extends AppCompatActivity {
 
@@ -30,16 +24,18 @@ public class SeeMyData extends AppCompatActivity {
     DocumentReference documentReference,documentReference2;
     FirebaseAuth firebaseAuth;
     Data data;
-    TextView aadhar,name,pno,cgpa,gender,dob,rollno,fathersname,mothersname,pan,email,course,branch,enro,ten,twelve;
+    TextView aadhar,name,pno,cgpa,gender,dob,rollno,fathersname,mothersname,pan,email,course,branch,enro,ten,twelve,semester,address;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_see_my_data);
         name=(TextView)findViewById(R.id.name);
         pno=(TextView) findViewById(R.id.phonenumber);
+        semester=(TextView)findViewById(R.id.sem1);
         aadhar=(TextView)findViewById(R.id.aadhar);
         cgpa=(TextView) findViewById(R.id.cgpa1);
         gender=(TextView) findViewById(R.id.gender1);
+        address=(TextView)findViewById(R.id.address);
         dob=(TextView) findViewById(R.id.dob1);
         rollno=(TextView) findViewById(R.id.rollno1);
         fathersname=(TextView) findViewById(R.id.fathersname1);
@@ -69,6 +65,8 @@ public class SeeMyData extends AppCompatActivity {
         branch.setText(data.getBranch());
         course.setText(data.getCourse());
         pan.setText(data.getPan());
+        address.setText(data.getAddress());
+        semester.setText(data.getSemester());
         dob.setText(data.getDob());
         rollno.setText(data.getRno());
         ten.setText((data.getTen()));

@@ -43,8 +43,13 @@ public class LoginActivity extends AppCompatActivity {
         editTextPassword= EditTextTextPassword.getText().toString();
         firebaseAuth=FirebaseAuth.getInstance();
         email= EditTextTextPersonName.getText().toString();
-        String regex = "^@(.+)$";
-        Pattern pattern = Pattern.compile(regex);
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        if (email.matches(emailPattern)==false)
+        {
+            EditTextTextPersonName.setError("ENTER VALID EMAIL");
+            return;
+        }
+       // Pattern pattern = Pattern.compile(regex);
 /*for(String ){
     Matcher matcher = pattern.matcher(email);
 }
