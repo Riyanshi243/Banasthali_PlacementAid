@@ -20,4 +20,11 @@ public class admin_view_requests extends AppCompatActivity {
         Intent intent = new Intent(admin_view_requests.this,Admin_page.class);
         startActivity(intent);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.main,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 }

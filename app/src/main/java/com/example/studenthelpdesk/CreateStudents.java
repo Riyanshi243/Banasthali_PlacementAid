@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,6 +42,13 @@ public class CreateStudents extends AppCompatActivity {
         setContentView(R.layout.activity_create_students);
         Email = findViewById(R.id.email);
         unameet = findViewById(R.id.uname);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.main,menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     public void onStart() {
