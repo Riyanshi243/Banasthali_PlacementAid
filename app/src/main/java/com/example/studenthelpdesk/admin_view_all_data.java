@@ -17,7 +17,9 @@ public class admin_view_all_data extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         //intent to admin page
+
         Intent intent = new Intent(admin_view_all_data.this,Admin_page.class);
         startActivity(intent);
     }
+
 }

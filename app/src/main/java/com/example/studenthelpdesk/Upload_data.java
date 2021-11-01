@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 
 public class Upload_data extends AppCompatActivity {
 
@@ -20,4 +21,11 @@ public class Upload_data extends AppCompatActivity {
         Intent intent = new Intent(Upload_data.this,Academic_data.class);
         startActivity(intent);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.main,menu);
+        return super.onCreateOptionsMenu(menu);
+    }//logout
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 
 public class admin_view_requests extends AppCompatActivity {
 
@@ -19,5 +20,12 @@ public class admin_view_requests extends AppCompatActivity {
         //intent to admin page
         Intent intent = new Intent(admin_view_requests.this,Admin_page.class);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.main,menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }

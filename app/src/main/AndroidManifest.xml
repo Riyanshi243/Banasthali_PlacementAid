@@ -14,6 +14,8 @@
             android:exported="false" />
         <activity
             android:name=".Student_see_request_status"
+            android:exported="false"
+            android:label="Request Status"/>
             android:exported="false" />
         <activity
             android:name=".student_send_request"
