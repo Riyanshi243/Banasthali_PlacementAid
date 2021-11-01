@@ -1,14 +1,18 @@
 package com.example.studenthelpdesk;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.firestore.DocumentReference;
 
@@ -23,11 +27,12 @@ public class frag_PersonalDetails extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    TextView name, pno, gender, dob, fname, mname, aadhar,address;
+    private Data data=Student_page.data;
+    TextView name, pno, gender, dob, fname, mname, aadhar,address,pan;
+    
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
     public frag_PersonalDetails() {
         // Required empty public constructor
     }
@@ -76,6 +81,7 @@ public class frag_PersonalDetails extends Fragment {
         aadhar = v.findViewById(R.id.editaadhar);
         dob = v.findViewById(R.id.editdob);
         address=v.findViewById(R.id.editaddesss);
+        pan=v.findViewById(R.id.editpan);
         name.setText(data.getName());
         pno.setText(data.getPno());
         mname.setText(data.getMname());
@@ -84,7 +90,133 @@ public class frag_PersonalDetails extends Fragment {
         aadhar.setText(data.getAadhar());
         dob.setText(data.getDob());
         address.setText(data.getAddress());
-
+        pan.setText(data.getPan());
         return v;
     }
+
+    public void compulsory(View view)
+    {
+       Toast.makeText(view.getContext(),"THIS IS A EDITABLE FIELD",Toast.LENGTH_LONG).show();
+    }
+    public void changeAadhar(View v)
+    {
+        AlertDialog.Builder ab=new AlertDialog.Builder(v.getContext());
+        ab.setTitle("Edit Aadhar");
+        ab.setMessage("Enter new Aadhar number");
+        EditText et=new EditText(v.getContext());
+        ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //close;
+            }
+        }).setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                data.setAadhar(et.getText().toString());
+                aadhar.setText(et.getText().toString());
+            }
+        });
+        ab.create().show();
+    }
+    public void changeAddress(View v)
+    {
+        AlertDialog.Builder ab=new AlertDialog.Builder(v.getContext());
+        ab.setTitle("Edit Name");
+        ab.setMessage("Enter new Name");
+        EditText et=new EditText(v.getContext());
+        ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //close;
+            }
+        }).setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                data.setAddress(et.getText().toString());
+                address.setText(et.getText().toString());
+            }
+        });
+        ab.create().show();
+    }
+    public void changeDOB(View v)
+    {
+        AlertDialog.Builder ab=new AlertDialog.Builder(v.getContext());
+        ab.setTitle("Edit Date of Birth");
+        ab.setMessage("Enter new Date of Birth");
+        EditText et=new EditText(v.getContext());
+        ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //close;
+            }
+        }).setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                data.setDob(et.getText().toString());
+                dob.setText(et.getText().toString());
+            }
+        });
+        ab.create().show();
+    }
+    public void changeGender(View v)
+    {
+        AlertDialog.Builder ab=new AlertDialog.Builder(v.getContext());
+        ab.setTitle("Edit Gender");
+        ab.setMessage("Enter new Gender");
+        EditText et=new EditText(v.getContext());
+        ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //close;
+            }
+        }).setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                data.setGender(et.getText().toString());
+                gender.setText(et.getText().toString());
+            }
+        });
+        ab.create().show();
+    }
+    public void changePan(View v)
+    {
+        AlertDialog.Builder ab=new AlertDialog.Builder(v.getContext());
+        ab.setTitle("Edit PAN");
+        ab.setMessage("Enter new PAN");
+        EditText et=new EditText(v.getContext());
+        ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //close;
+            }
+        }).setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                data.setPan(et.getText().toString());
+                pan.setText(et.getText().toString());
+            }
+        });
+        ab.create().show();
+    }
+    public void changePhone(View v)
+    {
+        AlertDialog.Builder ab=new AlertDialog.Builder(v.getContext());
+        ab.setTitle("Edit Phone Number");
+        ab.setMessage("Enter new Phone Number");
+        EditText et=new EditText(v.getContext());
+        ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //close;
+            }
+        }).setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                data.setPno(et.getText().toString());
+                pno.setText(et.getText().toString());
+            }
+        });
+        ab.create().show();
+    }
+
 }

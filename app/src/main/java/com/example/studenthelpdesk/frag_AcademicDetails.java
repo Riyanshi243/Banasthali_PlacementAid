@@ -1,14 +1,18 @@
 package com.example.studenthelpdesk;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.firestore.DocumentReference;
 
@@ -23,7 +27,8 @@ public class frag_AcademicDetails extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-     TextView rno,enrno,course1,branch1,ten,twe,cgpa1;
+     TextView rno,enrno,course1,branch1,ten,twe,cgpa1,semester;
+    private Data data=Student_page.data;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -74,6 +79,7 @@ public class frag_AcademicDetails extends Fragment {
         cgpa1=v.findViewById(R.id.editcgpa);
         ten=v.findViewById(R.id.edittenth);
         twe=v.findViewById(R.id.edittwelve);
+        semester=v.findViewById(R.id.editsem);
         rno.setText(data.getRno());
         enrno.setText(data.getEno());
         course1.setText(data.getCourse());
@@ -84,6 +90,32 @@ public class frag_AcademicDetails extends Fragment {
         return v;
 
 
+    }
+
+    public void compulsory(View view)
+    {
+        Toast.makeText(view.getContext(),"THIS IS A EDITABLE FIELD",Toast.LENGTH_LONG).show();
+    }
+
+    public void changeSemester(View v)
+    {
+        AlertDialog.Builder ab=new AlertDialog.Builder(v.getContext());
+        ab.setTitle("Edit Date of Birth");
+        ab.setMessage("Enter new Date of Birth");
+        EditText et=new EditText(v.getContext());
+        ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //close;
+            }
+        }).setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                data.setSemester(et.getText().toString());
+                semester.setText(et.getText().toString());
+            }
+        });
+        ab.create().show();
     }
 
 }

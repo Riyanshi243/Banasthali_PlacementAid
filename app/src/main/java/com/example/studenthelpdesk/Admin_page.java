@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 
 public class Admin_page extends AppCompatActivity {
 
+    private  long backPressedTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,5 +21,17 @@ public class Admin_page extends AppCompatActivity {
         Intent intent = new Intent(Admin_page.this,CreateStudents.class);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        if(backPressedTime+2000>System.currentTimeMillis()){
+            super.onBackPressed();
+            System.exit(1);
+            return;
+        }else {
+            Toast.makeText(Admin_page.this,"Press again to EXIT", Toast.LENGTH_LONG).show();
+        }
+        backPressedTime=System.currentTimeMillis();
+        }
 }
 

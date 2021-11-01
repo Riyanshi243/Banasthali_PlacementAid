@@ -3,6 +3,7 @@ package com.example.studenthelpdesk;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.tabs.TabItem;
@@ -40,5 +41,14 @@ public class Student_viewData extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Student_page.data.ToDatabase();
+        //intent to student page
+        Intent intent = new Intent(Student_viewData.this,Student_page.class);
+        startActivity(intent);
     }
 }

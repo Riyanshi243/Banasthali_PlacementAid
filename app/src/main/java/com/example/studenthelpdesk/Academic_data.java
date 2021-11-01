@@ -140,4 +140,12 @@ public class Academic_data extends AppCompatActivity {
         super.onResume();
         show();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //intent to personal data
+        Intent intent = new Intent(Academic_data.this,Personal_Details.class);
+                startActivity(intent);
+    }
 }

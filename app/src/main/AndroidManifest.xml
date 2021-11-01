@@ -16,7 +16,7 @@
             android:name=".Student_see_request_status"
             android:exported="false" />
         <activity
-            android:name=".student_view_request"
+            android:name=".student_send_request"
             android:exported="false" />
         <activity
             android:name=".admin_view_requests"
