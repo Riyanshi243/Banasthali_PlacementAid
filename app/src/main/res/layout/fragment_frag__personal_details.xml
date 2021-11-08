@@ -38,7 +38,7 @@
             <TextView
                 android:id="@+id/editName"
                 android:layout_width="360dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray"
@@ -63,7 +63,7 @@
             <TextView
                 android:id="@+id/editGender"
                 android:layout_width="360dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray"
