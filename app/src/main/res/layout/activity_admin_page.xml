@@ -108,13 +108,13 @@
                 </androidx.cardview.widget.CardView>
 
 
-
                 <ImageView
                     android:id="@+id/search_user"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_row="0"
                     android:layout_column="0"
+                    android:onClick="search_user"
                     android:src="@drawable/search_user" />
 
             </GridLayout>
@@ -149,6 +149,7 @@
                     android:layout_height="200dp"
                     android:layout_row="0"
                     android:layout_column="0"
+                    android:onClick="view_all_data"
                     android:src="@drawable/view_all_data" />
 
             </GridLayout>
@@ -177,13 +178,13 @@
                 </androidx.cardview.widget.CardView>
 
 
-
                 <ImageView
                     android:id="@+id/see_req"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_row="0"
                     android:layout_column="0"
+                    android:onClick="see_request"
                     android:src="@drawable/see_request" />
             </GridLayout>
             <GridLayout

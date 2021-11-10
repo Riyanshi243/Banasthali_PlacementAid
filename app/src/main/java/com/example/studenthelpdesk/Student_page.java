@@ -25,7 +25,7 @@ public class Student_page extends AppCompatActivity {
         setContentView(R.layout.activity_student_page);
         data=new Data();
         firebaseAuth=FirebaseAuth.getInstance();
-        String f = data.FromDatabase(firebaseAuth.getCurrentUser().getEmail().toString());
+        String f = data.FromDatabase(firebaseAuth.getCurrentUser().getEmail());
         if(f!=null)
         {
             Toast.makeText(Student_page.this,f,Toast.LENGTH_LONG).show();
@@ -75,6 +75,18 @@ public class Student_page extends AppCompatActivity {
     }
 
     public void test(View v)
+    {
+
+    }
+    public void view_my_data(View v)
+    {
+        startActivity(new Intent(Student_page.this,Student_viewData.class));
+    }
+    public void see_request_status(View v)
+    {
+        startActivity(new Intent(Student_page.this,Student_see_request_status.class));
+    }
+    public void edit_my_data(View v)
     {
         startActivity(new Intent(Student_page.this,Student_viewData.class));
     }
