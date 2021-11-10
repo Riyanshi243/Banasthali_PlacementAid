@@ -11,6 +11,8 @@ import android.widget.ScrollView;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SearchStudent extends AppCompatActivity {
     private EditText name;
 
@@ -27,6 +29,12 @@ public class SearchStudent extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.main,menu);
+
+        FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+        firebaseAuth.signOut();
+        Intent intent = new Intent(SearchStudent.this,LoginActivity.class);
+        startActivity(intent);
+        finish();
         return super.onCreateOptionsMenu(menu);
     }//logout
     public void seedata(View view)
@@ -41,5 +49,6 @@ public class SearchStudent extends AppCompatActivity {
         //intent to admin page
         Intent intent = new Intent(SearchStudent.this,Admin_page.class);
         startActivity(intent);
+        finish();
     }
 }

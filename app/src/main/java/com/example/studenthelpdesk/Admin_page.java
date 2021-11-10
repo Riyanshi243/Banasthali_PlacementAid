@@ -41,5 +41,9 @@ public class Admin_page extends AppCompatActivity {
         }
         backPressedTime=System.currentTimeMillis();
         }
+        public void searchuser(View view)
+        {
+            //search user
+        }
 }
 

@@ -65,6 +65,18 @@ public class frag_AcademicDetails extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        rno.setText(data.getRno());
+        enrno.setText(data.getEno());
+        course1.setText(data.getCourse());
+        branch1.setText(data.getBranch());
+        cgpa1.setText( data.getCgpa()+"");
+        ten.setText(data.getTen()+"");
+        twe.setText(data.getTwel()+"");
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -87,6 +99,55 @@ public class frag_AcademicDetails extends Fragment {
         cgpa1.setText( data.getCgpa()+"");
         ten.setText(data.getTen()+"");
         twe.setText(data.getTwel()+"");
+        rno.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                compulsory(view);
+            }
+        });
+        enrno.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                compulsory(view);
+            }
+        });
+        course1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                compulsory(view);
+            }
+        });
+        branch1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                compulsory(view);
+            }
+        });
+        cgpa1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                compulsory(view);
+            }
+        });
+        ten.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                compulsory(view);
+            }
+        });
+        twe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                compulsory(view);
+            }
+        });
+        semester.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //compulsory(view);
+                changeSemester(view);
+            }
+        });
         return v;
 
 
@@ -94,15 +155,16 @@ public class frag_AcademicDetails extends Fragment {
 
     public void compulsory(View view)
     {
-        Toast.makeText(view.getContext(),"THIS IS A EDITABLE FIELD",Toast.LENGTH_LONG).show();
+        Toast.makeText(view.getContext(),"THIS IS NOT AN EDITABLE FIELD",Toast.LENGTH_LONG).show();
     }
 
     public void changeSemester(View v)
     {
         AlertDialog.Builder ab=new AlertDialog.Builder(v.getContext());
-        ab.setTitle("Edit Date of Birth");
-        ab.setMessage("Enter new Date of Birth");
+        ab.setTitle("Edit Semester");
+        ab.setMessage("Enter new Semester");
         EditText et=new EditText(v.getContext());
+        ab.setView(et);
         ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

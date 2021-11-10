@@ -126,5 +126,6 @@ public class SignIn extends AppCompatActivity {
         //intent to login
         Intent intent = new Intent(SignIn.this,LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 }

@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class Upload_data extends AppCompatActivity {
 
     @Override
@@ -26,6 +28,11 @@ public class Upload_data extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.main,menu);
+        FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+        firebaseAuth.signOut();
+         Intent intent = new Intent(Upload_data.this,LoginActivity.class);
+        startActivity(intent);
+        finish();
         return super.onCreateOptionsMenu(menu);
     }//logout
 }

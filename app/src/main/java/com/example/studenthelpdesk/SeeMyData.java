@@ -84,6 +84,11 @@ public class SeeMyData extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.main,menu);
+        FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+        firebaseAuth.signOut();
+          Intent intent=new Intent(SeeMyData.this,LoginActivity.class);
+                startActivity(intent);
+                finish();
         return super.onCreateOptionsMenu(menu);
     }//logout
     @Override
@@ -160,5 +165,6 @@ public class SeeMyData extends AppCompatActivity {
         //intent to acedemic
         Intent intent = new Intent(SeeMyData.this,Academic_data.class);
         startActivity(intent);
+        finish();
     }
 }

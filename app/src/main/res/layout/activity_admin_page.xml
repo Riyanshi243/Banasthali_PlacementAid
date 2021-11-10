@@ -71,7 +71,6 @@
                 </androidx.cardview.widget.CardView>
 
 
-
                 <ImageView
                     android:id="@+id/create_new_user"
                     android:layout_width="match_parent"
