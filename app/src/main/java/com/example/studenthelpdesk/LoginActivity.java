@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     {
          Intent intent = new Intent(LoginActivity.this,SignIn.class);
                 startActivity(intent);
-              //  finish();
+                finish();
     }
     public void login(View view)
     {EditText EditTextTextPersonName=findViewById(R.id.editTextTextPersonName);
@@ -73,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this,"WELCOME TO STUDENT HELPDESK",Toast.LENGTH_LONG).show();
                 //testing
                 startActivity(new Intent(LoginActivity.this,Student_page.class));
+                finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -87,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
        //public void onBackPressed() {
-        if(backPressedTime+2000>System.currentTimeMillis()){
+        /*if(backPressedTime+2000>System.currentTimeMillis()){
             super.onBackPressed();
             System.exit(1);
             return;
@@ -96,6 +97,9 @@ public class LoginActivity extends AppCompatActivity {
         }
         backPressedTime=System.currentTimeMillis();
         //exit app
+
+         */
+        System.exit(1);
         
     }
 }

@@ -1,6 +1,7 @@
 package com.example.studenthelpdesk;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -67,38 +68,14 @@ public class frag_AcademicDetails extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        data=Student_page.data;
         rno.setText(data.getRno());
         enrno.setText(data.getEno());
         course1.setText(data.getCourse());
         branch1.setText(data.getBranch());
-        cgpa1.setText( data.getCgpa()+"");
-        ten.setText(data.getTen()+"");
-        twe.setText(data.getTwel()+"");
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View v= inflater.inflate(R.layout.fragment_frag__academic_details, container, false);
-        //ImageView imageView=(ImageView) v.findViewById(R.id.profile);
-        Data data=Student_page.data;
-        rno=v.findViewById(R.id.editrollno);
-        //rno.setText("Testing");
-        enrno=v.findViewById(R.id.editenrollno);
-        course1=v.findViewById(R.id.editcourse);
-        branch1=v.findViewById(R.id.editbranch);
-        cgpa1=v.findViewById(R.id.editcgpa);
-        ten=v.findViewById(R.id.edittenth);
-        twe=v.findViewById(R.id.edittwelve);
-        semester=v.findViewById(R.id.editsem);
-        rno.setText(data.getRno());
-        enrno.setText(data.getEno());
-        course1.setText(data.getCourse());
-        branch1.setText(data.getBranch());
-        cgpa1.setText( data.getCgpa()+"");
-        ten.setText(data.getTen()+"");
-        twe.setText(data.getTwel()+"");
+        cgpa1.setText( data.getCgpa()+" ");
+        ten.setText(data.getTen()+" ");
+        twe.setText(data.getTwel()+" ");
         rno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -148,6 +125,30 @@ public class frag_AcademicDetails extends Fragment {
                 changeSemester(view);
             }
         });
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View v= inflater.inflate(R.layout.fragment_frag__academic_details, container, false);
+        //ImageView imageView=(ImageView) v.findViewById(R.id.profile);
+        Data data=Student_page.data;
+        rno=v.findViewById(R.id.editrollno);
+        enrno=v.findViewById(R.id.editenrollno);
+        course1=v.findViewById(R.id.editcourse);
+        branch1=v.findViewById(R.id.editbranch);
+        cgpa1=v.findViewById(R.id.editcgpa);
+        ten=v.findViewById(R.id.edittenth);
+        twe=v.findViewById(R.id.edittwelve);
+        semester=v.findViewById(R.id.editsem);
+        rno.setText(data.getRno());
+        enrno.setText(data.getEno());
+        course1.setText(data.getCourse());
+        branch1.setText(data.getBranch());
+        cgpa1.setText( data.getCgpa()+" ");
+        ten.setText(data.getTen()+" ");
+        twe.setText(data.getTwel()+" ");
         return v;
 
 
@@ -155,7 +156,26 @@ public class frag_AcademicDetails extends Fragment {
 
     public void compulsory(View view)
     {
-        Toast.makeText(view.getContext(),"THIS IS NOT AN EDITABLE FIELD",Toast.LENGTH_LONG).show();
+        AlertDialog.Builder ab=new AlertDialog.Builder(view.getContext());
+        ab.setTitle("Compulsory field");
+        ab.setMessage("Do you want to send a change Resquest?");
+        ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //intent to student send request
+                Intent intent=new Intent(view.getContext(),student_send_request.class);
+                startActivity(intent);
+                //ha ruko
+                getActivity().finish();
+
+            }
+        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //do nothing
+            }
+        });
+        ab.create().show();
     }
 
     public void changeSemester(View v)
@@ -164,6 +184,7 @@ public class frag_AcademicDetails extends Fragment {
         ab.setTitle("Edit Semester");
         ab.setMessage("Enter new Semester");
         EditText et=new EditText(v.getContext());
+        et.setText(data.getSemester());
         ab.setView(et);
         ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override

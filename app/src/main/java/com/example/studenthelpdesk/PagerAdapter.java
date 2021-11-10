@@ -19,10 +19,17 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position)
         {
-            case 0:return new frag_PersonalDetails();
-            case 1: return new frag_AcademicDetails();
-            case 2: return new frag_Resume();
-            default:return null;
+            case 0:
+                frag_PersonalDetails f=new frag_PersonalDetails();
+                return f;
+            case 1:
+                frag_AcademicDetails f2=new frag_AcademicDetails();
+                return f2;
+            case 2:
+                frag_Resume f3=new frag_Resume();
+                return f3;
+            default:
+                return null;
         }
 
     }

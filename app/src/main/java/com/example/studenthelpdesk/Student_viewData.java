@@ -55,6 +55,7 @@ public class Student_viewData extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
     }
 
     @Override
