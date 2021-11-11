@@ -1,6 +1,7 @@
 package com.example.studenthelpdesk;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -66,6 +67,67 @@ public class frag_PersonalDetails extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+
+        pan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changePan(view);
+            }
+        });
+        name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                compulsory(view);
+            }
+        });
+        gender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeGender(view);
+            }
+        });
+        dob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeDOB(view);
+            }
+        });
+        fname.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                compulsory(view);
+            }
+        });
+        mname.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                compulsory(view);
+            }
+        });
+        aadhar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeAadhar(view);
+            }
+        });
+        address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeAddress(view);
+            }
+        });
+        pno.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changePhone(view);
+            }
+        });
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -91,12 +153,44 @@ public class frag_PersonalDetails extends Fragment {
         dob.setText(data.getDob());
         address.setText(data.getAddress());
         pan.setText(data.getPan());
+
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        name.setText(data.getName());
+        pno.setText(data.getPno());
+        mname.setText(data.getMname());
+        fname.setText(data.getFname());
+        gender.setText(data.getGender());
+        aadhar.setText(data.getAadhar());
+        dob.setText(data.getDob());
+        address.setText(data.getAddress());
+        pan.setText(data.getPan());
     }
 
     public void compulsory(View view)
     {
-       Toast.makeText(view.getContext(),"THIS IS A EDITABLE FIELD",Toast.LENGTH_LONG).show();
+        AlertDialog.Builder ab=new AlertDialog.Builder(view.getContext());
+        ab.setTitle("Compulsory field");
+        ab.setMessage("Do you want to send a change Resquest?");
+        ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //intent to student send request
+                Intent intent=new Intent(view.getContext(),student_send_request.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //do nothing
+            }
+        });
+        ab.create().show();
     }
     public void changeAadhar(View v)
     {
@@ -104,6 +198,8 @@ public class frag_PersonalDetails extends Fragment {
         ab.setTitle("Edit Aadhar");
         ab.setMessage("Enter new Aadhar number");
         EditText et=new EditText(v.getContext());
+        et.setText(data.getAadhar());
+        ab.setView(et);
         ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -124,6 +220,8 @@ public class frag_PersonalDetails extends Fragment {
         ab.setTitle("Edit Name");
         ab.setMessage("Enter new Name");
         EditText et=new EditText(v.getContext());
+        et.setText(data.getAddress());
+        ab.setView(et);
         ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -144,6 +242,8 @@ public class frag_PersonalDetails extends Fragment {
         ab.setTitle("Edit Date of Birth");
         ab.setMessage("Enter new Date of Birth");
         EditText et=new EditText(v.getContext());
+        et.setText(data.getDob());
+        ab.setView(et);
         ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -164,6 +264,8 @@ public class frag_PersonalDetails extends Fragment {
         ab.setTitle("Edit Gender");
         ab.setMessage("Enter new Gender");
         EditText et=new EditText(v.getContext());
+        et.setText(data.getGender());
+        ab.setView(et);
         ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -184,6 +286,8 @@ public class frag_PersonalDetails extends Fragment {
         ab.setTitle("Edit PAN");
         ab.setMessage("Enter new PAN");
         EditText et=new EditText(v.getContext());
+        et.setText(data.getPan());
+        ab.setView(et);
         ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -204,6 +308,8 @@ public class frag_PersonalDetails extends Fragment {
         ab.setTitle("Edit Phone Number");
         ab.setMessage("Enter new Phone Number");
         EditText et=new EditText(v.getContext());
+        et.setText(data.getPno());
+        ab.setView(et);
         ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

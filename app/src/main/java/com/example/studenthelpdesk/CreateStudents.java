@@ -126,5 +126,6 @@ public class CreateStudents extends AppCompatActivity {
         //intent to admin page
         Intent intent = new Intent(CreateStudents.this,Admin_page.class);
         startActivity(intent);
+        finish();
     }
 }

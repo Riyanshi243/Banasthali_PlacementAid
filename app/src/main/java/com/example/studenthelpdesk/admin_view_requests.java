@@ -20,6 +20,7 @@ public class admin_view_requests extends AppCompatActivity {
         //intent to admin page
         Intent intent = new Intent(admin_view_requests.this,Admin_page.class);
         startActivity(intent);
+        finish();
     }
 
     @Override

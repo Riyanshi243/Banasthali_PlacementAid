@@ -147,5 +147,6 @@ public class Academic_data extends AppCompatActivity {
         //intent to personal data
         Intent intent = new Intent(Academic_data.this,Personal_Details.class);
                 startActivity(intent);
+                finish();
     }
 }

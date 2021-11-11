@@ -140,5 +140,6 @@ public class Personal_Details extends AppCompatActivity {
         //intent to signin
         Intent intent = new Intent(Personal_Details.this,SignIn.class);
         startActivity(intent);
+        finish();
     }
 }

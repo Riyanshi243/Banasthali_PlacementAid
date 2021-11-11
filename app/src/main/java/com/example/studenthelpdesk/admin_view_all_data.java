@@ -20,6 +20,7 @@ public class admin_view_all_data extends AppCompatActivity {
 
         Intent intent = new Intent(admin_view_all_data.this,Admin_page.class);
         startActivity(intent);
+        finish();
     }
 
 }
