@@ -26,6 +26,7 @@ public class Upload_data extends AppCompatActivity {
         //intent to acedemic data
         Intent intent = new Intent(Upload_data.this,Academic_data.class);
         startActivity(intent);
+        finish();
     }
 
     @Override

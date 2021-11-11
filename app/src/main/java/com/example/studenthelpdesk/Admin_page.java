@@ -46,21 +46,25 @@ public class Admin_page extends AppCompatActivity {
     {
         Intent intent = new Intent(Admin_page.this,CreateStudents.class);
         startActivity(intent);
+        finish();
     }
     public void search_user(View v)
     {
         Intent intent = new Intent(Admin_page.this,SearchStudent.class);
         startActivity(intent);
+        finish();
     }
     public void view_all_data(View v)
     {
         Intent intent = new Intent(Admin_page.this,admin_view_all_data.class);
         startActivity(intent);
+        finish();
     }
     public void see_request(View v)
     {
         Intent intent = new Intent(Admin_page.this,admin_view_requests.class);
         startActivity(intent);
+        finish();
     }
     @Override
     public void onBackPressed() {

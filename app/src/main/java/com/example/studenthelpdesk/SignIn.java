@@ -45,7 +45,7 @@ public class SignIn extends AppCompatActivity {
     {
         Intent intent = new Intent(SignIn.this,LoginActivity.class);
         startActivity(intent);
-        //  finish();
+        finish();
     }
     public void submit(View view)
     {
@@ -96,6 +96,8 @@ public class SignIn extends AppCompatActivity {
 
                                     Intent intent = new Intent(SignIn.this,Personal_Details.class);
                                     startActivity(intent);
+finish();
+
                                 }
                                 else
                                 {

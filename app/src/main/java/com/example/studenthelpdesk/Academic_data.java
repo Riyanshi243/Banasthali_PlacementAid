@@ -133,6 +133,7 @@ public class Academic_data extends AppCompatActivity {
 
         Intent intent=new Intent(Academic_data.this,SeeMyData.class);
         startActivity(intent);
+        finish();
     }
 
     @Override

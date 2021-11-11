@@ -125,6 +125,7 @@ public class Personal_Details extends AppCompatActivity {
                startActivity(i);
 
 
+
     }
 
     @Override
