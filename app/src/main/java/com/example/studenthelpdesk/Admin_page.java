@@ -26,7 +26,7 @@ public class Admin_page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (flag == 0) {
-                    lock_data_base.setImageResource(R.drawable.search_user);
+                    lock_data_base.setImageResource(R.drawable.unlock_database);
                     flag = 1;
                 } else if (flag == 1) {
                     lock_data_base.setImageResource(R.drawable.lock_database);
