@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -37,6 +38,7 @@ TextView wel,curval,newcurval,rsn;
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.edit_details, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinnerEditDetails.setAdapter(adapter);
+        spinnerEditDetails.setOnItemSelectedListener(new MyOnItemSelectedListener());
     }
 
     @Override
@@ -85,5 +87,17 @@ TextView wel,curval,newcurval,rsn;
     public void onBackPressed() {
         super.onBackPressed();
         //to view data
+    }
+    //spinner items
+    private class MyOnItemSelectedListener implements android.widget.AdapterView.OnItemSelectedListener {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
     }
 }
