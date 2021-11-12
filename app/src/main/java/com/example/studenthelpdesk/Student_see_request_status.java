@@ -38,7 +38,7 @@ public boolean onOptionsItemSelected(@NonNull MenuItem item) {
                 ab.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        //logut
+                        //logout
                         FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
                         firebaseAuth.signOut();
                         Intent intent = new Intent(Student_see_request_status.this,LoginActivity.class);
