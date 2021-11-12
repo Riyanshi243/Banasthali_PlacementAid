@@ -24,7 +24,6 @@ public class SearchStudent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_student);
-        name=(EditText) findViewById(R.id.uname3);
 
 
     }
@@ -63,11 +62,6 @@ public class SearchStudent extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-    public void seedata(View view)
-    {
-        ScrollView sv=findViewById(R.id.scroll);
-        //(View child);
     }
 
     @Override

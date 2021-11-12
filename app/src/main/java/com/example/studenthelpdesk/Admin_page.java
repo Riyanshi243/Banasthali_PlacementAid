@@ -27,7 +27,7 @@ public class Admin_page extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                
+
                 if (flag == 0) {
                     AlertDialog.Builder ab=new AlertDialog.Builder(view.getContext());
                     ab.setTitle("UNLOCK DATABASE");
@@ -53,7 +53,7 @@ public class Admin_page extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             //intent to student send request
-                            lock_data_base.setImageResource(R.drawable.unlock_database);
+                            lock_data_base.setImageResource(R.drawable.lock_database);
                             flag = 0;
                         }
                     }).setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -113,7 +113,7 @@ public class Admin_page extends AppCompatActivity {
                 //startActivity(intent);
                 //finish();
                 if(backPressedTime+2000>System.currentTimeMillis()){
-            
+
             System.exit(1);
             return;
         }else {
@@ -128,8 +128,8 @@ public class Admin_page extends AppCompatActivity {
             }
         });
         ab.create().show();
-       
-        } 
+
+        }
         public void searchuser(View view)
         {
             //search user

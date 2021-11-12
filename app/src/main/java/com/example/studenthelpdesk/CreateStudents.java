@@ -99,12 +99,18 @@ public class CreateStudents extends AppCompatActivity {
         documentReference.set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(CreateStudents.this, "User Created", Toast.LENGTH_LONG).show();
+                if(isadmin==true)
+                {
+                    Toast.makeText(CreateStudents.this, "Admin Created", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Toast.makeText(CreateStudents.this, "User Created", Toast.LENGTH_LONG).show();
+                }
                 unameet.setText("");
                 Email.setText("");
-                //testing
-                Intent intent=new Intent(CreateStudents.this,SignIn.class);
-                startActivity(intent);
+                if(checkBox.isChecked())
+                    checkBox.toggle();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
