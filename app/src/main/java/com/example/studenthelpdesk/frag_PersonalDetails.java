@@ -175,7 +175,7 @@ public class frag_PersonalDetails extends Fragment {
     {
         AlertDialog.Builder ab=new AlertDialog.Builder(view.getContext());
         ab.setTitle("Compulsory field");
-        ab.setMessage("Do you want to send a change Resquest?");
+        ab.setMessage("Do you want to send a change Request?");
         ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

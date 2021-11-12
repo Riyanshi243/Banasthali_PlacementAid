@@ -158,14 +158,13 @@ public class frag_AcademicDetails extends Fragment {
     {
         AlertDialog.Builder ab=new AlertDialog.Builder(view.getContext());
         ab.setTitle("Compulsory field");
-        ab.setMessage("Do you want to send a change Resquest?");
+        ab.setMessage("Do you want to send a change Request?");
         ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //intent to student send request
                 Intent intent=new Intent(view.getContext(),student_send_request.class);
                 startActivity(intent);
-                //ha ruko
                 getActivity().finish();
 
             }

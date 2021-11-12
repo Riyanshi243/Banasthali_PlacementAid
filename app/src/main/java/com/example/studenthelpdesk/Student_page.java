@@ -81,14 +81,17 @@ public class Student_page extends AppCompatActivity {
     public void view_my_data(View v)
     {
         startActivity(new Intent(Student_page.this,Student_viewData.class));
+        finish();
     }
     public void see_request_status(View v)
     {
         startActivity(new Intent(Student_page.this,Student_see_request_status.class));
+        finish();
     }
     public void edit_my_data(View v)
     {
         startActivity(new Intent(Student_page.this,Student_viewData.class));
+        finish();
     }
 
     @Override
