@@ -1,5 +1,6 @@
 package com.example.studenthelpdesk;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -10,6 +11,14 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Map;
 
 
 public class Admin_page extends AppCompatActivity {
@@ -22,7 +31,27 @@ public class Admin_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_page);
         lock_data_base = (ImageView) findViewById(R.id.lockdatabase);
-
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference documentReference = db.collection("AllowedUser").document("AdminSettings");
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Map<String, Object> m = documentSnapshot.getData();
+                if((Boolean) m.get("Lock")==false)
+                {
+                    lock_data_base.setImageResource(R.drawable.lock_database);
+                }
+                else
+                {
+                    lock_data_base.setImageResource(R.drawable.unlock_database);
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(Admin_page.this,e.toString(),Toast.LENGTH_LONG).show();
+            }
+        });
         lock_data_base.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -36,6 +65,31 @@ public class Admin_page extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             //intent to student send request
+                            FirebaseFirestore db = FirebaseFirestore.getInstance();
+                            DocumentReference documentReference = db.collection("AllowedUser").document("AdminSettings");
+                            documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    Map<String, Object> m = documentSnapshot.getData();
+                                    m.put("Lock",false);
+                                    documentReference.set(m).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Toast.makeText(Admin_page.this,"Unlocked Successfully",Toast.LENGTH_LONG).show();
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(Admin_page.this,e.toString(),Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(Admin_page.this,e.toString(),Toast.LENGTH_LONG).show();
+                                }
+                            });
                             lock_data_base.setImageResource(R.drawable.unlock_database);
                             flag = 1;
                         }
@@ -53,6 +107,31 @@ public class Admin_page extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             //intent to student send request
+                            FirebaseFirestore db = FirebaseFirestore.getInstance();
+                            DocumentReference documentReference = db.collection("AllowedUser").document("AdminSettings");
+                            documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    Map<String, Object> m = documentSnapshot.getData();
+                                    m.put("Lock",true);
+                                    documentReference.set(m).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Toast.makeText(Admin_page.this,"Locked Successfully",Toast.LENGTH_LONG).show();
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(Admin_page.this,e.toString(),Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(Admin_page.this,e.toString(),Toast.LENGTH_LONG).show();
+                                }
+                            });
                             lock_data_base.setImageResource(R.drawable.lock_database);
                             flag = 0;
                         }

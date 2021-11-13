@@ -18,13 +18,30 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SearchStudent extends AppCompatActivity {
-    private EditText name;
+    private TextView name,fname,mname,phn,add,dob,gender,aadhar,pan,email,rno,enro,course,branch,sem,ten,twe,cgpa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_student);
-
+        name=(TextView) findViewById(R.id.name);
+        fname=(TextView) findViewById(R.id.fathersname1);
+        mname=(TextView) findViewById(R.id.mothersname);
+        phn=(TextView) findViewById(R.id.phonenumber);
+        add=(TextView) findViewById(R.id.address);
+        dob=(TextView) findViewById(R.id.dob1);
+        gender=(TextView) findViewById(R.id.gender1);
+        aadhar=(TextView) findViewById(R.id.aadhar);
+        pan=(TextView) findViewById(R.id.pan1);
+        email=(TextView) findViewById(R.id.email1);
+        rno=(TextView) findViewById(R.id.rollno1);
+        enro=(TextView) findViewById(R.id.enrollment);
+        course=(TextView) findViewById(R.id.course1);
+        branch=(TextView) findViewById(R.id.branch1);
+        sem=(TextView) findViewById(R.id.sem1);
+        ten=(TextView) findViewById(R.id.ten);
+        twe=(TextView) findViewById(R.id.twe);
+        cgpa=(TextView) findViewById(R.id.cgpa1);
 
     }
 
