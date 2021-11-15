@@ -29,7 +29,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class SearchStudent extends AppCompatActivity {
     Data data;
-    private static TextView name,fname,mname,phn,add,dob,gender,aadhar,pan,email,rno,enro,course,branch,sem,ten,twe,cgpa;
+    private static TextView name,fname,mname,phn,add,dob,gender,aadhar,pan,email1,rno,enro,course,branch,sem,ten,twe,cgpa;
     private EditText emails;
 
     @Override
@@ -45,7 +45,7 @@ public class SearchStudent extends AppCompatActivity {
         gender=(TextView) findViewById(R.id.gender1);
         aadhar=(TextView) findViewById(R.id.aadhar);
         pan=(TextView) findViewById(R.id.pan1);
-        email=(TextView) findViewById(R.id.email1);
+        email1=(TextView) findViewById(R.id.email1);
         rno=(TextView) findViewById(R.id.rollno1);
         enro=(TextView) findViewById(R.id.enrollment);
         course=(TextView) findViewById(R.id.course1);
@@ -55,9 +55,14 @@ public class SearchStudent extends AppCompatActivity {
         twe=(TextView) findViewById(R.id.twe);
         cgpa=(TextView) findViewById(R.id.cgpa1);
         emails=(EditText) findViewById(R.id.emailsearch);
+
+
+    }
+    public void show(View v)
+    {
         String email;//ye karo
         email= emails.getText().toString().trim();
-         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         if (email.matches(emailPattern)==false)
         {
             emails.setError("ENTER VALID EMAIL");
@@ -93,38 +98,35 @@ public class SearchStudent extends AppCompatActivity {
                 else
                 {
                     Toast.makeText(SearchStudent.this,"Email does not exist",Toast.LENGTH_LONG).show();
+                    ScrollView scrollView=findViewById(R.id.scrollView3);
+                    scrollView.setVisibility(View.INVISIBLE);
                 }
             }
         });
-        DocumentReference dref1 = firestore.collection("AllowedUser").document(email).collection("Permanent").document("perm");
+        DocumentReference dref1 = firestore.collection("AllowedUser").document(email).collection("Change").document("change");
         dref1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                     DocumentSnapshot doc=task.getResult();
-                     if(doc.exists())
-                     {
-                         Map<String, Object> map1 = doc.getData();
-                         aadhar.setText((String)map1.get("Aadhar"));
-                         add.setText((String)map1.get("Address"));
-                         dob.setText((String)map1.get("DOB"));
-                         gender.setText((String)map1.get("Gender"));
-                         pan.setText((String)map1.get("PAN"));
-                         phn.setText((String)map1.get("PhoneNumber"));
-                         sem.setText((String)map1.get("Semester"));
+                DocumentSnapshot doc=task.getResult();
+                if(doc.exists())
+                {
+                    Map<String, Object> map1 = doc.getData();
+                    aadhar.setText((String)map1.get("Aadhar"));
+                    add.setText((String)map1.get("Address"));
+                    dob.setText((String)map1.get("DOB"));
+                    gender.setText((String)map1.get("Gender"));
+                    pan.setText((String)map1.get("PAN"));
+                    phn.setText((String)map1.get("PhoneNumber"));
+                    sem.setText((String)map1.get("Semester"));
+                    email1.setText(email);
+                    ProgressBar pbar =findViewById(R.id.progressBar2);
+                    pbar.setVisibility(View.INVISIBLE);
+                    ScrollView scrollView=findViewById(R.id.scrollView3);
+                    scrollView.setVisibility(View.VISIBLE);
 
-                         ProgressBar pbar =findViewById(R.id.progressBar2);
-                         pbar.setVisibility(View.GONE);
-                         ScrollView scrollView=findViewById(R.id.scrollView3);
-                         scrollView.setVisibility(View.VISIBLE);
-
-                     }
+                }
             }
         });
-
-    }
-    public void show()
-    {
-
     }
 
     @Override

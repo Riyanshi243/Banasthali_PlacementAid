@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -21,10 +22,12 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.Console;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,10 +36,12 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     String email,editTextPassword;
     private long backPressedTime;
+    static boolean isadmin=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
     }
 
     public void tosignin(View view)
@@ -138,30 +143,15 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
-        super.onBackPressed();
-        AlertDialog.Builder ab=new AlertDialog.Builder(LoginActivity.this);
-        ab.setTitle("Exit");
-        ab.setMessage("Are you sure you want to Exit?");
-        ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+       // super.onBackPressed();
 
-                if(backPressedTime+2000>System.currentTimeMillis()){
-
+        if(backPressedTime+2000>System.currentTimeMillis()){
             System.exit(1);
             return;
         }else {
             Toast.makeText(LoginActivity.this,"Press again to EXIT", Toast.LENGTH_LONG).show();
         }
         backPressedTime=System.currentTimeMillis();
-            }
-        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                //do nothing
-            }
-        });
-        ab.create().show();
         
     }
 }

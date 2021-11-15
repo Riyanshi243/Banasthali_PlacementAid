@@ -135,10 +135,10 @@ public class Student_page extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        //ask twice and exit
+        //super.onBackPressed();
+        // super.onBackPressed();
+
         if(backPressedTime+2000>System.currentTimeMillis()){
-            super.onBackPressed();
             System.exit(1);
             return;
         }else {

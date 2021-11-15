@@ -72,63 +72,107 @@ public class frag_PersonalDetails extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    static Boolean flag[]={false};
+    static Boolean flag=true;
     @Override
     public void onStart() {
         super.onStart();
-
+        FirebaseFirestore firestore=FirebaseFirestore.getInstance();
+        DocumentReference dref = firestore.collection("AllowedUser").document("AdminSettings");
+        dref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Map<String, Object> doc = documentSnapshot.getData();
+                flag= (boolean) doc.get("Lock");
+            }
+        });
         pan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changePan(view);
+                if(flag==false)
+                      changePan(view);
+                else
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+            
             }
         });
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                compulsory(view);
+            if(flag==false)
+                    compulsory(view);
+                else
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                
             }
         });
         gender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changeGender(view);
+                if(flag==false)
+                    changeGender(view);
+                else
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                
             }
         });
         dob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changeDOB(view);
+                if(flag==false)
+                   changeDOB(view);
+                else
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                
             }
         });
         fname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                compulsory(view);
+                if(flag==false)
+                    compulsory(view);
+                else
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                
             }
         });
         mname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                compulsory(view);
+                if(flag==false)
+                    compulsory(view);
+                else
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                
             }
         });
         aadhar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changeAadhar(view);
+                if(flag==false)
+                     changeAadhar(view);
+                else
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+               
             }
         });
         address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changeAddress(view);
+                if(flag==false)
+                    changeAddress(view);
+                else
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                
             }
         });
         pno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changePhone(view);
+                if(flag==false)
+                   changePhone(view);
+                else
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                
             }
         });
     }

@@ -104,44 +104,67 @@ public class frag_AcademicDetails extends Fragment {
         enrno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                compulsory(view);
+                 if(flag==false)
+                    compulsory(view);
+                else
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+            
             }
         });
         course1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                compulsory(view);
+                 if(flag==false)
+                    compulsory(view);
+                else
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                
             }
         });
         branch1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                compulsory(view);
+                if(flag==false)
+                    compulsory(view);
+                else
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
             }
         });
         cgpa1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                compulsory(view);
+                 if(flag==false)
+                    compulsory(view);
+                else
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
             }
         });
         ten.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                compulsory(view);
+                 if(flag==false)
+                    compulsory(view);
+                else
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
             }
         });
         twe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                compulsory(view);
-            }
+                if(flag==false)
+                    compulsory(view);
+                else
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                           }
         });
         semester.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //compulsory(view);
-                changeSemester(view);
+                 if(flag==false)
+                    changeSemester(view);
+                else
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                
             }
         });
 

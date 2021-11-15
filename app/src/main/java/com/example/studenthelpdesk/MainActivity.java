@@ -12,34 +12,102 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
-    Timer timer;
-    FirebaseAuth firebaseAuth;
+    static boolean isadmin=true,done=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView text=(TextView)findViewById(R.id.textView); 
-        
+        TextView text=(TextView)findViewById(R.id.textView);
         int SPLASH_SCREEN = 4000;
-        new Handler().postDelayed(() -> {
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
-            finish();
+        if(done==false)
+            new Handler().postDelayed(() -> {
 
-        }, SPLASH_SCREEN);
+
+
+            FirebaseUser firebaseAuth=FirebaseAuth.getInstance().getCurrentUser();
+            if(firebaseAuth!=null)
+            {
+                String email=firebaseAuth.getEmail();
+                FirebaseFirestore fstore=FirebaseFirestore.getInstance();
+                DocumentReference dref = fstore.collection("AllowedUser").document(email);
+                dref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Map<String, Object> m = documentSnapshot.getData();
+                        isadmin= (boolean) m.get("Admin");
+                        if(isadmin)
+                        {
+                            startActivity(new Intent(MainActivity.this,Admin_page.class));
+                            finish();
+                        }
+                        else
+                        {
+
+                            startActivity(new Intent(MainActivity.this,Student_page.class));
+                            finish();
+                        }
+                    }
+
+                });
+
+            }
+            else
+            {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }}, SPLASH_SCREEN);
+
         text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                done=true;
                 //testinfg
-                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-                startActivity(intent);
-                finish();
+                FirebaseUser firebaseAuth=FirebaseAuth.getInstance().getCurrentUser();
+                if(firebaseAuth!=null)
+                {
+                    String email=firebaseAuth.getEmail();
+                    FirebaseFirestore fstore=FirebaseFirestore.getInstance();
+                    DocumentReference dref = fstore.collection("AllowedUser").document(email);
+                    dref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            Map<String, Object> m = documentSnapshot.getData();
+                            isadmin= (boolean) m.get("Admin");
+                            if(isadmin)
+                            {
+                                startActivity(new Intent(MainActivity.this,Admin_page.class));
+                                finish();
+                            }
+                            else
+                            {
+
+                                startActivity(new Intent(MainActivity.this,Student_page.class));
+                                finish();
+                            }
+                        }
+
+                    });
+
+                }
+                else
+                {
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
 
