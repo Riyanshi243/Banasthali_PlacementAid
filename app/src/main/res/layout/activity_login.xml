@@ -10,12 +10,16 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -56,8 +60,7 @@
                 android:layout_marginTop="40dp"
                 android:background="#E3AABD"
                 android:onClick="login"
-                android:text="LOGIN"
-                android:textColor="@color/black" />
+                android:text="LOGIN" />
 
             <TextView
                 android:id="@+id/signin"
@@ -68,6 +71,16 @@
                 android:gravity="center"
                 android:onClick="tosignin"
                 android:text="No Account?\nCreate One!"
+                android:textColor="@color/purple_700"
+                android:textStyle="italic" />
+            <TextView
+                android:id="@+id/forgetPassword"
+                android:layout_width="136dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="Forget Password"
                 android:textColor="@color/purple_700"
                 android:textStyle="italic" />
         </LinearLayout>

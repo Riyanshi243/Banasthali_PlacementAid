@@ -93,8 +93,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="50dp"
                 android:onClick="submit"
-                android:text="SEND REQUEST"
-                android:textColor="@color/black" />
+                android:text="SEND REQUEST" />
 
         </LinearLayout>
     </ScrollView>
