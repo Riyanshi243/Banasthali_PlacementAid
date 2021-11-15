@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
@@ -15,7 +16,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -64,7 +71,7 @@ public class frag_AcademicDetails extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+    static boolean flag=true;
     @Override
     public void onStart() {
         super.onStart();
@@ -76,10 +83,22 @@ public class frag_AcademicDetails extends Fragment {
         cgpa1.setText( data.getCgpa()+" ");
         ten.setText(data.getTen()+" ");
         twe.setText(data.getTwel()+" ");
+        FirebaseFirestore firestore=FirebaseFirestore.getInstance();
+        DocumentReference dref = firestore.collection("AllowedUser").document("AdminSettings");
+        dref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Map<String, Object> doc = documentSnapshot.getData();
+                flag= (boolean) doc.get("Lock");
+            }
+        });
         rno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                compulsory(view);
+                if(flag==false)
+                    compulsory(view);
+                else
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
             }
         });
         enrno.setOnClickListener(new View.OnClickListener() {
@@ -125,6 +144,7 @@ public class frag_AcademicDetails extends Fragment {
                 changeSemester(view);
             }
         });
+
     }
 
     @Override

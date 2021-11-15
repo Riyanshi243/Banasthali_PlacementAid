@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -124,6 +125,36 @@ public class SeeMyData extends AppCompatActivity {
             }
         });
         ab.create().show();
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.action_logout:
+                AlertDialog.Builder ab=new AlertDialog.Builder(this);
+                ab.setTitle("LOGOUT");
+                ab.setMessage("Are you sure?");
+                ab.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //logut
+                        FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+                        firebaseAuth.signOut();
+                        Intent intent = new Intent(SeeMyData.this,LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }).setNegativeButton("No ", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //do nothing;
+                    }
+                });
+                ab.create().show();
+                return true;
+          default:
+               return super.onOptionsItemSelected(item);
+        }
     }
     public void save(View v)
     {

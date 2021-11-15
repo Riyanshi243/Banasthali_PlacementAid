@@ -13,7 +13,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Map;
 
 public class Student_page extends AppCompatActivity {
     static Data data;
@@ -80,6 +87,7 @@ public class Student_page extends AppCompatActivity {
     }
     public void view_my_data(View v)
     {
+
         startActivity(new Intent(Student_page.this,Student_viewData.class));
         finish();
     }
@@ -90,8 +98,39 @@ public class Student_page extends AppCompatActivity {
     }
     public void edit_my_data(View v)
     {
-        startActivity(new Intent(Student_page.this,Student_viewData.class));
-        finish();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference documentReference = db.collection("AllowedUser").document("AdminSettings");
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Map<String, Object> m = documentSnapshot.getData();
+                if((Boolean) m.get("Lock")==false)
+                {
+                    startActivity(new Intent(Student_page.this,Student_viewData.class));
+                    finish();
+                }
+                else
+                {
+                    AlertDialog.Builder ab=new AlertDialog.Builder(Student_page.this);
+                    ab.setTitle("DATABASE LOCKED");
+                    ab.setMessage("Admin has locked the database.\nYou cannot edit it.");
+                    ab.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            //do nothing
+                        }
+                    });
+                    ab.create().show();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(Student_page.this,e.toString(),Toast.LENGTH_LONG).show();
+            }
+        });
+
+        
     }
 
     @Override

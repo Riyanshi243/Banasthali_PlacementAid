@@ -85,6 +85,15 @@ public class SignIn extends AppCompatActivity {
                     if (document.exists()) {
                         //username exist
                         doc = document.getData();
+                        if(doc.containsKey("Admin"))
+                        {
+                            if((Boolean) doc.get("Admin")==true)
+                            {
+                                Toast.makeText(SignIn.this,"YOU ARE ADMIN YOU DONT NEED TO SIGN IN",Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(SignIn.this,LoginActivity.class));
+                                finish();
+                            }
+                        }
                         if(doc.containsKey("Username"))
                         {
                             if(doc.get("Username").toString().equalsIgnoreCase(uname))
@@ -103,6 +112,9 @@ finish();
                                 {
                                     Toast.makeText(SignIn.this,"YOU ARE ALREADY A USER",Toast.LENGTH_LONG).show();
                                     //intent to login
+                                    Intent intent = new Intent(SignIn.this,LoginActivity.class);
+                                    startActivity(intent);
+                                    finish();
                                 }
                             }
                             else {

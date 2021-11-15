@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -35,13 +36,15 @@ public class CreateStudents extends AppCompatActivity {
     private DocumentReference documentReference;
     private FirebaseAuth mAuth;
     private EditText unameet, Email;
-
+    private CheckBox checkBox;
+    private boolean isadmin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_students);
         Email = findViewById(R.id.email);
         unameet = findViewById(R.id.uname);
+        checkBox=findViewById(R.id.checkBox);
     }
 
     @Override
@@ -54,21 +57,13 @@ public class CreateStudents extends AppCompatActivity {
     public void onStart() {
 
         super.onStart();
-        //FirebaseUser currentUser = mAuth.getCurrentUser();
-        //testing
-        /*if (currentUser == null) {
-
-            Intent intent = new Intent(CreateStudents.this, LoginActivity.class);
-            startActivity(intent);
-        }*/
     }
 
     public void save_data(View view) {
 
         uname = unameet.getText().toString();
         email = Email.getText().toString();
-        Log.w("Hello",uname+email);
-
+        isadmin=checkBox.isChecked();
         mAuth = FirebaseAuth.getInstance();
         Boolean[] flag = {true};
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -100,15 +95,22 @@ public class CreateStudents extends AppCompatActivity {
         user.put("Username", uname);
         user.put("Email", email);
         user.put("New",true);
+        user.put("Admin",isadmin);
         documentReference.set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(CreateStudents.this, "User Created", Toast.LENGTH_LONG).show();
+                if(isadmin==true)
+                {
+                    Toast.makeText(CreateStudents.this, "Admin Created", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Toast.makeText(CreateStudents.this, "User Created", Toast.LENGTH_LONG).show();
+                }
                 unameet.setText("");
                 Email.setText("");
-                //testing
-                Intent intent=new Intent(CreateStudents.this,SignIn.class);
-                startActivity(intent);
+                if(checkBox.isChecked())
+                    checkBox.toggle();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

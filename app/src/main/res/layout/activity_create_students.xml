@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -56,18 +55,19 @@
                 android:layout_width="360dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:text="Is user an ADMIN?"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
 
             <Button
                 android:id="@+id/done"
                 android:layout_width="157dp"
                 android:layout_height="60dp"
+                android:layout_gravity="center"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="55dp"
-                android:background="@color/black"
-                android:layout_gravity="center"
+                android:background="@color/white"
                 android:onClick="save_data"
                 android:text="CREATE"
                 android:textColor="@color/black" />
