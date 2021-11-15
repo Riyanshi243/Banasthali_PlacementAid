@@ -408,7 +408,6 @@
                     android:layout_marginTop="50dp"
                     android:onClick="edit"
                     android:text="EDIT"
-                    android:textColor="@color/black"
                     android:textSize="20dp" />
 
                 <Button
@@ -419,7 +418,6 @@
                     android:layout_marginTop="50dp"
                     android:onClick="save"
                     android:text="SAVE"
-                    android:textColor="@color/black"
                     android:textSize="20dp" />
 
 
