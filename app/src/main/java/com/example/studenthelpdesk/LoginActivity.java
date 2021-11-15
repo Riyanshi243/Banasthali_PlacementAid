@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText EditTextTextPassword=findViewById(R.id.editTextTextPassword);
         editTextPassword= EditTextTextPassword.getText().toString();
         firebaseAuth=FirebaseAuth.getInstance();
-        email= EditTextTextPersonName.getText().toString();
+        email= EditTextTextPersonName.getText().toString().trim();
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         if (email.matches(emailPattern)==false)
         {

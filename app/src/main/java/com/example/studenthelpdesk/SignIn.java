@@ -112,6 +112,9 @@ finish();
                                 {
                                     Toast.makeText(SignIn.this,"YOU ARE ALREADY A USER",Toast.LENGTH_LONG).show();
                                     //intent to login
+                                    Intent intent = new Intent(SignIn.this,LoginActivity.class);
+                                    startActivity(intent);
+                                    finish();
                                 }
                             }
                             else {
