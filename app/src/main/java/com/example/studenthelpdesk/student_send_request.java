@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class student_send_request extends AppCompatActivity {
 TextView wel,curval,newcurval,rsn;
-    Spinner spinnerEditDetails;
+    //Spinner spinnerEditDetails;
     Data data;
     String what[]=new String[1];
     @Override
@@ -35,7 +35,7 @@ TextView wel,curval,newcurval,rsn;
         rsn=(TextView)findViewById(R.id.reason);
         data=Student_page.data;
         wel.setText("HELLO "+data.getUname());
-        spinnerEditDetails= findViewById(R.id.spinner_edit_fields);
+        /*spinnerEditDetails= findViewById(R.id.spinner_edit_fields);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.edit_details, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinnerEditDetails.setAdapter(adapter);
@@ -79,7 +79,7 @@ TextView wel,curval,newcurval,rsn;
             public void onNothingSelected(AdapterView<?> adapterView) {
                 Toast.makeText(student_send_request.this,"Hey",Toast.LENGTH_LONG).show();
             }
-        });
+        });*/
     }
     public void send_req(View view)
     {
@@ -145,12 +145,12 @@ TextView wel,curval,newcurval,rsn;
                 return super.onOptionsItemSelected(item);
         }
     }
-    public void submit(View v)
+    /*public void submit(View v)
     {
         TextView textView = (TextView)spinnerEditDetails.getSelectedView();
         String result = textView.getText().toString();
         Toast.makeText(this,result,Toast.LENGTH_LONG);
-    }
+    }*/
 
     @Override
     public void onBackPressed() {

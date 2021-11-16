@@ -61,8 +61,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp"
                 android:onClick="login"
-                android:text="LOGIN"
-                android:textColor="#5D4037" />
+                android:text="LOGIN" />
 
             <TextView
                 android:id="@+id/signin"
