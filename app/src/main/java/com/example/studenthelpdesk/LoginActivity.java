@@ -1,9 +1,9 @@
 package com.example.studenthelpdesk;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
@@ -153,5 +153,37 @@ public class LoginActivity extends AppCompatActivity {
         }
         backPressedTime=System.currentTimeMillis();
         
+    }
+    public void forgetPassword(View v)
+    {
+        final EditText resetMail=new EditText(v.getContext());
+        androidx.appcompat.app.AlertDialog.Builder passres=new AlertDialog.Builder(v.getContext());
+        passres.setTitle("Reset Password?");
+        passres.setMessage("Enter your E-mail to reset password.");
+        passres.setView(resetMail);
+        passres.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String mail=resetMail.getText().toString();
+                firebaseAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(LoginActivity.this,"Reset link sent to your E-mail",Toast.LENGTH_LONG).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(LoginActivity.this,"Error! Reset Link not sent "+e.getMessage(),Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
+        passres.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //close dialog
+            }
+        });
+        passres.create().show();
     }
 }

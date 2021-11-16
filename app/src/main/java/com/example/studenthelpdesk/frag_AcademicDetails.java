@@ -98,7 +98,7 @@ public class frag_AcademicDetails extends Fragment {
                 if(flag==false)
                     compulsory(view);
                 else
-                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
             }
         });
         enrno.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +107,7 @@ public class frag_AcademicDetails extends Fragment {
                  if(flag==false)
                     compulsory(view);
                 else
-                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
             
             }
         });
@@ -117,7 +117,7 @@ public class frag_AcademicDetails extends Fragment {
                  if(flag==false)
                     compulsory(view);
                 else
-                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
                 
             }
         });
@@ -127,7 +127,7 @@ public class frag_AcademicDetails extends Fragment {
                 if(flag==false)
                     compulsory(view);
                 else
-                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
             }
         });
         cgpa1.setOnClickListener(new View.OnClickListener() {
@@ -136,7 +136,7 @@ public class frag_AcademicDetails extends Fragment {
                  if(flag==false)
                     compulsory(view);
                 else
-                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
             }
         });
         ten.setOnClickListener(new View.OnClickListener() {
@@ -145,7 +145,7 @@ public class frag_AcademicDetails extends Fragment {
                  if(flag==false)
                     compulsory(view);
                 else
-                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
             }
         });
         twe.setOnClickListener(new View.OnClickListener() {
@@ -154,7 +154,7 @@ public class frag_AcademicDetails extends Fragment {
                 if(flag==false)
                     compulsory(view);
                 else
-                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
                            }
         });
         semester.setOnClickListener(new View.OnClickListener() {
@@ -163,7 +163,7 @@ public class frag_AcademicDetails extends Fragment {
                  if(flag==false)
                     changeSemester(view);
                 else
-                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
                 
             }
         });

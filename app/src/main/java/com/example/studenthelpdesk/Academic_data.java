@@ -34,10 +34,10 @@ public class Academic_data extends AppCompatActivity {
         branch.setText(data.getBranch());
         rollno.setText(data.getRno());
         erollno.setText(data.getEno());
-        cgpa.setText(data.getCgpa()+"");
-        tenth.setText(data.getTen()+"");
-        semester.setText(data.getSemester()+"");
-        twelth.setText(data.getTwel()+"");
+        cgpa.setText(data.getCgpa());
+        tenth.setText(data.getTen());
+        semester.setText(data.getSemester());
+        twelth.setText(data.getTwel());
     }
     public void save()
     {

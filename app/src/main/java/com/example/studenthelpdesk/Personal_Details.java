@@ -123,7 +123,7 @@ public class Personal_Details extends AppCompatActivity {
            }
                Intent i = new Intent(Personal_Details.this, Academic_data.class);
                startActivity(i);
-
+               finish();
 
 
     }

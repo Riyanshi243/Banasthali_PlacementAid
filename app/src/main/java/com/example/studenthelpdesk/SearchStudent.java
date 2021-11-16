@@ -18,12 +18,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.sql.Time;
 import java.util.Map;
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -58,6 +60,7 @@ public class SearchStudent extends AppCompatActivity {
 
 
     }
+    static boolean flag=false;
     public void show(View v)
     {
         String email;//ye karo
@@ -80,6 +83,7 @@ public class SearchStudent extends AppCompatActivity {
                     //ab yaha par set kar dena sab
                     ProgressBar pbar =findViewById(R.id.progressBar2);
                     pbar.setVisibility(View.VISIBLE);
+
                     name.setText((String)map2.get("Name"));
                     branch.setText((String)map2.get("Branch"));
                     cgpa.setText((String)map2.get("CGPA"));
@@ -91,42 +95,52 @@ public class SearchStudent extends AppCompatActivity {
                     rno.setText((String)map2.get("Roll Number"));
                     ten.setText((String)map2.get("Tenth"));
                     twe.setText((String)map2.get("Twelth"));
-
+                    flag=true;
 
 
                 }
                 else
                 {
                     Toast.makeText(SearchStudent.this,"Email does not exist",Toast.LENGTH_LONG).show();
+
+                    ProgressBar pbar =findViewById(R.id.progressBar2);
+                    pbar.setVisibility(View.INVISIBLE);
                     ScrollView scrollView=findViewById(R.id.scrollView3);
                     scrollView.setVisibility(View.INVISIBLE);
                 }
             }
-        });
-        DocumentReference dref1 = firestore.collection("AllowedUser").document(email).collection("Change").document("change");
-        dref1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                DocumentSnapshot doc=task.getResult();
-                if(doc.exists())
-                {
-                    Map<String, Object> map1 = doc.getData();
-                    aadhar.setText((String)map1.get("Aadhar"));
-                    add.setText((String)map1.get("Address"));
-                    dob.setText((String)map1.get("DOB"));
-                    gender.setText((String)map1.get("Gender"));
-                    pan.setText((String)map1.get("PAN"));
-                    phn.setText((String)map1.get("PhoneNumber"));
-                    sem.setText((String)map1.get("Semester"));
-                    email1.setText(email);
-                    ProgressBar pbar =findViewById(R.id.progressBar2);
-                    pbar.setVisibility(View.INVISIBLE);
-                    ScrollView scrollView=findViewById(R.id.scrollView3);
-                    scrollView.setVisibility(View.VISIBLE);
-
-                }
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(SearchStudent.this,e.toString(),Toast.LENGTH_SHORT).show();
             }
         });
+        if(flag==true) {
+            DocumentReference dref1 = firestore.collection("AllowedUser").document(email).collection("Change").document("change");
+            dref1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    DocumentSnapshot doc = task.getResult();
+                    if (doc.exists()) {
+                        ProgressBar pbar = findViewById(R.id.progressBar2);
+                        pbar.setVisibility(View.INVISIBLE);
+                        Map<String, Object> map1 = doc.getData();
+                        aadhar.setText((String) map1.get("Aadhar"));
+                        add.setText((String) map1.get("Address"));
+                        dob.setText((String) map1.get("DOB"));
+                        gender.setText((String) map1.get("Gender"));
+                        pan.setText((String) map1.get("PAN"));
+                        phn.setText((String) map1.get("PhoneNumber"));
+                        sem.setText((String) map1.get("Semester"));
+                        email1.setText(email);
+
+                    }
+                }
+            });
+
+            ScrollView scrollView = findViewById(R.id.scrollView3);
+            scrollView.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

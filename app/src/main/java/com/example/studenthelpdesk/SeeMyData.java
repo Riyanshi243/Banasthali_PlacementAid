@@ -18,12 +18,13 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Map;
 
 public class SeeMyData extends AppCompatActivity {
 
-    FirebaseFirestore firestore;
-    DocumentReference documentReference,documentReference2;
     FirebaseAuth firebaseAuth;
     Data data;
     TextView aadhar,name,pno,cgpa,gender,dob,rollno,fathersname,mothersname,pan,email,course,branch,enro,ten,twelve,semester,address;
@@ -82,17 +83,6 @@ public class SeeMyData extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.main,menu);
-        FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
-        firebaseAuth.signOut();
-          Intent intent=new Intent(SeeMyData.this,LoginActivity.class);
-                startActivity(intent);
-                finish();
-        return super.onCreateOptionsMenu(menu);
-    }//logout
-    @Override
     protected void onResume() {
         super.onResume();
         show();
@@ -126,36 +116,6 @@ public class SeeMyData extends AppCompatActivity {
         });
         ab.create().show();
     }
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId())
-        {
-            case R.id.action_logout:
-                AlertDialog.Builder ab=new AlertDialog.Builder(this);
-                ab.setTitle("LOGOUT");
-                ab.setMessage("Are you sure?");
-                ab.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //logut
-                        FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
-                        firebaseAuth.signOut();
-                        Intent intent = new Intent(SeeMyData.this,LoginActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }).setNegativeButton("No ", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //do nothing;
-                    }
-                });
-                ab.create().show();
-                return true;
-          default:
-               return super.onOptionsItemSelected(item);
-        }
-    }
     public void save(View v)
     {
         AlertDialog.Builder ab=new AlertDialog.Builder(v.getContext());
@@ -169,6 +129,17 @@ public class SeeMyData extends AppCompatActivity {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         data.ToDatabase();
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        String f[]={null};
+                        DocumentReference documentReference = db.collection("AllowedUser").document(data.getEmail());
+                        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                Map<String, Object> m = documentSnapshot.getData();
+                                m.put("New",false);
+                                documentReference.set(m);
+                            }
+                        });
                         Intent intent=new Intent(SeeMyData.this,LoginActivity.class);
                         Toast.makeText(SeeMyData.this,"SIGN UP SUCCESSFULL\nNOW LOGIN",Toast.LENGTH_SHORT).show();
                         finish();
