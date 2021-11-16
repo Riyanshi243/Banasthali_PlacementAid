@@ -79,7 +79,7 @@ public class Admin_page extends AppCompatActivity {
                                     documentReference.set(m).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
-                                            lock_data_base.setImageResource(R.drawable.unlock_database);
+                                            lock_data_base.setImageResource(R.drawable.lock_database);
                                             flag = 1;
                                             Toast.makeText(Admin_page.this,"Unlocked Successfully",Toast.LENGTH_LONG).show();
                                         }
@@ -122,7 +122,7 @@ public class Admin_page extends AppCompatActivity {
                                     documentReference.set(m).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
-                                            lock_data_base.setImageResource(R.drawable.lock_database);
+                                            lock_data_base.setImageResource(R.drawable.unlock_database);
                                             flag = 0;
                                             Toast.makeText(Admin_page.this,"Locked Successfully",Toast.LENGTH_LONG).show();
                                         }
@@ -180,35 +180,18 @@ public class Admin_page extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        AlertDialog.Builder ab=new AlertDialog.Builder(Admin_page.this);
-        ab.setTitle("Exit");
-        ab.setMessage("Are you sure you want to Exit?");
-        ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                //intent to student send request
-               // Intent intent=new Intent(view.getContext(),student_send_request.class);
-                //startActivity(intent);
-                //finish();
-                if(backPressedTime+2000>System.currentTimeMillis()){
+        //super.onBackPressed();
+        // super.onBackPressed();
 
+        if(backPressedTime+2000>System.currentTimeMillis()){
             System.exit(1);
             return;
         }else {
             Toast.makeText(Admin_page.this,"Press again to EXIT", Toast.LENGTH_LONG).show();
         }
         backPressedTime=System.currentTimeMillis();
-            }
-        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                //do nothing
-            }
-        });
-        ab.create().show();
 
-        }
+    }
         public void searchuser(View view)
         {
             //search user
