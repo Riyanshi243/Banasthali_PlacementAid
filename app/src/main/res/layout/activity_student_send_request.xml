@@ -34,36 +34,21 @@
                 android:textSize="24dp" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/currentVal_"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
-                android:text="Choose your field to edit:"
-                android:layout_marginTop="30dp"
-                android:textSize="24dp"
                 android:layout_gravity="center"
-                android:textColor="@color/black"/>
-
-            <Spinner
-                android:id="@+id/spinner_edit_fields"
-                android:layout_width="340dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@color/black"
-                android:popupBackground="@color/white"
-                android:spinnerMode="dropdown"
-                android:textAlignment="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="SpeakableTextPresentCheck" />
+                android:layout_marginTop="50dp"
+                android:text="CURRENT VALUE OF "
+                android:textColor="@color/black"
+                android:textSize="24dp" />
 
             <TextView
                 android:id="@+id/currentVal"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="50dp"
                 android:text="CURRENT VALUE"
                 android:textColor="@color/black"
                 android:textSize="24dp" />
@@ -99,7 +84,6 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="50dp"
-                android:onClick="submit"
                 android:text="SEND REQUEST" />
 
         </LinearLayout>
