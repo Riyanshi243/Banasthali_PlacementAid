@@ -178,6 +178,15 @@ public class Data {
     {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String f[]={null};
+        documentReference = db.collection("AllowedUser").document(email1);
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Map<String, Object> m = documentSnapshot.getData();
+                uname= (String) m.get("Username");
+            }
+        });
+
         documentReference = db.collection("AllowedUser").document(email1).collection("Change").document("change");
         documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override

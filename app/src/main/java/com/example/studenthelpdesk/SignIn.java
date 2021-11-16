@@ -25,9 +25,7 @@ import java.util.Map;
 
 public class SignIn extends AppCompatActivity {
     private DocumentReference documentReference;
-    private FirebaseAuth mAuth;
     private EditText name, email,password;
-    FirebaseAuth firebaseAuth;
     static Data data;
     protected Map<String, Object> doc;
     public static String password1;
@@ -105,12 +103,12 @@ public class SignIn extends AppCompatActivity {
 
                                     Intent intent = new Intent(SignIn.this,Personal_Details.class);
                                     startActivity(intent);
-finish();
+                                    finish();
 
                                 }
                                 else
                                 {
-                                    Toast.makeText(SignIn.this,"YOU ARE ALREADY A USER",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(SignIn.this,"YOU ARE ALREADY A USER.\nYou must log in",Toast.LENGTH_LONG).show();
                                     //intent to login
                                     Intent intent = new Intent(SignIn.this,LoginActivity.class);
                                     startActivity(intent);
