@@ -157,10 +157,11 @@ public class LoginActivity extends AppCompatActivity {
     public void forgetPassword(View v)
     {
         final EditText resetMail=new EditText(v.getContext());
-        androidx.appcompat.app.AlertDialog.Builder passres=new AlertDialog.Builder(v.getContext());
+        AlertDialog.Builder passres=new AlertDialog.Builder(v.getContext());
         passres.setTitle("Reset Password?");
         passres.setMessage("Enter your E-mail to reset password.");
         passres.setView(resetMail);
+        firebaseAuth=FirebaseAuth.getInstance();
         passres.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
