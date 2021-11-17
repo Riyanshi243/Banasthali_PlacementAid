@@ -34,13 +34,14 @@
         <Button
             android:id="@+id/button3"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_gravity="center"
             android:onClick="show"
             android:text="Search" />
 
         <ProgressBar
             android:id="@+id/progressBar2"
+            android:layout_marginTop="20dp"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
