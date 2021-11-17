@@ -1,6 +1,7 @@
 package com.example.studenthelpdesk;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,10 +17,22 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class student_send_request extends AppCompatActivity {
-TextView wel,curval,newcurval,rsn;
+TextView wel,curval,newcurval,rsn,title;
     //Spinner spinnerEditDetails;
     Data data;
     String what[]=new String[1];
@@ -30,56 +43,45 @@ TextView wel,curval,newcurval,rsn;
 
         setContentView(R.layout.activity_student_send_request);
         wel=(TextView)findViewById(R.id.welcome);
+        title=(TextView)findViewById(R.id.currentVal_);
         curval=(TextView)findViewById(R.id.currentVal);
         newcurval=(TextView)findViewById(R.id.newcurrentval);
         rsn=(TextView)findViewById(R.id.reason);
         data=Student_page.data;
         wel.setText("HELLO "+data.getUname());
-        /*spinnerEditDetails= findViewById(R.id.spinner_edit_fields);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.edit_details, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        spinnerEditDetails.setAdapter(adapter);
-        what[0]="";
-        spinnerEditDetails.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(l==0)
-                {
-                    Toast.makeText(student_send_request.this,"Select a value",Toast.LENGTH_LONG).show();
-                }
-                if(l==1)
-                {
-                    curval.setText(data.getName());
-                    what[0]="Name";
-                }
-                if(l==2) {
-                    curval.setText(data.getRno());
-                    what[0]="Rno";
-                }
-                if(l==3)
-                {
-                    curval.setText(data.getEno());
-
-                }
-                if(l==4)
-                {
-                    curval.setText(data.getTen());
-                }
-                if(l==5)
-                {
-                    curval.setText(data.getTwel());
-                }
-                if(l==6)
-                {
-                    curval.setText(data.getCgpa());
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                Toast.makeText(student_send_request.this,"Hey",Toast.LENGTH_LONG).show();
-            }
-        });*/
+        String t=title.getText().toString()+" "+Student_viewData.change;
+        title.setText(t);
+        t=getVal(Student_viewData.change);
+        curval.setText(t);
+    }
+    public  String getVal(String val)
+    {
+        String currval="";
+        if(val=="Course")
+            currval=data.getCourse();
+        else if(val=="Roll number")
+            currval=data.getRno();
+            else if(val=="Enrollment number")
+            currval=data.getEno();
+            else if(val=="Branch")
+            currval=data.getBranch();
+             else if(val=="CGPA")
+            currval=data.getCgpa();
+            else if(val=="Tenth Marks")
+            currval=data.getTen();
+            else if(val=="Twelth Marks")
+            currval=data.getTwel();
+            else if(val=="Semester")
+            currval=data.getSemester();
+            else if(val=="Name")
+            currval=data.getName();
+            else if(val=="Father's Name")
+            currval=data.getFname();
+            else if(val=="Mother's Name")
+            currval=data.getMname();
+            else
+                currval="";
+        return currval;
     }
     public void send_req(View view)
     {
@@ -89,17 +91,66 @@ TextView wel,curval,newcurval,rsn;
         ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                RequestHandler requestHandler=new RequestHandler();
-                String a[]=requestHandler.ToDatabase(what[0],newcurval.getText().toString());
-                if(a[0].equalsIgnoreCase("1"))
-                {
-                    Toast.makeText(student_send_request.this,a[1],Toast.LENGTH_LONG);
-                    //set everything blank
-                }
-                else
-                {
-                    Toast.makeText(student_send_request.this,a[1],Toast.LENGTH_LONG);
-                }
+                FirebaseFirestore f=FirebaseFirestore.getInstance();
+                final DocumentReference doc = f.collection("Request").document(data.getEmail());
+                doc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        DocumentSnapshot do1 = task.getResult();
+                        if(do1.exists())
+                        {
+                            Map<String , Object> m=do1.getData();
+                            long no= (long) m.get("Request Number");
+                            m.put("Request Number",no+1);
+                            DocumentReference d2 = doc.collection("Request "+(no+1)).document("Request");
+                            Map<String , Object> m2=new HashMap<String, Object>();
+                            m2.put("Change what",Student_viewData.change);
+                            m2.put("Value",newcurval.getText().toString());
+                            m2.put("Reason",rsn.getText().toString());
+                            m2.put("status","Under Consideration");
+                            d2.set(m2).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    doc.set(m);
+                                    Toast.makeText(student_send_request.this,"Request Sent",Toast.LENGTH_SHORT).show();
+
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(student_send_request.this,"Request Sent",Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                        else
+                        {
+                            Map<String , Object> m=new HashMap<String, Object>();
+                            m.put("Request Number",1);
+                            DocumentReference d2 = doc.collection("Request 1").document("Request");
+                            Map<String , Object> m2=new HashMap<String, Object>();
+                            m2.put("Change what",Student_viewData.change);
+                            m2.put("Value",newcurval.getText().toString());
+                            m2.put("Reason",rsn.getText().toString());
+                            m2.put("status","Under Consideration");
+                            d2.set(m2).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    doc.set(m);
+                                    Toast.makeText(student_send_request.this,"Request Sent",Toast.LENGTH_SHORT).show();
+
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    m.put("Request Number",0);
+                                    doc.set(m);
+                                    Toast.makeText(student_send_request.this,"Request Sent",Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }
+                    }
+                });
             }
         }).setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
@@ -107,6 +158,7 @@ TextView wel,curval,newcurval,rsn;
                 //do nothing
             }
         });
+
         ab.create().show();
 
     }
