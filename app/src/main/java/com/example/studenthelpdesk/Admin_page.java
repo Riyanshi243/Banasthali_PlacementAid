@@ -107,7 +107,7 @@ public class Admin_page extends AppCompatActivity {
                 } else if (flag == 1) {
                      AlertDialog.Builder ab=new AlertDialog.Builder(view.getContext());
                     ab.setTitle("LOCK DATABASE");
-                    ab.setMessage("Are you sure you want to Lock Database");
+                    ab.setMessage("Are you sure you want to Lock Database?");
                     ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
