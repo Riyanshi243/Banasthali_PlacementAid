@@ -36,6 +36,7 @@ public class frag_PersonalDetails extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private Data data=Student_page.data;
+
     TextView name, pno, gender, dob, fname, mname, aadhar,address,pan;
     
     // TODO: Rename and change types of parameters
@@ -98,8 +99,10 @@ public class frag_PersonalDetails extends Fragment {
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            if(flag==false)
-                    compulsory(view);
+            if(flag==false){
+                compulsory(view);
+                Student_viewData.change="Name";
+            }
                 else
                     Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
                 
@@ -128,8 +131,10 @@ public class frag_PersonalDetails extends Fragment {
         fname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(flag==false)
+                if(flag==false){
                     compulsory(view);
+                    Student_viewData.change="Father's Name";
+                }
                 else
                     Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
                 
@@ -138,8 +143,10 @@ public class frag_PersonalDetails extends Fragment {
         mname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(flag==false)
+                if(flag==false){
                     compulsory(view);
+                    Student_viewData.change="Mother's name";
+                }
                 else
                     Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
                 

@@ -9,15 +9,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 public class admin_view_requests extends AppCompatActivity {
-
+private EditText req_d;
+private TextView textV5,name1,textV6,textV7;
+private LinearLayout ll11;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_view_requests);
+        req_d=(EditText) findViewById(R.id.request_Date);
+         textV5=(TextView) findViewById(R.id.textView5);
+         name1=(TextView) findViewById(R.id.name);
+         textV6=(TextView) findViewById(R.id.textView6);
+         textV7=(TextView) findViewById(R.id.textView7);
+         ll11=(LinearLayout) findViewById(R.id.ll1);
+         
     }
 
     @Override

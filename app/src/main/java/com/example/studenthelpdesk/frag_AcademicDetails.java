@@ -95,8 +95,10 @@ public class frag_AcademicDetails extends Fragment {
         rno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(flag==false)
+                if(flag==false) {
                     compulsory(view);
+                    Student_viewData.change="Roll number";
+                }
                 else
                     Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
             }
@@ -104,8 +106,10 @@ public class frag_AcademicDetails extends Fragment {
         enrno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 if(flag==false)
-                    compulsory(view);
+                 if(flag==false) {
+                     compulsory(view);
+                     Student_viewData.change="Enrollment number";
+                 }
                 else
                     Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
             
@@ -114,8 +118,10 @@ public class frag_AcademicDetails extends Fragment {
         course1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 if(flag==false)
-                    compulsory(view);
+                 if(flag==false){
+                     compulsory(view);
+                     Student_viewData.change="Course";
+                 }
                 else
                     Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
                 
@@ -124,8 +130,10 @@ public class frag_AcademicDetails extends Fragment {
         branch1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(flag==false)
+                if(flag==false){
                     compulsory(view);
+                    Student_viewData.change="Branch";
+                }
                 else
                     Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
             }
@@ -133,8 +141,11 @@ public class frag_AcademicDetails extends Fragment {
         cgpa1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 if(flag==false)
-                    compulsory(view);
+                 if(flag==false){
+                     compulsory(view);
+                     Student_viewData.change="CGPA";
+                    // Student_viewData.change="CGPA";
+                 }
                 else
                     Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
             }
@@ -142,8 +153,10 @@ public class frag_AcademicDetails extends Fragment {
         ten.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 if(flag==false)
-                    compulsory(view);
+                 if(flag==false){
+                     compulsory(view);
+                     Student_viewData.change="Tenth Marks";
+                 }
                 else
                     Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
             }
@@ -151,8 +164,10 @@ public class frag_AcademicDetails extends Fragment {
         twe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(flag==false)
+                if(flag==false){
                     compulsory(view);
+                    Student_viewData.change="Twelth Marks";
+                }
                 else
                     Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
                            }
@@ -160,8 +175,10 @@ public class frag_AcademicDetails extends Fragment {
         semester.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 if(flag==false)
-                    changeSemester(view);
+                 if(flag==false){
+                     compulsory(view);
+                     Student_viewData.change="Semester";
+                 }
                 else
                     Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
                 

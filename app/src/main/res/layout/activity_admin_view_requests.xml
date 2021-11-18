@@ -33,6 +33,7 @@
                 android:textSize="25dp" />
 
             <LinearLayout
+                android:id="@+id/ll1"
                 android:layout_width="375dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -57,6 +58,7 @@
                         android:id="@+id/request_Date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:editable="false"
                         android:ems="10"
                         android:inputType="date"
                         android:textColor="@color/black"
