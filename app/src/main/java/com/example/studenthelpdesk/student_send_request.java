@@ -1,5 +1,7 @@
 package com.example.studenthelpdesk;
 
+import static java.lang.System.currentTimeMillis;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -21,12 +23,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -107,7 +113,9 @@ TextView wel,curval,newcurval,rsn,title;
                             m2.put("Change what",Student_viewData.change);
                             m2.put("Value",newcurval.getText().toString());
                             m2.put("Reason",rsn.getText().toString());
-                            m2.put("status","Under Consideration");
+                            m2.put("Status",1);//under consideration //2 suceeded
+                            Date time = Calendar.getInstance().getTime();
+                            m2.put("Applied Date",time);
                             d2.set(m2).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {

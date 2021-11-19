@@ -5,11 +5,14 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -129,5 +132,34 @@ public class CreateStudents extends AppCompatActivity {
         Intent intent = new Intent(CreateStudents.this,Admin_page.class);
         startActivity(intent);
         finish();
+    }
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.action_logout:
+                AlertDialog.Builder ab=new AlertDialog.Builder(this);
+                ab.setTitle("LOGOUT");
+                ab.setMessage("Are you sure?");
+                ab.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //logut
+                        FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+                        firebaseAuth.signOut();
+                        Intent intent = new Intent(CreateStudents.this,LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //do nothing;
+                    }
+                });
+                ab.create().show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.studenthelpdesk;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         TextView text=(TextView)findViewById(R.id.textView);
         int SPLASH_SCREEN = 4000;
+
+       //Toast.makeText(MainActivity.this,"hi",Toast.LENGTH_SHORT).show();
         if(done==false)
             new Handler().postDelayed(() -> {
 
@@ -60,6 +64,11 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
 
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(MainActivity.this,e.toString(),Toast.LENGTH_SHORT).show();
+                    }
                 });
 
             }
@@ -99,6 +108,11 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
 
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(MainActivity.this,e.toString(),Toast.LENGTH_SHORT).show();
+                        }
                     });
 
                 }
