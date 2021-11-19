@@ -37,8 +37,10 @@
         <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/layout/activity_student_see_request_status.xml" value="0.1" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/layout/activity_student_send_request.xml" value="0.22" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/layout/activity_student_view_data.xml" value="0.1" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/layout/adminallreq.xml" value="0.19519927536231885" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/layout/fragment_frag__academic_details.xml" value="0.13451086956521738" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/layout/fragment_frag__personal_details.xml" value="0.20208333333333334" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/layout/reqstatus.xml" value="0.1933876811594203" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/menu/main.xml" value="0.19947916666666668" />
       </map>
     </option>

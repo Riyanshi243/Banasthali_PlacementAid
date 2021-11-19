@@ -11,7 +11,7 @@ import android.widget.Toast;
 public class Academic_data extends AppCompatActivity {
     private EditText course,branch,rollno,erollno,cgpa,tenth,twelth,semester;
     private String course1,branch1,rno,erno;
-    private String tenthm,twelthm,cgpa1;
+    private String tenthm,twelthm,cgpa1,sem;
     Data data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,10 @@ public class Academic_data extends AppCompatActivity {
         data.setTen(tenthm);
         twelthm=(twelth.getText().toString());
         data.setTwel(twelthm);
-        data.setSemester(semester.getText().toString());
+       sem=(semester.getText().toString());
+       data.setSemester(sem);
+        
+
     }
     public void savedata(View V)
     {
@@ -65,6 +68,7 @@ public class Academic_data extends AppCompatActivity {
                     float cal =Float.parseFloat(cgpa1);
                     float ten=Float.parseFloat(tenthm);
                     float twelve=Float.parseFloat(twelthm);
+                  //  float se=Float.parseFloat(sem);
                     if(rollno.getText().toString().trim().length()==0)
                       {
                       rollno.setError("ENTER  ROLL NUMBER");
@@ -119,10 +123,9 @@ public class Academic_data extends AppCompatActivity {
                       twelth.setError("INVALID MARKS");
                       return;
                   }
-
-                 if(semester.getText().toString().trim().length()==0)
+                 /* if(Float.toString(se).trim().length()==0)
                       {
-                      branch.setError("ENTER SEMESTER");
+                      semester.setError("ENTER SEMESTER");
                      return;
                      }
                      else if(semester.getText().toString().length()<0 ||semester.getText().toString().length()>10)
@@ -130,6 +133,19 @@ public class Academic_data extends AppCompatActivity {
                       semester.setError("ENTER VALID SEMESTER");
                      return;
                      }
+                     */
+
+                 if(semester.getText().toString().trim().length()==0)
+                      {
+                      semester.setError("ENTER SEMESTER");
+                     return;
+                     }
+                     else if(semester.getText().toString().length()<0 ||semester.getText().toString().length()>10)
+                      {
+                      semester.setError("ENTER VALID SEMESTER");
+                     return;
+                     }
+                     
 
         Intent intent=new Intent(Academic_data.this,SeeMyData.class);
         startActivity(intent);

@@ -80,6 +80,7 @@ public class frag_AcademicDetails extends Fragment {
         enrno.setText(data.getEno());
         course1.setText(data.getCourse());
         branch1.setText(data.getBranch());
+        semester.setText(data.getSemester());
         cgpa1.setText( data.getCgpa()+" ");
         ten.setText(data.getTen()+" ");
         twe.setText(data.getTwel()+" ");
@@ -176,7 +177,8 @@ public class frag_AcademicDetails extends Fragment {
             @Override
             public void onClick(View view) {
                  if(flag==false){
-                     compulsory(view);
+                     //compulsory(view);
+                     changeSemester(view);
                      Student_viewData.change="Semester";
                  }
                 else
@@ -208,6 +210,7 @@ public class frag_AcademicDetails extends Fragment {
         branch1.setText(data.getBranch());
         cgpa1.setText( data.getCgpa()+" ");
         ten.setText(data.getTen()+" ");
+        semester.setText(data.getSemester());
         twe.setText(data.getTwel()+" ");
         return v;
 
