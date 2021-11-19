@@ -104,11 +104,11 @@ public class CreateStudents extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if(isadmin==true)
                 {
-                    Toast.makeText(CreateStudents.this, "Admin Created", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CreateStudents.this, "Admin Created", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    Toast.makeText(CreateStudents.this, "User Created", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CreateStudents.this, "User Created", Toast.LENGTH_SHORT).show();
                 }
                 unameet.setText("");
                 Email.setText("");
@@ -119,7 +119,7 @@ public class CreateStudents extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
 
-                Toast.makeText(CreateStudents.this, "User cant be created", Toast.LENGTH_LONG).show();
+                Toast.makeText(CreateStudents.this, "User cant be created", Toast.LENGTH_SHORT).show();
             }
         });
 

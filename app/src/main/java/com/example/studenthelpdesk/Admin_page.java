@@ -81,19 +81,19 @@ public class Admin_page extends AppCompatActivity {
                                         public void onSuccess(Void unused) {
                                             lock_data_base.setImageResource(R.drawable.lock_database);
                                             flag = 1;
-                                            Toast.makeText(Admin_page.this,"Unlocked Successfully",Toast.LENGTH_LONG).show();
+                                            Toast.makeText(Admin_page.this,"Unlocked Successfully",Toast.LENGTH_SHORT).show();
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(Admin_page.this,e.toString(),Toast.LENGTH_LONG).show();
+                                            Toast.makeText(Admin_page.this,e.toString(),Toast.LENGTH_SHORT).show();
                                         }
                                     });
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(Admin_page.this,e.toString(),Toast.LENGTH_LONG).show();
+                                    Toast.makeText(Admin_page.this,e.toString(),Toast.LENGTH_SHORT).show();
                                 }
                             });
 
@@ -124,19 +124,19 @@ public class Admin_page extends AppCompatActivity {
                                         public void onSuccess(Void unused) {
                                             lock_data_base.setImageResource(R.drawable.unlock_database);
                                             flag = 0;
-                                            Toast.makeText(Admin_page.this,"Locked Successfully",Toast.LENGTH_LONG).show();
+                                            Toast.makeText(Admin_page.this,"Locked Successfully",Toast.LENGTH_SHORT).show();
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(Admin_page.this,e.toString(),Toast.LENGTH_LONG).show();
+                                            Toast.makeText(Admin_page.this,e.toString(),Toast.LENGTH_SHORT).show();
                                         }
                                     });
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(Admin_page.this,e.toString(),Toast.LENGTH_LONG).show();
+                                    Toast.makeText(Admin_page.this,e.toString(),Toast.LENGTH_SHORT).show();
                                 }
                             });
 
@@ -187,7 +187,7 @@ public class Admin_page extends AppCompatActivity {
             System.exit(1);
             return;
         }else {
-            Toast.makeText(Admin_page.this,"Press again to EXIT", Toast.LENGTH_LONG).show();
+            Toast.makeText(Admin_page.this,"Press again to EXIT", Toast.LENGTH_SHORT).show();
         }
         backPressedTime=System.currentTimeMillis();
 

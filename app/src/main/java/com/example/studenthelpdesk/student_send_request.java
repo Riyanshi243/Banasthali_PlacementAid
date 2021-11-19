@@ -138,7 +138,10 @@ TextView wel,curval,newcurval,rsn,title;
                             Map<String , Object> m2=new HashMap<String, Object>();
                             m2.put("Change what",Student_viewData.change);
                             m2.put("Value",newcurval.getText().toString());
+                            m2.put("Status",1);//under consideration //2 suceeded
                             m2.put("Reason",rsn.getText().toString());
+                            Date time = Calendar.getInstance().getTime();
+                            m2.put("Applied Date",time);
                             m2.put("status","Under Consideration");
                             d2.set(m2).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override

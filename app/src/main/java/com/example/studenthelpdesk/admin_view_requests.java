@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -41,12 +42,7 @@ private LinearLayout scroll;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_view_requests);
-        req_d=(EditText) findViewById(R.id.request_Date);
-         textV5=(TextView) findViewById(R.id.textView5);
-         name1=(TextView) findViewById(R.id.name);
-         textV6=(TextView) findViewById(R.id.textView6);
-         textV7=(TextView) findViewById(R.id.textView7);
-         scroll=(LinearLayout) findViewById(R.id.ll1);
+        scroll=(LinearLayout)findViewById(R.id.ll1);
          set();
     }
 
@@ -88,26 +84,63 @@ private LinearLayout scroll;
                             {
                                 boolean flag[]={true};
                                 View v= LayoutInflater.from(admin_view_requests.this).inflate(R.layout.adminallreq, null);
-                                //sare adminallreq k items le lo
-                                TextView name,textView6,textView7;
+                                TextView name,header,reason,request_D;
+                                LinearLayout ll11;
+                                name=(TextView) v.findViewById(R.id.name);
+                                header=(TextView) v.findViewById(R.id.textView6);
+                                reason=(TextView) v.findViewById(R.id.textView7);
+                                request_D=(TextView) v.findViewById(R.id.request_Date);
+                                name.setText(id);
                                 doc.collection("Request " + j).document("Request").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                     @Override
                                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                                         Map<String, Object> details =documentSnapshot.getData();
+                                        header.setText("Change " + details.get("Change what") + " to " + details.get("Value"));
+                                        reason.setText((String) details.get("Reason"));Timestamp t = (Timestamp) details.get("Applied Date");
+                                        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+                                        cal.setTimeInMillis(t.getSeconds() * 1000L);
+                                        String date = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal).toString();
+                                        request_D.setText(date);
+
                                         long status=(long)details.get("Status");
                                         if(status==1) {
-
+                                            flag[0]=true;
                                         }
                                         if(status==2) {
-
+                                            flag[0]=false;
                                         }
                                         if(status==0) {
                                             flag[0]=false;
                                         }
                                     }
                                 });
-                                if(flag[0]==true)
+                                Button accept=v.findViewById(R.id.acc);
+                                Button rej=v.findViewById(R.id.rej);
+
+                                if(flag[0]==true) {
                                     scroll.addView(v);
+                                    accept.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            AlertDialog.Builder ab = new AlertDialog.Builder(admin_view_requests.this);
+                                            ab.setTitle("Are you sure?");
+                                            ab.setMessage("This change will automatically be shown in user's data");
+                                            ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+                                                    scroll.removeView(v);
+                                                    //request accepted ka toast
+                                                }
+                                            }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+                                                    //do nothing
+                                                }
+                                            });
+                                            ab.create().show();
+                                        }
+                                    });
+                                }
                             }
                         }
                     });

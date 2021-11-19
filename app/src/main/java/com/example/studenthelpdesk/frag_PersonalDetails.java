@@ -92,7 +92,7 @@ public class frag_PersonalDetails extends Fragment {
                 if(flag==false)
                       changePan(view);
                 else
-                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_SHORT).show();
             
             }
         });
@@ -104,7 +104,7 @@ public class frag_PersonalDetails extends Fragment {
                 Student_viewData.change="Name";
             }
                 else
-                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_SHORT).show();
                 
             }
         });
@@ -114,7 +114,7 @@ public class frag_PersonalDetails extends Fragment {
                 if(flag==false)
                     changeGender(view);
                 else
-                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_SHORT).show();
                 
             }
         });
@@ -124,7 +124,7 @@ public class frag_PersonalDetails extends Fragment {
                 if(flag==false)
                    changeDOB(view);
                 else
-                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_SHORT).show();
                 
             }
         });
@@ -136,7 +136,7 @@ public class frag_PersonalDetails extends Fragment {
                     Student_viewData.change="Father's Name";
                 }
                 else
-                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_SHORT).show();
                 
             }
         });
@@ -148,7 +148,7 @@ public class frag_PersonalDetails extends Fragment {
                     Student_viewData.change="Mother's name";
                 }
                 else
-                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_SHORT).show();
                 
             }
         });
@@ -158,7 +158,7 @@ public class frag_PersonalDetails extends Fragment {
                 if(flag==false)
                      changeAadhar(view);
                 else
-                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_SHORT).show();
                
             }
         });
@@ -168,7 +168,7 @@ public class frag_PersonalDetails extends Fragment {
                 if(flag==false)
                     changeAddress(view);
                 else
-                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_SHORT).show();
                 
             }
         });
@@ -178,7 +178,7 @@ public class frag_PersonalDetails extends Fragment {
                 if(flag==false)
                    changePhone(view);
                 else
-                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_SHORT).show();
                 
             }
         });

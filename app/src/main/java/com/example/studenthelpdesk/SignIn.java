@@ -87,7 +87,7 @@ public class SignIn extends AppCompatActivity {
                         {
                             if((Boolean) doc.get("Admin")==true)
                             {
-                                Toast.makeText(SignIn.this,"YOU ARE ADMIN YOU DONT NEED TO SIGN IN",Toast.LENGTH_LONG).show();
+                                Toast.makeText(SignIn.this,"YOU ARE ADMIN YOU DONT NEED TO SIGN IN",Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(SignIn.this,LoginActivity.class));
                                 finish();
                             }
@@ -108,7 +108,7 @@ public class SignIn extends AppCompatActivity {
                                 }
                                 else
                                 {
-                                    Toast.makeText(SignIn.this,"YOU ARE ALREADY A USER.\nYou must log in",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(SignIn.this,"YOU ARE ALREADY A USER.\nYou must log in",Toast.LENGTH_SHORT).show();
                                     //intent to login
                                     Intent intent = new Intent(SignIn.this,LoginActivity.class);
                                     startActivity(intent);
