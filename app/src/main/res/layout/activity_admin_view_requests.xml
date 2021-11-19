@@ -29,9 +29,18 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="10dp"
                 android:text="REQUESTS FOR EDIT IN ENTRIES"
                 android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
+                android:textSize="18dp"
+                android:text="Click on the GmailId of student to view their data!" />
 
             <ProgressBar
                 android:id="@+id/progressBar3"
