@@ -35,7 +35,7 @@ public class Student_page extends AppCompatActivity {
         String f = data.FromDatabase(firebaseAuth.getCurrentUser().getEmail());
         if(f!=null)
         {
-            Toast.makeText(Student_page.this,f,Toast.LENGTH_LONG).show();
+            Toast.makeText(Student_page.this,f,Toast.LENGTH_SHORT).show();
             startActivity(new Intent(Student_page.this,LoginActivity.class));
             finish();
         }
@@ -126,7 +126,7 @@ public class Student_page extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(Student_page.this,e.toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(Student_page.this,e.toString(),Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -142,7 +142,7 @@ public class Student_page extends AppCompatActivity {
             System.exit(1);
             return;
         }else {
-            Toast.makeText(Student_page.this,"Press again to EXIT", Toast.LENGTH_LONG).show();
+            Toast.makeText(Student_page.this,"Press again to EXIT", Toast.LENGTH_SHORT).show();
         }
         backPressedTime=System.currentTimeMillis();
 

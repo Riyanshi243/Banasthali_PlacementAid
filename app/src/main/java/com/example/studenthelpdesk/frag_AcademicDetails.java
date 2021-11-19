@@ -101,7 +101,7 @@ public class frag_AcademicDetails extends Fragment {
                     Student_viewData.change="Roll number";
                 }
                 else
-                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_SHORT).show();
             }
         });
         enrno.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +112,7 @@ public class frag_AcademicDetails extends Fragment {
                      Student_viewData.change="Enrollment number";
                  }
                 else
-                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_SHORT).show();
             
             }
         });
@@ -124,7 +124,7 @@ public class frag_AcademicDetails extends Fragment {
                      Student_viewData.change="Course";
                  }
                 else
-                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_SHORT).show();
                 
             }
         });
@@ -136,7 +136,7 @@ public class frag_AcademicDetails extends Fragment {
                     Student_viewData.change="Branch";
                 }
                 else
-                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_SHORT).show();
             }
         });
         cgpa1.setOnClickListener(new View.OnClickListener() {
@@ -148,7 +148,7 @@ public class frag_AcademicDetails extends Fragment {
                     // Student_viewData.change="CGPA";
                  }
                 else
-                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_SHORT).show();
             }
         });
         ten.setOnClickListener(new View.OnClickListener() {
@@ -159,7 +159,7 @@ public class frag_AcademicDetails extends Fragment {
                      Student_viewData.change="Tenth Marks";
                  }
                 else
-                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_SHORT).show();
             }
         });
         twe.setOnClickListener(new View.OnClickListener() {
@@ -170,7 +170,7 @@ public class frag_AcademicDetails extends Fragment {
                     Student_viewData.change="Twelth Marks";
                 }
                 else
-                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_SHORT).show();
                            }
         });
         semester.setOnClickListener(new View.OnClickListener() {
@@ -182,7 +182,7 @@ public class frag_AcademicDetails extends Fragment {
                      Student_viewData.change="Semester";
                  }
                 else
-                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_SHORT).show();
                 
             }
         });

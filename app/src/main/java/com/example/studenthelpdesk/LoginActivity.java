@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                                     if((Boolean) doc.get("Admin")==true)
                                     {
                                         //intent to admin page and also toast "welcom to admin page
-                                        Toast.makeText(LoginActivity.this,"Weclome to admin page",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(LoginActivity.this,"Weclome to admin page",Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(LoginActivity.this,Admin_page.class);
                                          startActivity(intent);
                                         finish();
@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                                     else
                                     {
                                         //intent to student page and also toast
-                                        Toast.makeText(LoginActivity.this,"Weclome to Student page",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(LoginActivity.this,"Weclome to Student page",Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(LoginActivity.this,Student_page.class);
                                          startActivity(intent);
                                          finish();
@@ -114,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
                                 else
                                 {
                                     //intent to student page and also toast
-                                    Toast.makeText(LoginActivity.this,"Weclome to Student page",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(LoginActivity.this,"Weclome to Student page",Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(LoginActivity.this,Student_page.class);
                                      startActivity(intent);
                                      finish();
@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             else
                             {
-                                Toast.makeText(LoginActivity.this,"User doesnot exist",Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginActivity.this,"User doesnot exist",Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -135,7 +135,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
 
-                Toast.makeText(LoginActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -149,7 +149,7 @@ public class LoginActivity extends AppCompatActivity {
             System.exit(1);
             return;
         }else {
-            Toast.makeText(LoginActivity.this,"Press again to EXIT", Toast.LENGTH_LONG).show();
+            Toast.makeText(LoginActivity.this,"Press again to EXIT", Toast.LENGTH_SHORT).show();
         }
         backPressedTime=System.currentTimeMillis();
         
@@ -169,12 +169,12 @@ public class LoginActivity extends AppCompatActivity {
                 firebaseAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(LoginActivity.this,"Reset link sent to your E-mail",Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this,"Reset link sent to your E-mail",Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(LoginActivity.this,"Error! Reset Link not sent "+e.getMessage(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this,"Error! Reset Link not sent "+e.getMessage(),Toast.LENGTH_SHORT).show();
                     }
                 });
             }

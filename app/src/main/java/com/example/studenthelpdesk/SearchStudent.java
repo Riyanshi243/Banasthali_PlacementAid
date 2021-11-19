@@ -101,7 +101,7 @@ public class SearchStudent extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(SearchStudent.this,"Email does not exist",Toast.LENGTH_LONG).show();
+                    Toast.makeText(SearchStudent.this,"Email does not exist",Toast.LENGTH_SHORT).show();
 
                     ProgressBar pbar =findViewById(R.id.progressBar2);
                     pbar.setVisibility(View.INVISIBLE);
