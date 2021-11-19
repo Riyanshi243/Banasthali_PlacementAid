@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,8 +20,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
@@ -30,6 +33,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -60,6 +64,8 @@ private LinearLayout scroll;
         getMenuInflater().inflate(R.menu.main, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
+    boolean flag[]={true};
     public void set()
     {
         FirebaseFirestore fs=FirebaseFirestore.getInstance();
@@ -82,7 +88,7 @@ private LinearLayout scroll;
                             long r= (long) m.get("Request Number");
                            for(int j=1;j<=r;j++)
                             {
-                                boolean flag[]={true};
+                                String change[]=new String[2];
                                 View v= LayoutInflater.from(admin_view_requests.this).inflate(R.layout.adminallreq, null);
                                 TextView name,header,reason,request_D;
                                 LinearLayout ll11;
@@ -91,10 +97,15 @@ private LinearLayout scroll;
                                 reason=(TextView) v.findViewById(R.id.textView7);
                                 request_D=(TextView) v.findViewById(R.id.request_Date);
                                 name.setText(id);
-                                doc.collection("Request " + j).document("Request").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                Map<String, Object> cur[]=new Map[1];
+                                DocumentReference d1 = doc.collection("Request " + j).document("Request");
+                                d1.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                     @Override
                                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                                         Map<String, Object> details =documentSnapshot.getData();
+                                        cur[0]=details;
+                                        change[0]=(String) details.get("Change what");
+                                        change[1]= (String) details.get("Value");
                                         header.setText("Change " + details.get("Change what") + " to " + details.get("Value"));
                                         reason.setText((String) details.get("Reason"));Timestamp t = (Timestamp) details.get("Applied Date");
                                         Calendar cal = Calendar.getInstance(Locale.ENGLISH);
@@ -103,44 +114,19 @@ private LinearLayout scroll;
                                         request_D.setText(date);
 
                                         long status=(long)details.get("Status");
-                                        if(status==1) {
-                                            flag[0]=true;
+                                        if(status==1l) {
+                                            getitem(cur[0],v,d1,change,id);
                                         }
-                                        if(status==2) {
+                                        else if(status==2l) {
                                             flag[0]=false;
                                         }
-                                        if(status==0) {
+                                        else if(status==0l) {
                                             flag[0]=false;
                                         }
                                     }
                                 });
-                                Button accept=v.findViewById(R.id.acc);
-                                Button rej=v.findViewById(R.id.rej);
 
-                                if(flag[0]==true) {
-                                    scroll.addView(v);
-                                    accept.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            AlertDialog.Builder ab = new AlertDialog.Builder(admin_view_requests.this);
-                                            ab.setTitle("Are you sure?");
-                                            ab.setMessage("This change will automatically be shown in user's data");
-                                            ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialogInterface, int i) {
-                                                    scroll.removeView(v);
-                                                    //request accepted ka toast
-                                                }
-                                            }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialogInterface, int i) {
-                                                    //do nothing
-                                                }
-                                            });
-                                            ab.create().show();
-                                        }
-                                    });
-                                }
+
                             }
                         }
                     });
@@ -156,6 +142,85 @@ private LinearLayout scroll;
         pb.setVisibility(View.GONE);
 
     }
+
+    private void getitem(Map<String, Object> cur, View v, DocumentReference d1, String[] change, String id) {
+        Button accept=v.findViewById(R.id.acc);
+        Button rej=v.findViewById(R.id.rej);
+        accept.setClickable(true);
+        accept.setFocusable(true);
+        accept.setFocusableInTouchMode(false);
+        rej.setClickable(true);
+        rej.setFocusable(true);
+        rej.setFocusableInTouchMode(false);
+        scroll.addView(v);
+        accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder ab = new AlertDialog.Builder(admin_view_requests.this);
+                ab.setTitle("Are you sure?");
+                ab.setMessage("This change will automatically be shown in user's data");
+                ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        changeinuser(change[0],change[1],id);
+                        if(flag1[0]==true)
+                        {
+                            scroll.removeView(v);
+                            cur.put("Status",2);
+                            d1.set(cur);
+                            Date time = Calendar.getInstance().getTime();
+                            cur.put("Reviewed Date",time);
+                            d1.set(cur);
+
+                            Toast.makeText(admin_view_requests.this,"REQUEST ACCEOTED",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //do nothing
+                    }
+                });
+                ab.create().show();
+            }
+        });
+        rej.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder ab = new AlertDialog.Builder(admin_view_requests.this);
+                ab.setTitle("Are you sure?");
+                ab.setMessage("Please provide a reason to reject this request");
+                EditText et=new EditText(admin_view_requests.this);
+                ab.setView(et);
+                ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if(et.getText().length()==0)
+                            et.setError("Give a reason");
+                        else
+                        {
+                            scroll.removeView(v);
+                            cur.put("Status",0);
+                            cur.put("Reason return",et.getText().toString());
+                            Date time = Calendar.getInstance().getTime();
+                            cur.put("Reviewed Date",time);
+                            d1.set(cur);
+                            Toast.makeText(admin_view_requests.this,"REQUEST Rejected",Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //do nothing
+                    }
+                });
+                ab.create().show();
+            }
+        });
+    }
+
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_logout:
@@ -184,90 +249,42 @@ private LinearLayout scroll;
                 return super.onOptionsItemSelected(item);
         }
     }
+    boolean flag1[]={false};
+    public void changeinuser(String changeWhat,String changeTO,String id)
+    {
+        DocumentReference userloc = FirebaseFirestore.getInstance().collection("AllowedUser").document(id).collection("Permanent").document("perm");
+
+        userloc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                Map<String, Object> m = task.getResult().getData();
+                    if(m==null) {
+                        Toast.makeText(admin_view_requests.this,  "Invalid request", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    m.put(changeWhat,changeTO);
+                    userloc.set(m).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            flag1[0]=true;
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            flag1[0]=false;
+                            Toast.makeText(admin_view_requests.this,e.toString(),Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                }
+
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                flag1[0]=false;
+                Toast.makeText(admin_view_requests.this,e.toString(),Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }
-//public void set()
-//    {
-//        FirebaseFirestore fs=FirebaseFirestore.getInstance();
-//        CollectionReference col = fs.collection("Request");
-//        col.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//            @Override
-//            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                List<DocumentSnapshot> d = queryDocumentSnapshots.getDocuments();
-//                if(d.size()==0)
-//                    Toast.makeText(Student_see_request_status.this,"e.toString()"+d.size(),Toast.LENGTH_SHORT).show();
-//                int i[]={0};
-//                for(;i[0]<d.size();i[0]++)
-//                {
-//                    String id = d.get(i[0]).getId();
-//                    DocumentReference doc = col.document(id);
-//                    doc.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                        @Override
-//                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                            Map<String, Object> m = documentSnapshot.getData();
-//                            long r= (long) m.get("Request Number");
-//                            for(int j=1;j<=r;j++)
-//                            {
-//                                View v= LayoutInflater.from(Student_see_request_status.this).inflate(R.layout.reqstatus, null);
-//
-//                                doc.collection("Request " + j).document("Request").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                                    @Override
-//                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                                        Map<String, Object> details =documentSnapshot.getData();
-//                                        TextView header=(TextView)v.findViewById(R.id.header);
-//                                        header.setText("Change "+details.get("Change what")+" to "+details.get("Value"));
-//                                        TextView reason=(TextView)  v.findViewById(R.id.description);
-//                                        reason.setText((String)details.get("Reason"));
-//                                        TextView dateapp=(TextView)  v.findViewById(R.id.date1);
-//                                        Timestamp t=(Timestamp) details.get("Applied Date");
-//                                        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
-//                                        cal.setTimeInMillis(t.getSeconds() * 1000L);
-//                                        String date = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal).toString();
-//                                        dateapp.setText(date);
-//                                        long status=(long)details.get("Status");
-//                                        TextView stat=(TextView) v.findViewById(R.id.status);
-//                                        TextView date2=(TextView) v.findViewById(R.id.date2);
-//                                        TextView rev=v.findViewById(R.id.reviewedDateText);
-//                                        TextView reson2=(TextView) v.findViewById(R.id.reason);
-//                                        if(status==1) {
-//                                            stat.setText("Under Consideration");
-//                                            date2.setVisibility(View.GONE);
-//                                            rev.setVisibility(View.GONE);
-//                                            reson2.setVisibility(View.GONE);
-//                                        }
-//                                        if(status==2) {
-//                                            stat.setText("ACCEPTED");
-//                                            Timestamp t1=(Timestamp) details.get("Reviewed Date");
-//                                            Calendar cal2 = Calendar.getInstance(Locale.ENGLISH);
-//                                            cal2.setTimeInMillis(t1.getSeconds() * 1000L);
-//                                            String dat2 = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal2).toString();
-//                                            date2.setText(dat2);
-//                                            reson2.setText((String)details.get("Reason return"));
-//                                        }
-//                                        if(status==0) {
-//                                            stat.setText("Rejected");
-//                                            Timestamp t1=(Timestamp) details.get("Reviewed Date");
-//                                            Calendar cal2 = Calendar.getInstance(Locale.ENGLISH);
-//                                            cal2.setTimeInMillis(t1.getSeconds() * 1000L);
-//                                            String dat2 = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal2).toString();
-//                                            date2.setText(dat2);
-//                                            reson2.setText((String)details.get("Reason return"));
-//                                        }
-//                                    }
-//                                });
-//
-//                                scroll.addView(v);
-//                            }
-//                        }
-//                    });
-//                }
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Toast.makeText(Student_see_request_status.this,e.toString(),Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        ProgressBar pb=findViewById(R.id.progressBar);
-//        pb.setVisibility(View.GONE);
-//
-//    }
