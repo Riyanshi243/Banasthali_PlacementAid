@@ -1,5 +1,7 @@
 package com.example.studenthelpdesk;
 
+import static com.example.studenthelpdesk.R.color.green_bg;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +9,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -83,6 +86,8 @@ LinearLayout scroll;
                             TextView date2 = (TextView) v.findViewById(R.id.date2);
                             TextView rev = v.findViewById(R.id.reviewedDateText);
                             TextView reson2 = (TextView) v.findViewById(R.id.reason);
+                            //res_
+                                  TextView reason1 = (TextView) v.findViewById(R.id.reason_);
                             if (status == 1) {
                                 stat.setText("Under Consideration");
                                 date2.setVisibility(View.GONE);
@@ -97,6 +102,7 @@ LinearLayout scroll;
                                 String dat2 = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal2).toString();
                                 date2.setText(dat2);
                                 reson2.setText((String) details.get("Reason return"));
+                                stat.setBackgroundColor((getResources().getColor(R.color.green_bg)));
                             }
                             if (status == 0) {
                                 stat.setText("Rejected");
@@ -106,6 +112,8 @@ LinearLayout scroll;
                                 String dat2 = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal2).toString();
                                 date2.setText(dat2);
                                 reson2.setText((String) details.get("Reason return"));
+                                stat.setBackgroundColor((getResources().getColor(R.color.red_bg)));
+                                reason1.setVisibility(View.VISIBLE);
                             }
                         }
                     });

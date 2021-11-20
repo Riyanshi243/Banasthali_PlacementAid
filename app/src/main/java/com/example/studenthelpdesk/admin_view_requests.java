@@ -97,6 +97,19 @@ private LinearLayout scroll;
                                 reason=(TextView) v.findViewById(R.id.textView7);
                                 request_D=(TextView) v.findViewById(R.id.request_Date);
                                 name.setText(id);
+                                name.setClickable(true);
+                                name.setFocusable(true);
+                                name.setFocusableInTouchMode(false);
+                                name.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        SearchStudent.SEARCH=id;
+                                        //intent to searchstudent
+                                        startActivity(new Intent(admin_view_requests.this,SearchStudent.class));
+                                        finish();
+                                        
+                                    }
+                                });
                                 Map<String, Object> cur[]=new Map[1];
                                 DocumentReference d1 = doc.collection("Request " + j).document("Request");
                                 d1.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -230,7 +243,6 @@ private LinearLayout scroll;
                 ab.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        //logut
                         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
                         firebaseAuth.signOut();
                         Intent intent = new Intent(admin_view_requests.this, LoginActivity.class);
