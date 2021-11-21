@@ -142,7 +142,6 @@ TextView wel,curval,newcurval,rsn,title;
                             m2.put("Reason",rsn.getText().toString());
                             Date time = Calendar.getInstance().getTime();
                             m2.put("Applied Date",time);
-                            m2.put("status","Under Consideration");
                             d2.set(m2).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {

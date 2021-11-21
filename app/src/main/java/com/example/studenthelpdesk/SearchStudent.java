@@ -31,6 +31,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class SearchStudent extends AppCompatActivity {
     Data data;
+    static String SEARCH;
     private static TextView name,fname,mname,phn,add,dob,gender,aadhar,pan,email1,rno,enro,course,branch,sem,ten,twe,cgpa;
     private EditText emails;
 
@@ -57,19 +58,24 @@ public class SearchStudent extends AppCompatActivity {
         twe=(TextView) findViewById(R.id.twe);
         cgpa=(TextView) findViewById(R.id.cgpa1);
         emails=(EditText) findViewById(R.id.emailsearch);
-
-
     }
     static boolean flag=false;
     public void show(View v)
     {
-        String email;//ye karo
-        email= emails.getText().toString().trim();
-        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-        if (email.matches(emailPattern)==false)
+        String email;
+        if(SEARCH.length()==0)
         {
-            emails.setError("ENTER VALID EMAIL");
-            return;
+            email= emails.getText().toString().trim();
+            String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+            if (email.matches(emailPattern)==false)
+            {
+                emails.setError("ENTER VALID EMAIL");
+                return;
+            }
+        }
+        else
+        {
+            email=SEARCH;
         }
         FirebaseFirestore firestore=FirebaseFirestore.getInstance();
         DocumentReference dref = firestore.collection("AllowedUser").document(email).collection("Permanent").document("perm");
@@ -182,9 +188,21 @@ public class SearchStudent extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        //if SEARCh khali h
         //intent to admin page
-        Intent intent = new Intent(SearchStudent.this,Admin_page.class);
-        startActivity(intent);
-        finish();
+        //else search ko khali karo or intent to view request
+        if(SEARCH.length()==0)
+        {
+            Intent intent = new Intent(SearchStudent.this,Admin_page.class);
+            startActivity(intent);
+            finish();
+        }
+        else
+        {
+            SEARCH="";
+            Intent intent = new Intent(SearchStudent.this,admin_view_requests.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }

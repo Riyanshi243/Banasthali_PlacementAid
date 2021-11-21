@@ -133,7 +133,7 @@ public class frag_PersonalDetails extends Fragment {
             public void onClick(View view) {
                 if(flag==false){
                     compulsory(view);
-                    Student_viewData.change="Father's Name";
+                    Student_viewData.change="Father Name";
                 }
                 else
                     Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_SHORT).show();
@@ -145,7 +145,7 @@ public class frag_PersonalDetails extends Fragment {
             public void onClick(View view) {
                 if(flag==false){
                     compulsory(view);
-                    Student_viewData.change="Mother's name";
+                    Student_viewData.change="Mother Name";
                 }
                 else
                     Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_SHORT).show();

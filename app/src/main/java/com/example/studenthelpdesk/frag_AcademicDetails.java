@@ -98,7 +98,7 @@ public class frag_AcademicDetails extends Fragment {
             public void onClick(View view) {
                 if(flag==false) {
                     compulsory(view);
-                    Student_viewData.change="Roll number";
+                    Student_viewData.change="Roll Number";
                 }
                 else
                     Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_SHORT).show();
@@ -109,7 +109,7 @@ public class frag_AcademicDetails extends Fragment {
             public void onClick(View view) {
                  if(flag==false) {
                      compulsory(view);
-                     Student_viewData.change="Enrollment number";
+                     Student_viewData.change="Enrollment";
                  }
                 else
                     Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_SHORT).show();
@@ -156,7 +156,7 @@ public class frag_AcademicDetails extends Fragment {
             public void onClick(View view) {
                  if(flag==false){
                      compulsory(view);
-                     Student_viewData.change="Tenth Marks";
+                     Student_viewData.change="Tenth";
                  }
                 else
                     Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_SHORT).show();
@@ -167,7 +167,7 @@ public class frag_AcademicDetails extends Fragment {
             public void onClick(View view) {
                 if(flag==false){
                     compulsory(view);
-                    Student_viewData.change="Twelth Marks";
+                    Student_viewData.change="Twelth";
                 }
                 else
                     Toast.makeText(getActivity(),"DATABASE IS LOCKED",Toast.LENGTH_SHORT).show();
