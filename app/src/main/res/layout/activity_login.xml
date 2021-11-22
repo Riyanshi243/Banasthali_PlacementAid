@@ -65,13 +65,13 @@
 
             <TextView
                 android:id="@+id/signin"
-                android:layout_width="136dp"
+                android:layout_width="103dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp"
                 android:gravity="center"
                 android:onClick="tosignin"
-                android:text="No Account?\nCreate One!"
+                android:text="@string/no_account_ncreate_one"
                 android:textColor="@color/purple_700"
                 android:textStyle="italic" />
 
@@ -83,7 +83,7 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:onClick="forgetPassword"
-                android:text="Forget Password"
+                android:text="@string/forget_password"
                 android:textColor="@color/purple_700"
                 android:textStyle="italic" />
         </LinearLayout>

@@ -186,7 +186,7 @@ private LinearLayout scroll;
                             cur.put("Reviewed Date",time);
                             d1.set(cur);
 
-                            Toast.makeText(admin_view_requests.this,"REQUEST ACCEOTED",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(admin_view_requests.this,"REQUEST ACCEPTED",Toast.LENGTH_SHORT).show();
                         }
                     }
                 }).setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -219,7 +219,7 @@ private LinearLayout scroll;
                             Date time = Calendar.getInstance().getTime();
                             cur.put("Reviewed Date",time);
                             d1.set(cur);
-                            Toast.makeText(admin_view_requests.this,"REQUEST Rejected",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(admin_view_requests.this,"REQUEST REJECTED",Toast.LENGTH_SHORT).show();
 
                         }
                     }
