@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
@@ -46,6 +47,7 @@ import java.util.Map;
 
 public class Student_see_request_status extends AppCompatActivity {
 LinearLayout scroll;
+ImageView del;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +88,7 @@ LinearLayout scroll;
                             TextView date2 = (TextView) v.findViewById(R.id.date2);
                             TextView rev = v.findViewById(R.id.reviewedDateText);
                             TextView reson2 = (TextView) v.findViewById(R.id.reason);
+                            del=(ImageView) v.findViewById(R.id.DELETE);
                             //res_
                                   TextView reason1 = (TextView) v.findViewById(R.id.reason_);
                             if (status == 1) {
@@ -115,6 +118,33 @@ LinearLayout scroll;
                                 stat.setBackgroundColor((getResources().getColor(R.color.red_bg)));
                                 reason1.setVisibility(View.VISIBLE);
                             }
+                            //on
+                            del.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    
+                                    AlertDialog.Builder ab=new AlertDialog.Builder(Student_see_request_status.this);
+                                    ab.setTitle("DELETE");
+                                    ab.setMessage("Are you sure want to delete ?");
+                                    ab.setPositiveButton("Delete for me", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                                        }
+                                    }).setNegativeButton("No ", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            //do nothing;
+                                        }
+                                    }).setNeutralButton("Delete for Everyone", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            
+                                    }
+                               });
+                                }
+                            });
+
                         }
                     });
 

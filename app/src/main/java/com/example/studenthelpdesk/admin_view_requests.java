@@ -105,7 +105,9 @@ private LinearLayout scroll;
                                     public void onClick(View view) {
                                         SearchStudent.SEARCH=id;
                                         //intent to searchstudent
-                                        startActivity(new Intent(admin_view_requests.this,SearchStudent.class));
+                                        Intent intent=(new Intent(admin_view_requests.this,SearchStudent.class));
+                                        intent.putExtra("message", id);
+                                        startActivity(intent);
                                         finish();
                                         
                                     }
