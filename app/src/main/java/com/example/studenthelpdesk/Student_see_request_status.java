@@ -93,6 +93,7 @@ LinearLayout scroll;
                                 date2.setVisibility(View.GONE);
                                 rev.setVisibility(View.GONE);
                                 reson2.setVisibility(View.GONE);
+                                reason1.setVisibility(View.GONE);
                             }
                             if (status == 2) {
                                 stat.setText("ACCEPTED");
@@ -103,9 +104,11 @@ LinearLayout scroll;
                                 date2.setText(dat2);
                                 reson2.setText((String) details.get("Reason return"));
                                 stat.setBackgroundColor((getResources().getColor(R.color.green_bg)));
+                                reson2.setVisibility(View.GONE);
+                                reason1.setVisibility(View.GONE);
                             }
                             if (status == 0) {
-                                stat.setText("Rejected");
+                                stat.setText("REJECTED");
                                 Timestamp t1 = (Timestamp) details.get("Reviewed Date");
                                 Calendar cal2 = Calendar.getInstance(Locale.ENGLISH);
                                 cal2.setTimeInMillis(t1.getSeconds() * 1000L);
