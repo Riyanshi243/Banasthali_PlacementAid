@@ -24,7 +24,7 @@
                 android:id="@+id/imageView3"
                 android:layout_width="match_parent"
                 android:layout_height="163dp"
-                app:srcCompat="@drawable/acadmic_details" />
+                app:srcCompat="@drawable/academic_details" />
 
             <EditText
                 android:id="@+id/rollno"
