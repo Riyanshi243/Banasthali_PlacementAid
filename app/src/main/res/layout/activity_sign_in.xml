@@ -12,10 +12,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="122dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp">
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="122dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -83,18 +81,18 @@
                 android:layout_width="157dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="50dp"
                 android:onClick="submit"
-                android:text="SIGN-UP"
-                android:layout_marginTop="50dp" />
+                android:text="SIGN-UP" />
 
             <TextView
                 android:id="@+id/login"
-                android:layout_width="133dp"
+                android:layout_width="105dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp"
                 android:onClick="tologinin"
-                android:text="Already a user\nLogin instead"
+                android:text="@string/already_a_user_nlogin_instead"
                 android:textAlignment="center"
                 android:textColor="@color/purple_700"
                 android:textStyle="italic" />
