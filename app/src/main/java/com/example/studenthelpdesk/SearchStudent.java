@@ -9,7 +9,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
@@ -31,7 +33,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class SearchStudent extends AppCompatActivity {
     Data data;
-    static String SEARCH;
+    static String SEARCH="";
     private static TextView name,fname,mname,phn,add,dob,gender,aadhar,pan,email1,rno,enro,course,branch,sem,ten,twe,cgpa;
     private EditText emails;
 
@@ -39,6 +41,16 @@ public class SearchStudent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_student);
+
+        emails=(EditText) findViewById(R.id.emailsearch);
+        boolean iseaxta=getIntent().hasExtra("message");
+        if(iseaxta) {
+            Bundle bundle = getIntent().getExtras();
+            SEARCH = bundle.getString("message");
+            Toast.makeText(this,"HI"+SEARCH,Toast.LENGTH_SHORT).show();
+            emails.setText(SEARCH);
+            show(getWindow().getCurrentFocus());
+        }
         name=(TextView) findViewById(R.id.name);
         fname=(TextView) findViewById(R.id.fathersname1);
         mname=(TextView) findViewById(R.id.mothersname);
@@ -57,7 +69,19 @@ public class SearchStudent extends AppCompatActivity {
         ten=(TextView) findViewById(R.id.ten);
         twe=(TextView) findViewById(R.id.twe);
         cgpa=(TextView) findViewById(R.id.cgpa1);
-        emails=(EditText) findViewById(R.id.emailsearch);
+        Button b=findViewById(R.id.button3);
+
+        b.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (MotionEvent.ACTION_UP == motionEvent.getAction())
+                {
+                    view.performClick();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
     static boolean flag=false;
     public void show(View v)
@@ -75,7 +99,10 @@ public class SearchStudent extends AppCompatActivity {
         }
         else
         {
-            email=SEARCH;
+            //yaha textview set kar do
+           email=SEARCH;
+           emails.setText(email);
+
         }
         FirebaseFirestore firestore=FirebaseFirestore.getInstance();
         DocumentReference dref = firestore.collection("AllowedUser").document(email).collection("Permanent").document("perm");
@@ -102,7 +129,30 @@ public class SearchStudent extends AppCompatActivity {
                     ten.setText((String)map2.get("Tenth"));
                     twe.setText((String)map2.get("Twelth"));
                     flag=true;
-
+                    DocumentReference dref1 = firestore.collection("AllowedUser").document(email).collection("Change").document("change");
+                    dref1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            DocumentSnapshot doc = task.getResult();
+                            if (doc.exists()) {
+                                ProgressBar pbar = findViewById(R.id.progressBar2);
+                                pbar.setVisibility(View.INVISIBLE);
+                                Map<String, Object> map1 = doc.getData();
+                                aadhar.setText((String) map1.get("Aadhar"));
+                                add.setText((String) map1.get("Address"));
+                                dob.setText((String) map1.get("DOB"));
+                                gender.setText((String) map1.get("Gender"));
+                                pan.setText((String) map1.get("PAN"));
+                                phn.setText((String) map1.get("PhoneNumber"));
+                                sem.setText((String) map1.get("Semester"));
+                                email1.setText(email);
+                                ScrollView scrollView = findViewById(R.id.scrollView3);
+                                scrollView.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    });
+                    
+                    
 
                 }
                 else
@@ -113,6 +163,7 @@ public class SearchStudent extends AppCompatActivity {
                     pbar.setVisibility(View.INVISIBLE);
                     ScrollView scrollView=findViewById(R.id.scrollView3);
                     scrollView.setVisibility(View.INVISIBLE);
+                    
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -121,32 +172,6 @@ public class SearchStudent extends AppCompatActivity {
                 Toast.makeText(SearchStudent.this,e.toString(),Toast.LENGTH_SHORT).show();
             }
         });
-        if(flag==true) {
-            DocumentReference dref1 = firestore.collection("AllowedUser").document(email).collection("Change").document("change");
-            dref1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    DocumentSnapshot doc = task.getResult();
-                    if (doc.exists()) {
-                        ProgressBar pbar = findViewById(R.id.progressBar2);
-                        pbar.setVisibility(View.INVISIBLE);
-                        Map<String, Object> map1 = doc.getData();
-                        aadhar.setText((String) map1.get("Aadhar"));
-                        add.setText((String) map1.get("Address"));
-                        dob.setText((String) map1.get("DOB"));
-                        gender.setText((String) map1.get("Gender"));
-                        pan.setText((String) map1.get("PAN"));
-                        phn.setText((String) map1.get("PhoneNumber"));
-                        sem.setText((String) map1.get("Semester"));
-                        email1.setText(email);
-
-                    }
-                }
-            });
-
-            ScrollView scrollView = findViewById(R.id.scrollView3);
-            scrollView.setVisibility(View.VISIBLE);
-        }
     }
 
     @Override
@@ -188,9 +213,6 @@ public class SearchStudent extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        //if SEARCh khali h
-        //intent to admin page
-        //else search ko khali karo or intent to view request
         if(SEARCH.length()==0)
         {
             Intent intent = new Intent(SearchStudent.this,Admin_page.class);

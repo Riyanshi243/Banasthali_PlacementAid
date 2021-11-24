@@ -8,44 +8,35 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import org.w3c.dom.Text;
-
-import java.sql.Time;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 public class Student_see_request_status extends AppCompatActivity {
 LinearLayout scroll;
+ImageView del;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,10 +55,9 @@ LinearLayout scroll;
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Map<String, Object> m = documentSnapshot.getData();
                 long r = (long) m.get("Request Number");
-                for (int j = 1; j <= r; j++) {
+                for (int j[] = {1}; j[0] <= r; j[0]++) {
                     View v = LayoutInflater.from(Student_see_request_status.this).inflate(R.layout.reqstatus, null);
-
-                    doc.collection("Request " + j).document("Request").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    doc.collection("Request " + j[0]).document("Request").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             Map<String, Object> details = documentSnapshot.getData();
@@ -86,6 +76,9 @@ LinearLayout scroll;
                             TextView date2 = (TextView) v.findViewById(R.id.date2);
                             TextView rev = v.findViewById(R.id.reviewedDateText);
                             TextView reson2 = (TextView) v.findViewById(R.id.reason);
+                            del=(ImageView) v.findViewById(R.id.DELETE);
+                            v.setId(j[0]);
+                            del.setId(j[0]);
                             //res_
                                   TextView reason1 = (TextView) v.findViewById(R.id.reason_);
                             if (status == 1) {
@@ -103,7 +96,7 @@ LinearLayout scroll;
                                 String dat2 = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal2).toString();
                                 date2.setText(dat2);
                                 reson2.setText((String) details.get("Reason return"));
-                                stat.setBackgroundColor((getResources().getColor(R.color.green_bg)));
+                                stat.setBackgroundColor((getResources().getColor(green_bg)));
                                 reson2.setVisibility(View.GONE);
                                 reason1.setVisibility(View.GONE);
                             }
@@ -118,6 +111,47 @@ LinearLayout scroll;
                                 stat.setBackgroundColor((getResources().getColor(R.color.red_bg)));
                                 reason1.setVisibility(View.VISIBLE);
                             }
+                            //on
+                            del.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    
+                                    AlertDialog.Builder ab=new AlertDialog.Builder(Student_see_request_status.this);
+                                    ab.setTitle("DELETE");
+                                    ab.setMessage("Are you sure want to delete ?");
+                                    ab.setPositiveButton("Delete for me", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                                        }
+                                    }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            //do nothing;
+                                        }
+                                    }).setNeutralButton("Delete for Everyone", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            DocumentReference doc1 = FirebaseFirestore.getInstance().collection("Request").document(Student_page.data.getEmail());
+                                            doc1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                    Map<String, Object> map = task.getResult().getData();
+                                                    long req=(long)map.get("Request Number");
+                                                    Map<String,Object> m[]=new Map[(int)req];
+                                                    int t[]={0};
+                                                    deleteforeever(m,t,v,1,req);
+                                                    map.put("Request Number",req-1);
+                                                    doc1.set(map);
+                                                }
+                                            });
+                                        }
+                               });
+                                    ab.create().show();
+
+                                }
+                            });
+
                         }
                     });
 
@@ -141,6 +175,29 @@ LinearLayout scroll;
         return super.onCreateOptionsMenu(menu);
 
     }//logout
+    public void deleteforeever(Map<String, Object>[] m, int[] t, View v,int k,long req)
+    {
+        if(k==req)
+        {
+            Toast.makeText(Student_see_request_status.this,"REQUEST DELWTED",Toast.LENGTH_SHORT).show();
+            scroll.removeView(v);
+            return;
+        }
+        if(k==v.getId())
+            deleteforeever(m,t,v,k+1,req);
+        DocumentReference doc2 = FirebaseFirestore.getInstance().collection("Request").document(Student_page.data.getEmail()).collection("Request " + k).document("Request");
+        doc2.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                Map<String, Object> m1 = task.getResult().getData();
+                m[t[0]]=m1;
+                DocumentReference doc3 = FirebaseFirestore.getInstance().collection("Request").document(Student_page.data.getEmail()).collection("Request " + t[0]).document("Request");
+                doc3.update(m1);
+                t[0]++;
+                deleteforeever(m,t,v,k+1,req);
+            }
+        });
+    }
 public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId())
         {

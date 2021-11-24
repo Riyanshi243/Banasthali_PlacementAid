@@ -36,7 +36,10 @@
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
+            android:clickable="true"
+            android:focusable="auto"
             android:onClick="show"
+            android:selectAllOnFocus="true"
             android:text="Search" />
 
         <ProgressBar

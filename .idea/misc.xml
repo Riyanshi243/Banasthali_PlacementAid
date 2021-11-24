@@ -14,7 +14,7 @@
         <entry key="..\:/StudentHelpDesk/app/src/main/res/layout/activity_main.xml" value="0.13333333333333333" />
         <entry key="..\:/StudentHelpDesk/app/src/main/res/layout/activity_main2.xml" value="0.17552083333333332" />
         <entry key="..\:/StudentHelpDesk/app/src/main/res/layout/activity_personal_details.xml" value="0.13333333333333333" />
-        <entry key="..\:/StudentHelpDesk/app/src/main/res/layout/activity_search_student.xml" value="0.12" />
+        <entry key="..\:/StudentHelpDesk/app/src/main/res/layout/activity_search_student.xml" value="0.3333333333333333" />
         <entry key="..\:/StudentHelpDesk/app/src/main/res/layout/activity_see_my_data.xml" value="0.13333333333333333" />
         <entry key="..\:/StudentHelpDesk/app/src/main/res/layout/activity_sign_in.xml" value="0.14666666666666667" />
         <entry key="..\:/StudentHelpDesk/app/src/main/res/layout/activity_student_page.xml" value="0.17552083333333332" />
@@ -30,17 +30,21 @@
         <entry key="..\:/StudentHelpDesk/app/src/main/res/layout/fragment_personal_details.xml" value="0.22" />
         <entry key="..\:/StudentHelpDesk/app/src/main/res/layout/reqstatus.xml" value="0.17552083333333332" />
         <entry key="..\:/StudentHelpDesk/app/src/main/res/layout/test.xml" value="0.17552083333333332" />
-        <entry key="..\:/StudentHelpDesk/app/src/main/res/layout/view_data_table.xml" value="0.17552083333333332" />
         <entry key="..\:/StudentHelpDesk/app/src/main/res/menu/main.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/layout/activity_academic_data.xml" value="0.20208333333333334" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/layout/activity_admin_page.xml" value="0.11639492753623189" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/layout/activity_admin_view_all_data.xml" value="0.1" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/layout/activity_admin_view_requests.xml" value="0.20208333333333334" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/layout/activity_personal_details.xml" value="0.20208333333333334" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/layout/activity_search_student.xml" value="0.1852355072463768" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/layout/activity_see_my_data.xml" value="0.2" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/layout/activity_student_page.xml" value="0.1852355072463768" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/layout/activity_student_see_request_status.xml" value="0.1" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/layout/activity_student_send_request.xml" value="0.1" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/layout/fragment_frag__academic_details.xml" value="0.13451086956521738" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/layout/fragment_frag__personal_details.xml" value="0.20208333333333334" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/layout/reqstatus.xml" value="0.18931159420289856" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/layout/view_data_table.xml" value="0.18070652173913043" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/StudentHelpDesk/app/src/main/res/menu/main.xml" value="0.19947916666666668" />
       </map>
     </option>
