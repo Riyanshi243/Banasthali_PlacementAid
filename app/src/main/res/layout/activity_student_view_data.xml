@@ -6,46 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".Student_viewData">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabs"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.005"
-        app:tabIndicatorColor="@color/white"
-        app:tabTextColor="@color/black">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_personal_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Personal Details" />
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="10dp"
+            app:tabIndicatorColor="@color/white"
+            app:tabTextColor="@color/black">
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_academic_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Academic Details" />
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_personal_details"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Personal Details" />
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_resume"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Resume" />
-    </com.google.android.material.tabs.TabLayout>
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_academic_details"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Academic Details" />
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
-        android:layout_width="414dp"
-        android:layout_height="681dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_resume"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Resume" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="646dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
