@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="50dp"
-                android:text="CURRENT VALUE OF "
+                android:text="Current Value of "
                 android:textColor="@color/black"
                 android:textSize="24dp" />
 
@@ -48,7 +48,7 @@
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="10dp"
                 android:text="CURRENT VALUE"
                 android:textColor="@color/black"
                 android:textSize="24dp" />
@@ -58,7 +58,7 @@
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:ems="10"
                 android:hint="Your new value that needs to be changed"
                 android:inputType="textPersonName"
