@@ -63,27 +63,25 @@ TextView wel,curval,newcurval,rsn,title;
     public  String getVal(String val)
     {
         String currval="";
-        if(val=="Course")
+            if(val=="Course")
             currval=data.getCourse();
-        else if(val=="Roll number")
+            else if(val=="Roll Number")
             currval=data.getRno();
-            else if(val=="Enrollment number")
+            else if(val=="Enrollment")
             currval=data.getEno();
             else if(val=="Branch")
             currval=data.getBranch();
              else if(val=="CGPA")
             currval=data.getCgpa();
-            else if(val=="Tenth Marks")
+            else if(val=="Tenth")
             currval=data.getTen();
-            else if(val=="Twelth Marks")
+            else if(val=="Twelth")
             currval=data.getTwel();
-            else if(val=="Semester")
-            currval=data.getSemester();
             else if(val=="Name")
             currval=data.getName();
-            else if(val=="Father's Name")
+            else if(val=="Father Name")
             currval=data.getFname();
-            else if(val=="Mother's Name")
+            else if(val=="Mother Name")
             currval=data.getMname();
             else
                 currval="";
