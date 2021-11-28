@@ -29,6 +29,13 @@
                 android:layout_height="165dp"
                 app:srcCompat="@drawable/login" />
 
+            <ProgressBar
+                android:id="@+id/progressBar4"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible" />
+
             <EditText
                 android:id="@+id/editTextTextPersonName"
                 android:layout_width="360dp"
