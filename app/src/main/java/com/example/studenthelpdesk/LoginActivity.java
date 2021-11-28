@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             else
                             {
-                                Toast.makeText(LoginActivity.this,"User doesnot exist",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this,"User does not exist",Toast.LENGTH_SHORT).show();
                             }
                         }
                     }

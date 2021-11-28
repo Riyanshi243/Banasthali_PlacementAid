@@ -30,6 +30,14 @@
                 android:layout_marginBottom="20dp"
                 app:srcCompat="@drawable/upload" />
 
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="168dp"
+                android:layout_height="131dp"
+                android:layout_gravity="center|center_vertical"
+                android:foregroundGravity="center"
+                app:srcCompat="@drawable/profile_pic" />
+
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
@@ -41,11 +49,12 @@
                 android:textSize="18dp" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/uppic"
                 android:layout_width="wrap_content"
                 android:layout_height="65dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
+                android:onClick="uploadpicbutton"
                 android:text="UPLOAD PHOTO" />
 
             <TextView
@@ -59,7 +68,7 @@
                 android:textSize="18dp" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/upres"
                 android:layout_width="wrap_content"
                 android:layout_height="65dp"
                 android:layout_gravity="center"
@@ -67,13 +76,15 @@
                 android:text="UPLOAD RESUME" />
 
             <Button
-            android:id="@+id/nxt"
-            android:layout_width="162dp"
-            android:layout_height="65dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="50dp"
-            android:text="NEXT" />
+                android:id="@+id/nxt"
+                android:layout_width="162dp"
+                android:layout_height="65dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="50dp"
+                android:onClick="next"
+                android:text="NEXT" />
+
         </LinearLayout>
     </ScrollView>
 

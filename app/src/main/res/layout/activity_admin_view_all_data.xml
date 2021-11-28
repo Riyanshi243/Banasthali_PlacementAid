@@ -41,19 +41,20 @@
                         android:text="Here, You can view all the data of the students from database" />
 
                     <TableLayout
+                        android:id="@+id/tl"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
                         <TableRow
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content">
 
                             <TableRow
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
                                 <TextView
-                                    android:id="@+id/srno"
+                                    android:id="@+id/srno1"
                                     android:layout_width="120dp"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="5dp"
@@ -71,8 +72,8 @@
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
-                                    android:text="EMAIL ID"
                                     android:background="@drawable/customborder"
+                                    android:text="EMAIL ID"
                                     android:textColor="@color/black"
                                     android:textSize="18dp" />
 
@@ -83,8 +84,8 @@
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
-                                    android:text="NAME"
                                     android:background="@drawable/customborder"
+                                    android:text="NAME"
                                     android:textColor="@color/black"
                                     android:textSize="18dp" />
 
@@ -95,8 +96,8 @@
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
-                                    android:text="GENDER"
                                     android:background="@drawable/customborder"
+                                    android:text="GENDER"
                                     android:textColor="@color/black"
                                     android:textSize="18dp" />
 
@@ -107,8 +108,8 @@
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
-                                    android:text="PHONE NO."
                                     android:background="@drawable/customborder"
+                                    android:text="PHONE NO."
                                     android:textColor="@color/black"
                                     android:textSize="18dp" />
 
@@ -119,8 +120,8 @@
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
-                                    android:text="DATE OF BIRTH"
                                     android:background="@drawable/customborder"
+                                    android:text="DATE OF BIRTH"
                                     android:textColor="@color/black"
                                     android:textSize="18dp" />
 
@@ -131,8 +132,8 @@
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
-                                    android:text="ROLL NUMBER"
                                     android:background="@drawable/customborder"
+                                    android:text="ROLL NUMBER"
                                     android:textColor="@color/black"
                                     android:textSize="18dp" />
 
@@ -155,8 +156,8 @@
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
-                                    android:text="COURSE"
                                     android:background="@drawable/customborder"
+                                    android:text="COURSE"
                                     android:textColor="@color/black"
                                     android:textSize="18dp" />
 
@@ -165,9 +166,9 @@
                                     android:layout_width="120dp"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="5dp"
-                                    android:background="@drawable/customborder"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
+                                    android:background="@drawable/customborder"
                                     android:text="BRANCH"
                                     android:textColor="@color/black"
                                     android:textSize="18dp" />
@@ -203,8 +204,8 @@
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
-                                    android:text="MOTHER'S NAME"
                                     android:background="@drawable/customborder"
+                                    android:text="MOTHER'S NAME"
                                     android:textColor="@color/black"
                                     android:textSize="18dp" />
 
@@ -216,8 +217,8 @@
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
-                                    android:text="AADHAR NUMBER"
                                     android:background="@drawable/customborder"
+                                    android:text="AADHAR NUMBER"
                                     android:textColor="@color/black"
                                     android:textSize="18dp" />
 
@@ -228,8 +229,8 @@
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
-                                    android:text="PAN NUMBER"
                                     android:background="@drawable/customborder"
+                                    android:text="PAN NUMBER"
                                     android:textColor="@color/black"
                                     android:textSize="18dp" />
 
@@ -241,8 +242,8 @@
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
-                                    android:text="10th PERCENTAGE"
                                     android:background="@drawable/customborder"
+                                    android:text="10th PERCENTAGE"
                                     android:textColor="@color/black"
                                     android:textSize="18dp" />
 
@@ -260,14 +261,14 @@
                                     android:textSize="18dp" />
 
                                 <TextView
-                                    android:id="@+id/CGPA"
+                                    android:id="@+id/CGPA2"
                                     android:layout_width="120dp"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
-                                    android:text="CGPA"
                                     android:background="@drawable/customborder"
+                                    android:text="CGPA"
                                     android:textColor="@color/black"
                                     android:textSize="18dp" />
 

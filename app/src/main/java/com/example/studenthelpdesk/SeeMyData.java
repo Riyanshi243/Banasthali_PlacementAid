@@ -140,8 +140,8 @@ public class SeeMyData extends AppCompatActivity {
                                 documentReference.set(m);
                             }
                         });
-                        Intent intent=new Intent(SeeMyData.this,LoginActivity.class);
-                        Toast.makeText(SeeMyData.this,"SIGN UP SUCCESSFULL\nNOW LOGIN",Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(SeeMyData.this,Student_page.class);
+                        Toast.makeText(SeeMyData.this,"SIGN UP SUCCESSFULL",Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
