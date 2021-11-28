@@ -1,25 +1,56 @@
 package com.example.studenthelpdesk;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Upload_data extends AppCompatActivity {
+import java.net.URI;
 
+public class Upload_data extends AppCompatActivity {
+    Button pic,resume;
+    private Uri imageuri;
+    ImageView profilepic;
+    Data data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_data);
+        pic=findViewById(R.id.uppic);
+        profilepic=findViewById(R.id.imageView8);
+        resume=findViewById(R.id.upres);
     }
-
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1&&resultCode==RESULT_OK&&data!=null&&data.getData()!=null)
+        {
+            imageuri=data.getData();
+            showPic();
+        }
+    }
+    public void showPic()
+    {
+        profilepic.setImageURI(imageuri);
+    }
+    public void uploadpicbutton(View view)
+    {
+        Intent intent=new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,1);
+    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -63,5 +94,12 @@ public class Upload_data extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    public void next(View view)
+    {
+        data=SignIn.data;
+       // data.setProfile_pic(imageuri);
+        startActivity(new Intent(Upload_data.this,SeeMyData.class));
+        finish();
     }
 }

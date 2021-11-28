@@ -123,17 +123,6 @@ public class Academic_data extends AppCompatActivity {
                       twelth.setError("INVALID MARKS");
                       return;
                   }
-                 /* if(Float.toString(se).trim().length()==0)
-                      {
-                      semester.setError("ENTER SEMESTER");
-                     return;
-                     }
-                     else if(semester.getText().toString().length()<0 ||semester.getText().toString().length()>10)
-                      {
-                      semester.setError("ENTER VALID SEMESTER");
-                     return;
-                     }
-                     */
 
                  if(semester.getText().toString().trim().length()==0)
                       {

@@ -119,7 +119,7 @@ public class CreateStudents extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
 
-                Toast.makeText(CreateStudents.this, "User cant be created", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateStudents.this, "User can't be created", Toast.LENGTH_SHORT).show();
             }
         });
 

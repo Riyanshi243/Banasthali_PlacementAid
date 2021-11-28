@@ -36,6 +36,7 @@ public class frag_PersonalDetails extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private Data data=Student_page.data;
+    private  ImageView profile;
 
     TextView name, pno, gender, dob, fname, mname, aadhar,address,pan;
     
@@ -201,6 +202,7 @@ public class frag_PersonalDetails extends Fragment {
         dob = v.findViewById(R.id.editdob);
         address=v.findViewById(R.id.editaddesss);
         pan=v.findViewById(R.id.editpan);
+        profile=v.findViewById(R.id.profile);
         name.setText(data.getName());
         pno.setText(data.getPno());
         mname.setText(data.getMname());
@@ -210,7 +212,7 @@ public class frag_PersonalDetails extends Fragment {
         dob.setText(data.getDob());
         address.setText(data.getAddress());
         pan.setText(data.getPan());
-
+        //profile.setImageURI(data.getProfile_pic());
         return v;
     }
 
