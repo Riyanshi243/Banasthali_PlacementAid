@@ -11,7 +11,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,11 +38,13 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     String email,editTextPassword;
     private long backPressedTime;
+    private Button btnsubmit;
     static boolean isadmin=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        btnsubmit= (Button) findViewById(R.id.button);
 
     }
 
@@ -53,6 +57,11 @@ public class LoginActivity extends AppCompatActivity {
     public void login(View view)
     {EditText EditTextTextPersonName=findViewById(R.id.editTextTextPersonName);
 
+
+        btnsubmit.setEnabled(false);
+        ProgressBar pbar =findViewById(R.id.progressBar4);
+        pbar.setVisibility(View.VISIBLE);
+
         EditText EditTextTextPassword=findViewById(R.id.editTextTextPassword);
         editTextPassword= EditTextTextPassword.getText().toString();
         firebaseAuth=FirebaseAuth.getInstance();
@@ -61,6 +70,8 @@ public class LoginActivity extends AppCompatActivity {
         if (email.matches(emailPattern)==false)
         {
             EditTextTextPersonName.setError("ENTER VALID EMAIL");
+            pbar.setVisibility(View.INVISIBLE);
+            btnsubmit.setEnabled(true);
             return;
         }
        // Pattern pattern = Pattern.compile(regex);
@@ -71,6 +82,8 @@ public class LoginActivity extends AppCompatActivity {
         if(editTextPassword.trim().length()==0)
         {
             EditTextTextPassword.setError("ENTER PASSWORD");
+            pbar.setVisibility(View.INVISIBLE);
+            btnsubmit.setEnabled(true);
             return;
         }
         else if(editTextPassword.trim().length()<6)
@@ -124,6 +137,8 @@ public class LoginActivity extends AppCompatActivity {
                             else
                             {
                                 Toast.makeText(LoginActivity.this,"User does not exist",Toast.LENGTH_SHORT).show();
+                                pbar.setVisibility(View.INVISIBLE);
+                                btnsubmit.setEnabled(true);
                             }
                         }
                     }
@@ -136,6 +151,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(@NonNull Exception e) {
 
                 Toast.makeText(LoginActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                pbar.setVisibility(View.INVISIBLE);
+                btnsubmit.setEnabled(true);
             }
         });
     }

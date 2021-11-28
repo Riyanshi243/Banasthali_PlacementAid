@@ -5,15 +5,20 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AutomaticZenRule;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +31,7 @@ import java.util.Map;
 public class SignIn extends AppCompatActivity {
     private DocumentReference documentReference;
     private EditText name, email,password;
+    private Button btnsubmit;
     static Data data;
     protected Map<String, Object> doc;
     public static String password1;
@@ -36,6 +42,7 @@ public class SignIn extends AppCompatActivity {
          name=(EditText) findViewById(R.id.uname2);
          password=(EditText) findViewById(R.id.password2);
          email=(EditText) findViewById(R.id.email2);
+        btnsubmit= (Button) findViewById(R.id.button2);
 
 
     }
@@ -47,25 +54,37 @@ public class SignIn extends AppCompatActivity {
     }
     public void submit(View view)
     {
+
+        btnsubmit.setEnabled(false);
+        ProgressBar pbar =findViewById(R.id.progressBar5);
+        pbar.setVisibility(View.VISIBLE);
         data=new Data();
         if (name.getText().toString().length()==0){
             name.setError("NAME IS REQUIRED");
+            pbar.setVisibility(View.INVISIBLE);
+            btnsubmit.setEnabled(true);
             return;
         }
 
 
         if(email.getText().toString().length()==0||!email.getText().toString().contains("@")) {
             email.setError("E-MAIL INVALID");
+            pbar.setVisibility(View.INVISIBLE);
+            btnsubmit.setEnabled(true);
             return;
 
         }
         if(password.getText().toString().length()==0) {
             password.setError("PASSWORD IS REQUIRED");
+            pbar.setVisibility(View.INVISIBLE);
+            btnsubmit.setEnabled(true);
             return;
         }
         if(password.getText().toString().length()<6)
         {
             password.setError("MUST BE GREATER THAN 6");
+            pbar.setVisibility(View.INVISIBLE);
+            btnsubmit.setEnabled(true);
             return;
         }
         String uname = name.getText().toString();
@@ -83,16 +102,29 @@ public class SignIn extends AppCompatActivity {
                     if (document.exists()) {
                         //username exist
                         doc = document.getData();
-                        if(doc.containsKey("Admin"))
+                        if(doc.containsKey("Admin") && (Boolean) doc.get("Admin")==true)
                         {
-                            if((Boolean) doc.get("Admin")==true)
-                            {
-                                Toast.makeText(SignIn.this,"YOU ARE ADMIN YOU DONT NEED TO SIGN IN",Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(SignIn.this,LoginActivity.class));
-                                finish();
-                            }
+                                FirebaseAuth fauth=FirebaseAuth.getInstance();
+                                String email1 = email.getText().toString();
+                                String password1 = password.getText().toString();
+                                fauth.createUserWithEmailAndPassword(email1,password1).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                                    @Override
+                                    public void onSuccess(AuthResult authResult) {
+                                        Toast.makeText(SignIn.this,"YOU MAY LOGIN NOW",Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(SignIn.this,LoginActivity.class));
+                                        finish();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(SignIn.this,"UNABLE TO CREATE.",Toast.LENGTH_SHORT).show();
+                                        pbar.setVisibility(View.INVISIBLE);
+                                        btnsubmit.setEnabled(true);
+                                    }
+                                });
+
                         }
-                        if(doc.containsKey("Username"))
+                        else if(doc.containsKey("Username"))
                         {
                             if(doc.get("Username").toString().equalsIgnoreCase(uname))
                             {
@@ -116,7 +148,7 @@ public class SignIn extends AppCompatActivity {
                                 }
                             }
                             else {
-                                email.setError("Invalid MAIL");
+                                email.setError("Invalid EMAIL");
                             }
                         }
                     }
