@@ -231,7 +231,7 @@ public class frag_AcademicDetails extends Fragment {
                 getActivity().finish();
 
             }
-        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+        }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //do nothing
@@ -248,7 +248,7 @@ public class frag_AcademicDetails extends Fragment {
         EditText et=new EditText(v.getContext());
         et.setText(data.getSemester());
         ab.setView(et);
-        ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        ab.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //close;

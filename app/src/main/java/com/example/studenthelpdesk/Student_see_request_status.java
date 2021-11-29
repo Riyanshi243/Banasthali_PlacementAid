@@ -83,7 +83,7 @@ static RequestData rd[];
         }
         if(status==0)
         {
-            stat.setText("Rejected");
+            stat.setText("REJECTED");
             date2.setText(rd[j].getReviewedDate());
             reson2.setText(rd[j].getReviewReason());
             stat.setBackgroundColor((getResources().getColor(R.color.red_bg)));
@@ -386,7 +386,7 @@ public boolean onOptionsItemSelected(@NonNull MenuItem item) {
                         startActivity(intent);
                         finish();
                     }
-                }).setNegativeButton("No ", new DialogInterface.OnClickListener() {
+                }).setNegativeButton("NO ", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //do nothing;

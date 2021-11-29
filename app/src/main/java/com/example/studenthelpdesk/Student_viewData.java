@@ -91,7 +91,7 @@ public class Student_viewData extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     }
-                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                }).setNegativeButton("N0", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //do nothing;

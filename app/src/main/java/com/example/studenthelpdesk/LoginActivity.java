@@ -196,7 +196,7 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         });
-        passres.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        passres.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //close dialog

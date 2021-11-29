@@ -63,8 +63,8 @@ public class Admin_page extends AppCompatActivity {
 
                 if (flag == 0) {
                     AlertDialog.Builder ab=new AlertDialog.Builder(view.getContext());
-                    ab.setTitle("UNLOCK DATABASE");
-                    ab.setMessage("Are you sure you want to unLock Database");
+                    ab.setTitle("UNLOCK THE DATABASE");
+                    ab.setMessage("Are you sure you want to Unlock the Database");
                     ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -106,8 +106,8 @@ public class Admin_page extends AppCompatActivity {
                     ab.create().show();
                 } else if (flag == 1) {
                      AlertDialog.Builder ab=new AlertDialog.Builder(view.getContext());
-                    ab.setTitle("LOCK DATABASE");
-                    ab.setMessage("Are you sure you want to Lock Database?");
+                    ab.setTitle("LOCK THE DATABASE");
+                    ab.setMessage("Are you sure you want to Lock the Database?");
                     ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -224,7 +224,7 @@ public class Admin_page extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     }
-                }).setNegativeButton("No ", new DialogInterface.OnClickListener() {
+                }).setNegativeButton("NO ", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //do nothing;

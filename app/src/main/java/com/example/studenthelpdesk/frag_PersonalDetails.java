@@ -279,7 +279,7 @@ public class frag_PersonalDetails extends Fragment {
                 startActivity(intent);
                 getActivity().finish();
             }
-        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+        }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //do nothing
@@ -295,7 +295,7 @@ public class frag_PersonalDetails extends Fragment {
         EditText et=new EditText(v.getContext());
         et.setText(data.getAadhar());
         ab.setView(et);
-        ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        ab.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //close;
@@ -317,7 +317,7 @@ public class frag_PersonalDetails extends Fragment {
         EditText et=new EditText(v.getContext());
         et.setText(data.getAddress());
         ab.setView(et);
-        ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        ab.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //close;
@@ -339,7 +339,7 @@ public class frag_PersonalDetails extends Fragment {
         EditText et=new EditText(v.getContext());
         et.setText(data.getDob());
         ab.setView(et);
-        ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        ab.setNegativeButton("N0", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //close;
@@ -361,7 +361,7 @@ public class frag_PersonalDetails extends Fragment {
         EditText et=new EditText(v.getContext());
         et.setText(data.getGender());
         ab.setView(et);
-        ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        ab.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //close;
@@ -383,7 +383,7 @@ public class frag_PersonalDetails extends Fragment {
         EditText et=new EditText(v.getContext());
         et.setText(data.getPan());
         ab.setView(et);
-        ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        ab.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //close;
@@ -405,7 +405,7 @@ public class frag_PersonalDetails extends Fragment {
         EditText et=new EditText(v.getContext());
         et.setText(data.getPno());
         ab.setView(et);
-        ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        ab.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //close;

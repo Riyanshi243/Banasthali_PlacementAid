@@ -47,7 +47,7 @@ public class SearchStudent extends AppCompatActivity {
         if(iseaxta) {
             Bundle bundle = getIntent().getExtras();
             SEARCH = bundle.getString("message");
-            Toast.makeText(this,"HI"+SEARCH,Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"HI "+SEARCH,Toast.LENGTH_SHORT).show();
             emails.setText(SEARCH);
             show(getWindow().getCurrentFocus());
         }
@@ -197,7 +197,7 @@ public class SearchStudent extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     }
-                }).setNegativeButton("No ", new DialogInterface.OnClickListener() {
+                }).setNegativeButton("NO ", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //do nothing;

@@ -160,7 +160,7 @@ TextView wel,curval,newcurval,rsn,title;
                     }
                 });
             }
-        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+        }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //do nothing
@@ -193,7 +193,7 @@ TextView wel,curval,newcurval,rsn,title;
                         startActivity(intent);
                         finish();
                     }
-                }).setNegativeButton("No ", new DialogInterface.OnClickListener() {
+                }).setNegativeButton("NO ", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //do nothing;
