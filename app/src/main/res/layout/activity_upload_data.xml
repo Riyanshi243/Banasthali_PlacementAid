@@ -73,6 +73,7 @@
                 android:layout_height="65dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
+                android:onClick="UploadResume"
                 android:text="UPLOAD RESUME" />
 
             <Button

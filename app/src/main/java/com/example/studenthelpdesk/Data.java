@@ -25,7 +25,16 @@ import java.util.Map;
 public class Data {
     private String uname,name,email,fname,mname,dob,aadhar,Pan,address,Pno,course,branch,semester,rno,eno,gender;
     private String cgpa,ten,twel;
-    String profile;
+    String profile,resume;
+
+    public void setResume(String resume) {
+        this.resume = resume;
+    }
+
+    public String getResume() {
+        return resume;
+    }
+
     private DocumentReference documentReference;
 
     public String getProfile() {
