@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,16 +13,25 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.net.URI;
 
 public class Upload_data extends AppCompatActivity {
     Button pic,resume;
-    private Uri imageuri;
+    static private Uri imageuri;
     ImageView profilepic;
     Data data;
     @Override
@@ -51,6 +61,21 @@ public class Upload_data extends AppCompatActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent,1);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    public void startActivityForResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1&& resultCode==RESULT_OK&&data!=null&& data.getData()!=null)
+        {
+            imageuri=data.getData();
+            uploadPic();
+        }
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -97,9 +122,52 @@ public class Upload_data extends AppCompatActivity {
     }
     public void next(View view)
     {
-        data=SignIn.data;
-       // data.setProfile_pic(imageuri);
         startActivity(new Intent(Upload_data.this,SeeMyData.class));
+        uploadPic();
         finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        data=SignIn.data;
+    }
+
+    public void uploadPic() {
+        Data data=SignIn.data;
+        if(Upload_data.imageuri!=null)
+        {
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+
+            StorageReference storageRef=storage.getReference("ProfilePic");
+
+            StorageReference fileReference =storageRef.child((data.getUname()));
+            fileReference.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Upload upload=new Upload(imageuri.toString()+"."+getFileExtension((imageuri)));
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Profile");
+                    String uploadid=databaseReference.push().getKey();
+                    SignIn.data.setProfile(uploadid);
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(Upload_data.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+        else
+        {
+            Toast.makeText(this,"No Image selected",Toast.LENGTH_LONG).show();
+        }
+
+    }
+    private  String getFileExtension(Uri uri)
+    {
+        ContentResolver cR=getContentResolver();
+        MimeTypeMap mime=MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 }
