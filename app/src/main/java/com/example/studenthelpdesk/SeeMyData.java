@@ -197,7 +197,7 @@ public class SeeMyData extends AppCompatActivity {
                     }
                 });
             }
-        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+        }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //close
