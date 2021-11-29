@@ -2,12 +2,15 @@ package com.example.studenthelpdesk;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +24,12 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -212,10 +220,38 @@ public class frag_PersonalDetails extends Fragment {
         dob.setText(data.getDob());
         address.setText(data.getAddress());
         pan.setText(data.getPan());
-        //profile.setImageURI(data.getProfile_pic());
+        downloadImageFromFireBase();
         return v;
     }
-
+    StorageReference storageRef ;
+    private void downloadImageFromFireBase()
+    {
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        storageRef = storage.getReference("ProfilePic").child(data.getUname());
+        showImageFromFireBaseDataBase();
+    }
+    private void showImageFromFireBaseDataBase()
+    {
+        try {
+            final File localFile = File.createTempFile("images", "jpg");
+            final Bitmap[] bitmap = new Bitmap[1];
+            storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    Log.e("Test", "success!");
+                    bitmap[0] = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                    profile.setImageBitmap(bitmap[0]);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    Log.e("Test", "fail :( " + exception.getMessage());
+                }
+            });
+        }catch(IOException e){
+            Log.e("ImageView",e.toString());
+        }
+    }
     @Override
     public void onResume() {
         super.onResume();

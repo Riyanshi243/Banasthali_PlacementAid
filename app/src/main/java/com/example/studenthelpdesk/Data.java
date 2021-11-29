@@ -1,15 +1,23 @@
 package com.example.studenthelpdesk;
 
+import android.content.ContentResolver;
+import android.net.Uri;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,8 +25,16 @@ import java.util.Map;
 public class Data {
     private String uname,name,email,fname,mname,dob,aadhar,Pan,address,Pno,course,branch,semester,rno,eno,gender;
     private String cgpa,ten,twel;
-
+    String profile;
     private DocumentReference documentReference;
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
 
     public String getUname() {
         return uname;
@@ -199,6 +215,7 @@ public class Data {
                 dob= (String) doc.get("DOB");
                 gender= (String) doc.get("Gender");
                 semester= (String) doc.get("Semester");
+
                 DocumentReference documentReference1 = db.collection("AllowedUser").document(email1).collection("Permanent").document("perm");
                 documentReference1.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
@@ -244,6 +261,7 @@ public class Data {
         m.put("DOB",dob);
         m.put("Gender",gender);
         m.put("Semester",semester);
+        m.put("ProfilePic",profile);
         int flag[]={0};
         documentReference.set(m).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -265,6 +283,7 @@ public class Data {
                     @Override
                     public void onSuccess(Void unused) {
                         flag[0]=1;
+
                     }
                 });
             }

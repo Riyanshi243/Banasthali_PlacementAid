@@ -17,10 +17,12 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class SeeMyData extends AppCompatActivity {
@@ -50,7 +52,9 @@ public class SeeMyData extends AppCompatActivity {
         enro= (TextView) findViewById(R.id.enrollment);
         ten= (TextView) findViewById(R.id.ten);
         twelve= (TextView) findViewById(R.id.twe);
-
+        FirebaseUser f = FirebaseAuth.getInstance().getCurrentUser();
+        if(f!=null)
+            firebaseAuth.signOut();
         show();
     }
     public void show()
@@ -128,21 +132,62 @@ public class SeeMyData extends AppCompatActivity {
                 firebaseAuth.createUserWithEmailAndPassword(data.getEmail(),SignIn.password1).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-                        data.ToDatabase();
-                        FirebaseFirestore db = FirebaseFirestore.getInstance();
-                        String f[]={null};
-                        DocumentReference documentReference = db.collection("AllowedUser").document(data.getEmail());
-                        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                            @Override
-                            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                Map<String, Object> m = documentSnapshot.getData();
-                                m.put("New",false);
-                                documentReference.set(m);
-                            }
-                        });
-                        Intent intent=new Intent(SeeMyData.this,LoginActivity.class);
-                        Toast.makeText(SeeMyData.this,"SIGN UP SUCCESSFULL",Toast.LENGTH_SHORT).show();
-                        finish();
+                        //SignIn.data.ToDatabase();
+                        {
+                            Map<String,Object> m=new HashMap<>();
+                            FirebaseFirestore db = FirebaseFirestore.getInstance();
+                            DocumentReference documentReference = db.collection("AllowedUser").document(data.getEmail()).collection("Change").document("change");
+                            m.put("Address",data.getAddress());
+                            m.put("PhoneNumber",data.getPno());
+                            m.put("Aadhar",data.getAadhar());
+                            m.put("PAN",data.getPan());
+                            m.put("DOB",data.getDob());
+                            m.put("Gender",data.getGender());
+                            m.put("Semester",data.getSemester());
+                            m.put("ProfilePic",data.profile);
+                            int flag[]={0};
+                            documentReference.set(m).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    m.clear();
+                                    m.put("CGPA",data.getCgpa());
+                                    m.put("Tenth",data.getTen());
+                                    m.put("Twelth",data.getTwel());
+                                    m.put("Course",data.getCourse());
+                                    m.put("Name",data.getName());
+                                    m.put("Mother Name",data.getMname());
+                                    m.put("Father Name",data.getFname());
+                                    m.put("Email",data.getEmail());
+                                    m.put("Roll Number",data.getRno());
+                                    m.put("Enrollment",data.getEno());
+                                    m.put("Branch",data.getBranch());
+                                    DocumentReference documentReference1 = db.collection("AllowedUser").document(data.getEmail()).collection("Permanent").document("perm");
+                                    documentReference1.set(m).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                            String f[]={null};
+                                            DocumentReference documentReference = db.collection("AllowedUser").document(data.getEmail());
+                                            documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                @Override
+                                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                    Map<String, Object> m = documentSnapshot.getData();
+                                                    m.put("New",false);
+                                                    documentReference.set(m);
+                                                    Intent intent=new Intent(SeeMyData.this,LoginActivity.class);
+                                                    Toast.makeText(SeeMyData.this,"SIGN UP SUCCESSFULL",Toast.LENGTH_SHORT).show();
+                                                    firebaseAuth.signOut();
+                                                    startActivity(intent);
+                                                    finish();
+                                                }
+                                            });
+
+                                        }
+                                    });
+                                }
+                            });
+                        }
+
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
