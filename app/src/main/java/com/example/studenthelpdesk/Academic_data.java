@@ -78,14 +78,14 @@ public class Academic_data extends AppCompatActivity {
                   //  float se=Float.parseFloat(sem);
                     if(rollno.getText().toString().trim().length()==0)
                     {
-                        rollno.setError("ENTER  ROLL NUMBER");
+                        rollno.setError("ENTER ROLL NUMBER");
                         pbar.setVisibility(View.INVISIBLE);
                         btnsubmit.setEnabled(true);
                         return;
                     }
                     if(erollno.getText().toString().trim().length()==0)
                     {
-                       erollno.setError("ENTER ENROLLMENT");
+                       erollno.setError("ENTER ENROLLMENT NUMBER");
                        pbar.setVisibility(View.INVISIBLE);
                        btnsubmit.setEnabled(true);
                        return;

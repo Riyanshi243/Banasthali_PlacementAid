@@ -173,7 +173,7 @@ private LinearLayout scroll;
             public void onClick(View view) {
                 AlertDialog.Builder ab = new AlertDialog.Builder(admin_view_requests.this);
                 ab.setTitle("Are you sure?");
-                ab.setMessage("This change will automatically be shown in user's data");
+                ab.setMessage("This change will automatically be shown in Student's data");
                 ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -212,7 +212,7 @@ private LinearLayout scroll;
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if(et.getText().length()==0)
-                            et.setError("Give a reason");
+                            et.setError("Please provide a reason");
                         else
                         {
                             scroll.removeView(v);
@@ -225,7 +225,7 @@ private LinearLayout scroll;
 
                         }
                     }
-                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //do nothing
@@ -251,7 +251,7 @@ private LinearLayout scroll;
                         startActivity(intent);
                         finish();
                     }
-                }).setNegativeButton("No ", new DialogInterface.OnClickListener() {
+                }).setNegativeButton("NO ", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //do nothing;
