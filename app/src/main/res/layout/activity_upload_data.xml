@@ -32,8 +32,8 @@
 
             <ImageView
                 android:id="@+id/imageView8"
-                android:layout_width="168dp"
-                android:layout_height="131dp"
+                android:layout_width="197dp"
+                android:layout_height="151dp"
                 android:layout_gravity="center|center_vertical"
                 android:foregroundGravity="center"
                 app:srcCompat="@drawable/profile_pic" />

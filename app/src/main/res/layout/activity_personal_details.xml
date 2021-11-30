@@ -39,47 +39,39 @@
                 android:textColor="@color/black"
                 android:textColorHint="@android:color/darker_gray" />
 
-            <EditText
-                android:id="@+id/gender"
-                android:layout_width="360dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:ems="10"
-                android:hint="Gender"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:textColor="@color/black"
-                android:textColorHint="@android:color/darker_gray" />
 
-
-            <TableRow
+            <RadioGroup
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp">
+                android:layout_height="wrap_content">
 
-                <RadioButton
-                    android:id="@+id/radioButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="MALE"
-                    android:layout_marginRight="10dp"/>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp">
 
-                <RadioButton
-                    android:id="@+id/radioButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="FEMALE"
-                    android:layout_marginRight="10dp"/>
+                    <RadioButton
+                        android:id="@+id/radioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:text="MALE" />
 
-                <RadioButton
-                    android:id="@+id/radioButton3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="PREFER NOT TO SAY" />
+                    <RadioButton
+                        android:id="@+id/radioButton2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:text="FEMALE" />
 
-            </TableRow>
+                    <RadioButton
+                        android:id="@+id/radioButton3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PREFER NOT TO SAY" />
+
+                </TableRow>
+            </RadioGroup>
 
             <TableRow
                 android:layout_width="match_parent"
@@ -87,7 +79,7 @@
                 android:layout_marginTop="20dp">
 
                 <TextView
-                    android:id="@+id/dob"
+                    android:id="@+id/dobtext"
                     android:layout_width="185dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -102,7 +94,7 @@
                     android:textSize="20dp" />
 
                 <Button
-                    android:id="@+id/choose"
+                    android:id="@+id/btpickdate"
                     android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="10dp"
@@ -110,26 +102,23 @@
 
             </TableRow>
 
-            <DatePicker
-                android:id="@+id/simpleDatePicker"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone" />
+
 
             <TextView
-                android:id="@+id/dob_"
+                android:id="@+id/tvDate"
                 android:layout_width="360dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:paddingLeft="10dp"
-                android:text="dob"
-                android:textColor="@color/black"
+                android:hint="Date of Birth"
                 android:textSize="20dp"
-                android:visibility="gone" />
+                android:layout_below="@+id/btPickDate"
+                android:gravity="center"
+                android:inputType="date"
+                android:minHeight="48dp"
+                android:textColor="@color/black"
+                android:textColorHint="@android:color/darker_gray" />
 
             <EditText
                 android:id="@+id/fathersname"
