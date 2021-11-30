@@ -149,6 +149,9 @@ public class SignIn extends AppCompatActivity {
                             }
                             else {
                                 email.setError("THIS IS NOT AN ALLOWED USERNAME");
+                                pbar.setVisibility(View.INVISIBLE);
+                                btnsubmit.setEnabled(true);
+
                             }
                         }
                     }
@@ -156,6 +159,9 @@ public class SignIn extends AppCompatActivity {
                     else
                     {
                         name.setError("Invalid EMAIL");
+                        pbar.setVisibility(View.INVISIBLE);
+                        btnsubmit.setEnabled(true);
+
                     }
                 }
                 else {

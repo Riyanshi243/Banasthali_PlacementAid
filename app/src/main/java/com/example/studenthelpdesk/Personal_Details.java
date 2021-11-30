@@ -23,8 +23,8 @@ public class Personal_Details extends AppCompatActivity {
         fullname=(EditText) findViewById(R.id.fullname);
         fathersname=(EditText) findViewById(R.id.fathersname);
         mothersname=(EditText) findViewById(R.id.mothersname);
-        gender=(EditText) findViewById(R.id.gender);
-        dob=(EditText) findViewById(R.id.dob);
+        //gender=(EditText) findViewById(R.id.gender);
+        //dob=(EditText) findViewById(R.id.dob);
         phoneno=(EditText) findViewById(R.id.phoneno);
         pan=(EditText) findViewById(R.id.pan);
         aadhar=(EditText) findViewById(R.id.aadhar);
@@ -42,8 +42,8 @@ public class Personal_Details extends AppCompatActivity {
         fullname.setText(data.getName());
         fathersname.setText(data.getFname());
         mothersname.setText(data.getMname());
-        gender.setText(data.getGender());
-        dob.setText(data.getDob());
+        //gender.setText(data.getGender());
+        //dob.setText(data.getDob());
         aadhar.setText(data.getAadhar());
         phoneno.setText(data.getPno());
         pan.setText(data.getPan());
@@ -88,7 +88,7 @@ public class Personal_Details extends AppCompatActivity {
                btnsubmit.setEnabled(true);
                return;
            }
-            if(gender.getText().toString().trim().length()==0)
+            /*if(gender.getText().toString().trim().length()==0)
            {
                gender.setError("ENTER GENDER");
                pbar.setVisibility(View.INVISIBLE);
@@ -101,7 +101,7 @@ public class Personal_Details extends AppCompatActivity {
                pbar.setVisibility(View.INVISIBLE);
                btnsubmit.setEnabled(true);
                return;
-           }
+           }*/
            if(fathersname.getText().toString().trim().length()==0)
            {
                fathersname.setError("ENTER FATHERS NAME");

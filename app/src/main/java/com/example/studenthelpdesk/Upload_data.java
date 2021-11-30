@@ -163,7 +163,6 @@ public class Upload_data extends AppCompatActivity {
             StorageReference storageReference = FirebaseStorage.getInstance().getReference("Resume");
             //Toast.makeText(Upload_data.this, imageuri2.toString()+".pdf SAVED", Toast.LENGTH_SHORT).show();
             final StorageReference filepath = storageReference.child(SignIn.data.getUname());
-            Toast.makeText(Upload_data.this, filepath.getName()+".pdf SAVED", Toast.LENGTH_SHORT).show();
             filepath.putFile(imageuri2).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -171,9 +170,16 @@ public class Upload_data extends AppCompatActivity {
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Profile");
                     String uploadid=databaseReference.push().getKey();
                     SignIn.data.setResume(uploadid);
-                    if(dialog.isShowing())
+                    if(dialog.isShowing()) {
+                        dialog.setMessage("Uploaded");
+                        Toast.makeText(Upload_data.this, filepath.getName()+".pdf SAVED", Toast.LENGTH_SHORT).show();
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         dialog.dismiss();
-
+                    }
                 }
             });
         }
