@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,6 +64,7 @@ public class frag_AcademicDetails extends Fragment {
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -71,7 +76,7 @@ public class frag_AcademicDetails extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    static boolean flag=true;
+    static Boolean flag[]={true};
     @Override
     public void onStart() {
         super.onStart();
@@ -90,13 +95,13 @@ public class frag_AcademicDetails extends Fragment {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Map<String, Object> doc = documentSnapshot.getData();
-                flag= (boolean) doc.get("Lock");
+                flag[0]= (boolean) doc.get("Lock");
             }
         });
         rno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(flag==false) {
+                if(flag[0]==false) {
                     compulsory(view);
                     Student_viewData.change="Roll Number";
                 }
@@ -107,7 +112,7 @@ public class frag_AcademicDetails extends Fragment {
         enrno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 if(flag==false) {
+                 if(flag[0]==false) {
                      compulsory(view);
                      Student_viewData.change="Enrollment";
                  }
@@ -119,7 +124,7 @@ public class frag_AcademicDetails extends Fragment {
         course1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 if(flag==false){
+                 if(flag[0]==false){
                      compulsory(view);
                      Student_viewData.change="Course";
                  }
@@ -131,7 +136,7 @@ public class frag_AcademicDetails extends Fragment {
         branch1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(flag==false){
+                if(flag[0]==false){
                     compulsory(view);
                     Student_viewData.change="Branch";
                 }
@@ -142,7 +147,7 @@ public class frag_AcademicDetails extends Fragment {
         cgpa1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 if(flag==false){
+                 if(flag[0]==false){
                      compulsory(view);
                      Student_viewData.change="CGPA";
                     // Student_viewData.change="CGPA";
@@ -154,7 +159,7 @@ public class frag_AcademicDetails extends Fragment {
         ten.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 if(flag==false){
+                 if(flag[0]==false){
                      compulsory(view);
                      Student_viewData.change="Tenth";
                  }
@@ -165,7 +170,7 @@ public class frag_AcademicDetails extends Fragment {
         twe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(flag==false){
+                if(flag[0]==false){
                     compulsory(view);
                     Student_viewData.change="Twelth";
                 }
@@ -176,7 +181,7 @@ public class frag_AcademicDetails extends Fragment {
         semester.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 if(flag==false){
+                 if(flag[0]==false){
                      //compulsory(view);
                      changeSemester(view);
                      Student_viewData.change="Semester";
@@ -212,6 +217,23 @@ public class frag_AcademicDetails extends Fragment {
         ten.setText(data.getTen()+" ");
         semester.setText(data.getSemester());
         twe.setText(data.getTwel()+" ");
+        Timer t = new Timer();
+        t.scheduleAtFixedRate(new TimerTask() {
+
+            @Override
+            public void run() {
+                FirebaseFirestore firestore=FirebaseFirestore.getInstance();
+                DocumentReference dref = firestore.collection("AllowedUser").document("AdminSettings");
+                dref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Map<String, Object> doc = documentSnapshot.getData();
+                        flag[0]= (boolean) doc.get("Lock");
+                    }
+                });
+            }
+
+        }, 0, 1000);
         return v;
 
 

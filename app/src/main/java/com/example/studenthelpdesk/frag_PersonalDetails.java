@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -31,6 +35,8 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -80,9 +86,10 @@ public class frag_PersonalDetails extends Fragment {
             //ImageView imageView=(ImageView) findViewById(R.id.)
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
-    static Boolean flag=true;
+    static Boolean flag[]={true};
     @Override
     public void onStart() {
         super.onStart();
@@ -92,13 +99,13 @@ public class frag_PersonalDetails extends Fragment {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Map<String, Object> doc = documentSnapshot.getData();
-                flag= (boolean) doc.get("Lock");
+                flag[0]= (boolean) doc.get("Lock");
             }
         });
         pan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(flag==false)
+                if(flag[0]==false)
                       changePan(view);
                 else
                     Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_SHORT).show();
@@ -108,7 +115,7 @@ public class frag_PersonalDetails extends Fragment {
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            if(flag==false){
+            if(flag[0]==false){
                 compulsory(view);
                 Student_viewData.change="Name";
             }
@@ -120,7 +127,7 @@ public class frag_PersonalDetails extends Fragment {
         gender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(flag==false)
+                if(flag[0]==false)
                     changeGender(view);
                 else
                     Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_SHORT).show();
@@ -130,7 +137,7 @@ public class frag_PersonalDetails extends Fragment {
         dob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(flag==false)
+                if(flag[0]==false)
                    changeDOB(view);
                 else
                     Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_SHORT).show();
@@ -140,7 +147,7 @@ public class frag_PersonalDetails extends Fragment {
         fname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(flag==false){
+                if(flag[0]==false){
                     compulsory(view);
                     Student_viewData.change="Father Name";
                 }
@@ -152,7 +159,7 @@ public class frag_PersonalDetails extends Fragment {
         mname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(flag==false){
+                if(flag[0]==false){
                     compulsory(view);
                     Student_viewData.change="Mother Name";
                 }
@@ -164,7 +171,7 @@ public class frag_PersonalDetails extends Fragment {
         aadhar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(flag==false)
+                if(flag[0]==false)
                      changeAadhar(view);
                 else
                     Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_SHORT).show();
@@ -174,7 +181,7 @@ public class frag_PersonalDetails extends Fragment {
         address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(flag==false)
+                if(flag[0]==false)
                     changeAddress(view);
                 else
                     Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_SHORT).show();
@@ -184,7 +191,7 @@ public class frag_PersonalDetails extends Fragment {
         pno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(flag==false)
+                if(flag[0]==false)
                    changePhone(view);
                 else
                     Toast.makeText(getActivity(),"DATA IS LOCKED",Toast.LENGTH_SHORT).show();
@@ -221,37 +228,36 @@ public class frag_PersonalDetails extends Fragment {
         address.setText(data.getAddress());
         pan.setText(data.getPan());
         downloadImageFromFireBase();
+        Timer t = new Timer();
+        t.scheduleAtFixedRate(new TimerTask() {
+
+            @Override
+            public void run() {
+                FirebaseFirestore firestore=FirebaseFirestore.getInstance();
+                DocumentReference dref = firestore.collection("AllowedUser").document("AdminSettings");
+                dref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Map<String, Object> doc = documentSnapshot.getData();
+                        flag[0]= (boolean) doc.get("Lock");
+                    }
+                });
+                //Log.e("hii","hello");
+            }
+
+        }, 0, 1000);
         return v;
     }
+
     StorageReference storageRef ;
     private void downloadImageFromFireBase()
     {
+        //Toast.makeText(getActivity(),"gi",Toast.LENGTH_SHORT).show();
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference("ProfilePic").child(data.getUname());
-        showImageFromFireBaseDataBase();
+        Glide.with(getActivity()).load(storageRef).into(profile);
     }
-    private void showImageFromFireBaseDataBase()
-    {
-        try {
-            final File localFile = File.createTempFile("images", "jpg");
-            final Bitmap[] bitmap = new Bitmap[1];
-            storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Log.e("Test", "success!");
-                    bitmap[0] = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                    profile.setImageBitmap(bitmap[0]);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    Log.e("Test", "fail :( " + exception.getMessage());
-                }
-            });
-        }catch(IOException e){
-            Log.e("ImageView",e.toString());
-        }
-    }
+
     @Override
     public void onResume() {
         super.onResume();

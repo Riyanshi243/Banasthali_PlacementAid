@@ -112,7 +112,7 @@ public class Academic_data extends AppCompatActivity {
                        btnsubmit.setEnabled(true);
                        return;
                    }
-                   else if((cal>10 && cal<0))
+                   else if((cal>10 || cal<0))
                    {
                          cgpa.setError("INVALID CGPA(in SCALE of 10)");
                          pbar.setVisibility(View.INVISIBLE);
@@ -126,7 +126,7 @@ public class Academic_data extends AppCompatActivity {
                         btnsubmit.setEnabled(true);
                          return;
                    }
-                   else if((ten>100 && ten<0))
+                   else if((ten>100 || ten<0))
                   {
                       tenth.setError("INVALID MARKS");
                       pbar.setVisibility(View.INVISIBLE);
@@ -141,7 +141,7 @@ public class Academic_data extends AppCompatActivity {
                      btnsubmit.setEnabled(true);
                       return;
                  }
-                  else if((twelve>100 && twelve<0))
+                  else if((twelve>100 || twelve<0))
                   {
                       twelth.setError("INVALID MARKS");
                       pbar.setVisibility(View.INVISIBLE);
@@ -165,7 +165,7 @@ public class Academic_data extends AppCompatActivity {
                      }
                      
 
-        Intent intent=new Intent(Academic_data.this,SeeMyData.class);
+        Intent intent=new Intent(Academic_data.this,Upload_data.class);
         startActivity(intent);
         finish();
     }

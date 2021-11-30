@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,6 +18,7 @@ public class frag_Resume extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private ImageView i10,i9,i8;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -52,6 +54,10 @@ public class frag_Resume extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+
+
+
         }
     }
 
@@ -59,6 +65,12 @@ public class frag_Resume extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        View v= inflater.inflate(R.layout.fragment_frag__resume, container, false);
+        i10=(ImageView) v.findViewById(R.id.imageView10);
+         i9=(ImageView) v.findViewById(R.id.imageView9);
+          i8=(ImageView) v.findViewById(R.id.imageView8);
+
         return inflater.inflate(R.layout.fragment_frag__resume, container, false);
+
     }
 }
