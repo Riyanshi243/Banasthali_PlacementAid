@@ -64,7 +64,7 @@ public class CreateStudents extends AppCompatActivity {
 
     public void save_data(View view) {
 
-        uname = unameet.getText().toString();
+        uname = unameet.getText().toString().toLowerCase();
         email = Email.getText().toString();
         isadmin=checkBox.isChecked();
         mAuth = FirebaseAuth.getInstance();
