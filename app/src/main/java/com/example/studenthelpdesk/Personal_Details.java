@@ -1,20 +1,28 @@
 package com.example.studenthelpdesk;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.regex.*;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 //underline create one
-public class Personal_Details extends AppCompatActivity {
+public class Personal_Details extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
     private EditText fullname,fathersname,mothersname,gender,dob,aadhar,phoneno,pan,address;
     private String fname,fathern,mothern,gender1,dob1,aadar1,phno,pan1,add;
     private Button btnsubmit;
+    TextView tvDate;
+    Button btPickDate;
     Data data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +31,7 @@ public class Personal_Details extends AppCompatActivity {
         fullname=(EditText) findViewById(R.id.fullname);
         fathersname=(EditText) findViewById(R.id.fathersname);
         mothersname=(EditText) findViewById(R.id.mothersname);
-        //gender=(EditText) findViewById(R.id.gender);
+        //gender= (EditText) findViewById(R.id.gender);
         //dob=(EditText) findViewById(R.id.dob);
         phoneno=(EditText) findViewById(R.id.phoneno);
         pan=(EditText) findViewById(R.id.pan);
@@ -31,10 +39,40 @@ public class Personal_Details extends AppCompatActivity {
         address=(EditText) findViewById(R.id.address);
         btnsubmit= (Button) findViewById(R.id.nxt);
         //address=(EditText) findViewById(R.id.add);
+        tvDate = findViewById(R.id.tvDate);
+        btPickDate = findViewById(R.id.btPickDate);
+        btPickDate.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                com.example.studenthelpdesk.DatePicker mDatePickerDialogFragment;
+                mDatePickerDialogFragment = new com.example.studenthelpdesk.DatePicker();
+                mDatePickerDialogFragment.show(getSupportFragmentManager(), "DATE PICK");
+            }
+        });
         show();
         //ONRESUME
         //ONFINISH
 
+    }
+
+    public String onRadioButtonClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
+        if (checked==false)
+            ((RadioButton) view).setError("Select Gender");
+        switch(view.getId()) {
+            case R.id.male: if(checked)
+                             gender1="Male";
+                             break;
+            case R.id.female:if(checked)
+                                gender1="Female";
+                             break;
+            case R.id.not: if(checked)
+                               gender1="Prefer not to say";
+                           break;
+        }
+
+        return gender1;
     }
     public void show()
     {
@@ -42,6 +80,7 @@ public class Personal_Details extends AppCompatActivity {
         fullname.setText(data.getName());
         fathersname.setText(data.getFname());
         mothersname.setText(data.getMname());
+        //gender set karna hai
         //gender.setText(data.getGender());
         //dob.setText(data.getDob());
         aadhar.setText(data.getAadhar());
@@ -60,10 +99,10 @@ public class Personal_Details extends AppCompatActivity {
         data.setFname(fathern);
         mothern=mothersname.getText().toString();
         data.setMname(mothern);
-        gender1=gender.getText().toString();
+
         data.setGender(gender1);
-        dob1=dob.getText().toString();
-        data.setDob(dob1);
+        //dob1=dob.getText().toString();
+        //data.setDob(dob1);
         aadar1=aadhar.getText().toString();
         data.setAadhar(aadar1);
         phno=phoneno.getText().toString();
@@ -88,13 +127,7 @@ public class Personal_Details extends AppCompatActivity {
                btnsubmit.setEnabled(true);
                return;
            }
-            /*if(gender.getText().toString().trim().length()==0)
-           {
-               gender.setError("ENTER GENDER");
-               pbar.setVisibility(View.INVISIBLE);
-               btnsubmit.setEnabled(true);
-               return;
-           }
+            /*
            if(dob.getText().toString().trim().length()==0)
            {
               dob.setError("ENTER DOB");
@@ -167,5 +200,15 @@ public class Personal_Details extends AppCompatActivity {
         Intent intent = new Intent(Personal_Details.this,SignIn.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onDateSet(android.widget.DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar mCalendar = Calendar.getInstance();
+        mCalendar.set(Calendar.YEAR, year);
+        mCalendar.set(Calendar.MONTH, month);
+        mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(mCalendar.getTime());
+        tvDate.setText(selectedDate);
     }
 }

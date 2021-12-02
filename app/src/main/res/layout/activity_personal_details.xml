@@ -41,36 +41,36 @@
 
 
             <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_width="361dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center">
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp">
+                <RadioButton
+                    android:id="@+id/male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="MALE"
+                    android:onClick="onRadioButtonClicked"/>
 
-                    <RadioButton
-                        android:id="@+id/radioButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:text="MALE" />
+                <RadioButton
+                    android:id="@+id/female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="FEMALE"
+                    android:onClick="onRadioButtonClicked"/>
 
-                    <RadioButton
-                        android:id="@+id/radioButton2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:text="FEMALE" />
+                <RadioButton
+                    android:id="@+id/not"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PREFER NOT TO SAY"
+                    android:onClick="onRadioButtonClicked"/>
 
-                    <RadioButton
-                        android:id="@+id/radioButton3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="PREFER NOT TO SAY" />
 
-                </TableRow>
             </RadioGroup>
 
             <TableRow
@@ -94,15 +94,13 @@
                     android:textSize="20dp" />
 
                 <Button
-                    android:id="@+id/btpickdate"
+                    android:id="@+id/btPickDate"
                     android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="10dp"
-                    android:text="CHOOSE" />
+                    android:text="PICK DATE" />
 
             </TableRow>
-
-
 
             <TextView
                 android:id="@+id/tvDate"
