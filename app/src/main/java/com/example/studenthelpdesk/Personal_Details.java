@@ -38,7 +38,7 @@ public class Personal_Details extends AppCompatActivity implements DatePickerDia
         aadhar=(EditText) findViewById(R.id.aadhar);
         address=(EditText) findViewById(R.id.address);
         btnsubmit= (Button) findViewById(R.id.nxt);
-        //address=(EditText) findViewById(R.id.add);
+        address=(EditText) findViewById(R.id.address);
         tvDate = findViewById(R.id.tvDate);
         btPickDate = findViewById(R.id.btPickDate);
         btPickDate.setOnClickListener(new View.OnClickListener(){
@@ -87,7 +87,7 @@ public class Personal_Details extends AppCompatActivity implements DatePickerDia
         phoneno.setText(data.getPno());
         pan.setText(data.getPan());
         address.setText(data.getAddress());
-       // address.setText(data.getAddress());
+        address.setText(data.getAddress());
     }
     public void save()
     {
@@ -149,7 +149,13 @@ public class Personal_Details extends AppCompatActivity implements DatePickerDia
                btnsubmit.setEnabled(true);
                return;
            }
-
+            if(address.getText().toString().trim().length()==0)
+             {
+                 mothersname.setError("ENTER ADDRESS NAME");
+                 pbar.setVisibility(View.INVISIBLE);
+                 btnsubmit.setEnabled(true);
+                 return;
+             }
               if(phoneno.getText().toString().length()<10|| phoneno.getText().toString().trim().length()>10)
               {
                   phoneno.setError("INVALID NUMBER");
