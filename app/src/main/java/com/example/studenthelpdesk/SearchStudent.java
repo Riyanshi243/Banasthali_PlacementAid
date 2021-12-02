@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,19 +14,24 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.sql.Time;
 import java.util.Map;
@@ -36,7 +42,8 @@ public class SearchStudent extends AppCompatActivity {
     static String SEARCH="";
     private static TextView name,fname,mname,phn,add,dob,gender,aadhar,pan,email1,rno,enro,course,branch,sem,ten,twe,cgpa;
     private EditText emails;
-
+    private ImageView profile;
+    private Button resume;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +58,8 @@ public class SearchStudent extends AppCompatActivity {
             emails.setText(SEARCH);
             show(getWindow().getCurrentFocus());
         }
+        profile=findViewById(R.id.dp);
+        resume=findViewById(R.id.Resume);
         name=(TextView) findViewById(R.id.name);
         fname=(TextView) findViewById(R.id.fathersname1);
         mname=(TextView) findViewById(R.id.mothersname);
@@ -146,6 +155,23 @@ public class SearchStudent extends AppCompatActivity {
                                 phn.setText((String) map1.get("PhoneNumber"));
                                 sem.setText((String) map1.get("Semester"));
                                 email1.setText(email);
+                                FirebaseStorage storage = FirebaseStorage.getInstance();
+                                DocumentReference dref1 = firestore.collection("AllowedUser").document(email);
+                                dref1.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                        StorageReference storageRef = storage.getReference("ProfilePic").child(String.valueOf(documentSnapshot.getData().get("Username")));
+                                        Glide.with(SearchStudent.this).load(storageRef).into(profile);
+                                        Toast.makeText(SearchStudent.this,documentSnapshot.getData().get("Username")+"",Toast.LENGTH_SHORT).show();
+                                        resume.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                download((String)documentSnapshot.getData().get("Username"));
+                                            }
+                                        });
+                                    }
+                                });
+
                                 ScrollView scrollView = findViewById(R.id.scrollView3);
                                 scrollView.setVisibility(View.VISIBLE);
                             }
@@ -174,6 +200,55 @@ public class SearchStudent extends AppCompatActivity {
         });
     }
 
+    public void download(String uname)
+    {
+        AlertDialog.Builder ab=new AlertDialog.Builder(SearchStudent.this);
+        ab.setTitle("Select 1");
+        ab.setPositiveButton("View", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                FirebaseStorage storage = FirebaseStorage.getInstance();
+                StorageReference storageRef = storage.getReference("Resume").child(uname);
+                Task<Uri> message = storageRef.getDownloadUrl();
+                message.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        // Toast.makeText(getActivity(),uri.toString(),Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(SearchStudent.this, ViewPDFActivity.class);
+                        intent.putExtra("url", uri.toString());
+                        startActivity(intent);
+                    }
+                });
+
+
+
+            }
+        }).setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        }).setNeutralButton("Download", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                FirebaseStorage storage = FirebaseStorage.getInstance();
+                StorageReference storageRef = storage.getReference("Resume").child(uname);
+                Task<Uri> message = storageRef.getDownloadUrl();
+                message.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        // Toast.makeText(getActivity(),uri.toString(),Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                    }
+                });
+
+            }
+        });
+        ab.create().show();
+
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {

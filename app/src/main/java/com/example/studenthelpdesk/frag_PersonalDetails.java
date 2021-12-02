@@ -252,9 +252,8 @@ public class frag_PersonalDetails extends Fragment {
     StorageReference storageRef ;
     private void downloadImageFromFireBase()
     {
-        //Toast.makeText(getActivity(),"gi",Toast.LENGTH_SHORT).show();
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        storageRef = storage.getReference("ProfilePic").child(data.getUname());
+        storageRef = storage.getReference("ProfilePic").child(Student_page.data.getUname());
         Glide.with(getActivity()).load(storageRef).into(profile);
     }
 

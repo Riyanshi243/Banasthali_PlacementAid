@@ -87,7 +87,7 @@ public class SignIn extends AppCompatActivity {
             btnsubmit.setEnabled(true);
             return;
         }
-        String uname = name.getText().toString();
+        String uname = name.getText().toString().toLowerCase();
         String email1 = email.getText().toString();
         data.setEmail(email1);
         data.setUname(uname);
