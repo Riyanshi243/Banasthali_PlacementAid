@@ -26,6 +26,8 @@ import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -349,7 +351,6 @@ public class frag_PersonalDetails extends Fragment {
         }, 0, 1000);
         return v;
     }
-//b
    private void downloadImageFromFireBase()
     {
 
@@ -472,9 +473,30 @@ public class frag_PersonalDetails extends Fragment {
     {
         AlertDialog.Builder ab=new AlertDialog.Builder(v.getContext());
         ab.setTitle("Edit Gender");
-        ab.setMessage("Enter new Gender");
-        EditText et=new EditText(v.getContext());
-        et.setText(data.getGender());
+        ab.setMessage("Select new Gender");
+        RadioGroup et=new RadioGroup(getActivity());
+        RadioButton r1=new RadioButton(getActivity());
+        RadioButton r2=new RadioButton(getActivity());
+        RadioButton r3=new RadioButton(getActivity());
+        r1.setText("Male");
+        r2.setText("Female");
+        r3.setText("Prefer not to say");
+        String gender11 = data.getGender();
+        if(gender11!=null)
+            switch (gender11)
+            {
+                case "Female":
+                    r2.setChecked(true);
+                    break;
+                case "Male":
+                    r1.setChecked(true);
+                    break;
+                case "Prefer not to say":
+                    r3.setChecked(true);
+                    break;
+                default:
+
+            }
         ab.setView(et);
         ab.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
@@ -484,8 +506,15 @@ public class frag_PersonalDetails extends Fragment {
         }).setPositiveButton("Save", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                data.setGender(et.getText().toString());
-                gender.setText(et.getText().toString());
+                String gen=gender11;
+                if(r1.isChecked())
+                    gen="Male";
+                if(r2.isChecked())
+                    gen="Female";
+                if(r3.isChecked())
+                    gen="Prefer not to say";
+                data.setGender(gen);
+                gender.setText(gen);
             }
         });
         ab.create().show();

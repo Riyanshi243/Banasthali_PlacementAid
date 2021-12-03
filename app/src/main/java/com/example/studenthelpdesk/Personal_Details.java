@@ -109,7 +109,6 @@ public class Personal_Details extends AppCompatActivity implements DatePickerDia
     }
     public void save()
     {
-
         data=SignIn.data;
         fname=fullname.getText().toString();
         data.setName(fname);
