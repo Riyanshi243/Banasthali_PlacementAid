@@ -1,12 +1,20 @@
 package com.example.studenthelpdesk;
 
+import static android.app.Activity.RESULT_OK;
+
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
@@ -15,25 +23,36 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -50,7 +69,7 @@ public class frag_PersonalDetails extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private Data data=Student_page.data;
-    private  ImageView profile;
+    private  ImageView profile,editpic;
 
     TextView name, pno, gender, dob, fname, mname, aadhar,address,pan;
     
@@ -198,15 +217,94 @@ public class frag_PersonalDetails extends Fragment {
                 
             }
         });
+        editpic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    uploadpicbutton(view);
+            }
+        });
+    }
+    static private Uri imageuri;
+    ProgressDialog dialog;
+    public void uploadpicbutton(View view)
+    {
+        Intent intent=new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,1);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1)
+        {
+            if(resultCode==RESULT_OK) {
+                dialog = new ProgressDialog(getActivity());
+                dialog.setMessage("Uploading");
+                dialog.show();
+                imageuri = data.getData();
+                profile.setImageURI(imageuri);
+                uploadPic();
+                profile.setImageURI(imageuri);
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                Toast.makeText(getActivity(), "Nothing Uploaded", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public void uploadPic() {
+        Data data=Student_page.data;
+        if(frag_PersonalDetails.imageuri!=null)
+        {
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+
+            StorageReference storageRef=storage.getReference("ProfilePic");
+
+            StorageReference fileReference =storageRef.child((data.getUname()));
+            fileReference.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                    Upload upload=new Upload(imageuri.toString()+"."+getFileExtension((imageuri)));
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Profile");
+                    String uploadid=databaseReference.push().getKey();
+                    Student_page.data.setProfile(uploadid);
+                    profile.setImageURI(imageuri);
+                    if(dialog.isShowing())
+                        dialog.dismiss();
+                    showPic();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getActivity(),e.getMessage(),Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+        else
+        {
+            Toast.makeText(getActivity(),"No Image selected",Toast.LENGTH_LONG).show();
+        }
+
+    }
+    public void showPic()
+    {
+        downloadImageFromFireBase();
+    }
+
+    private  String getFileExtension(Uri uri)
+    {
+        ContentResolver cR=getActivity().getContentResolver();
+        MimeTypeMap mime=MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_frag__personal_details, container, false);
-        ImageView imageView = (ImageView) v.findViewById(R.id.profile);
-        imageView.setImageResource(R.drawable.profile_pic);
         Data data = Student_page.data;
         name = v.findViewById(R.id.editName);
         pno = v.findViewById(R.id.editphone);
@@ -227,6 +325,8 @@ public class frag_PersonalDetails extends Fragment {
         dob.setText(data.getDob());
         address.setText(data.getAddress());
         pan.setText(data.getPan());
+        editpic=v.findViewById(R.id.editpic);
+        profile.setImageResource(R.drawable.profile_pic);
         downloadImageFromFireBase();
         Timer t = new Timer();
         t.scheduleAtFixedRate(new TimerTask() {
@@ -240,23 +340,32 @@ public class frag_PersonalDetails extends Fragment {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Map<String, Object> doc = documentSnapshot.getData();
                         flag[0]= (boolean) doc.get("Lock");
+
                     }
                 });
-                //Log.e("hii","hello");
+
             }
 
         }, 0, 1000);
         return v;
     }
 
-    StorageReference storageRef ;
-    private void downloadImageFromFireBase()
+   private void downloadImageFromFireBase()
     {
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        storageRef = storage.getReference("ProfilePic").child(Student_page.data.getUname());
-        Glide.with(getActivity()).load(storageRef).into(profile);
-    }
 
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference("ProfilePic").child(Student_page.data.getUname());
+        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(getActivity())
+                        .load(uri).diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .error(R.drawable.profile_pic)
+                        .placeholder(R.drawable.profile_pic)
+                        .into(profile);
+            }
+        });
+
+    }
     @Override
     public void onResume() {
         super.onResume();
@@ -269,6 +378,7 @@ public class frag_PersonalDetails extends Fragment {
         dob.setText(data.getDob());
         address.setText(data.getAddress());
         pan.setText(data.getPan());
+        downloadImageFromFireBase();
     }
 
     public void compulsory(View view)

@@ -128,7 +128,7 @@ public class SignIn extends AppCompatActivity {
                         {
                             if(doc.get("Username").toString().equalsIgnoreCase(uname))
                             {
-                                if(doc.containsKey("New"))
+                                if(doc.containsKey("New")&&(Boolean) doc.get("New")==true)
                                 {
                                     //transfer signin to see data activity after save
                                     password1=password.getText().toString();
@@ -148,7 +148,7 @@ public class SignIn extends AppCompatActivity {
                                 }
                             }
                             else {
-                                email.setError("THIS IS NOT AN ALLOWED USERNAME");
+                                name.setError("THIS IS NOT AN ALLOWED USERNAME");
                                 pbar.setVisibility(View.INVISIBLE);
                                 btnsubmit.setEnabled(true);
 
@@ -158,7 +158,7 @@ public class SignIn extends AppCompatActivity {
 
                     else
                     {
-                        name.setError("Invalid EMAIL");
+                        email.setError("Invalid EMAIL");
                         pbar.setVisibility(View.INVISIBLE);
                         btnsubmit.setEnabled(true);
 
@@ -178,5 +178,24 @@ public class SignIn extends AppCompatActivity {
         Intent intent = new Intent(SignIn.this,LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if(data!=null){
+            name.setText(data.getUname());
+            email.setText(data.getEmail());
+        }
+
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        if(data!=null){
+            name.setText(data.getUname());
+            email.setText(data.getEmail());
+        }
     }
 }

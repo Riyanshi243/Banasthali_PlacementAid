@@ -177,6 +177,12 @@ public class Academic_data extends AppCompatActivity {
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        show();
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         //intent to personal data

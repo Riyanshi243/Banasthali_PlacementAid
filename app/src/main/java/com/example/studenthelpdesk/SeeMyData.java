@@ -6,21 +6,28 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +36,7 @@ public class SeeMyData extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
     Data data;
+    ImageView profile;
     TextView aadhar,name,pno,cgpa,gender,dob,rollno,fathersname,mothersname,pan,email,course,branch,enro,ten,twelve,semester,address;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +60,45 @@ public class SeeMyData extends AppCompatActivity {
         enro= (TextView) findViewById(R.id.enrollment);
         ten= (TextView) findViewById(R.id.ten);
         twelve= (TextView) findViewById(R.id.twe);
+        profile=findViewById(R.id.imageView4);
         FirebaseUser f = FirebaseAuth.getInstance().getCurrentUser();
         if(f!=null)
             firebaseAuth.signOut();
         show();
+        downloadImageFromFireBase();
+    }
+
+    private void downloadImageFromFireBase()
+    {
+
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference("ProfilePic").child(SignIn.data.getUname());
+        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(SeeMyData.this)
+                        .load(uri).diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .error(R.drawable.profile_pic)
+                        .placeholder(R.drawable.profile_pic)
+                        .into(profile);
+            }
+        });
+
+    }
+    public void viewRes(View v){
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference("Resume").child(SignIn.data.getUname());
+        Task<Uri> message = storageRef.getDownloadUrl();
+        message.addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                // Toast.makeText(getActivity(),uri.toString(),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(v.getContext(), ViewPDFActivity.class);
+                intent.putExtra("url", uri.toString());
+                startActivity(intent);
+            }
+        });
+
+
     }
     public void show()
     {
@@ -84,6 +127,7 @@ public class SeeMyData extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
         show();
+        downloadImageFromFireBase();
     }
 
     @Override

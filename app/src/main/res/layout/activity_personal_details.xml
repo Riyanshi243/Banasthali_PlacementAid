@@ -41,34 +41,35 @@
 
 
             <RadioGroup
+                android:id="@+id/rg"
                 android:layout_width="361dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:layout_gravity="center">
+                android:orientation="horizontal">
 
                 <RadioButton
                     android:id="@+id/male"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:text="MALE"
-                    android:onClick="onRadioButtonClicked"/>
+                    android:onClick="onRadioButtonClicked"
+                    android:text="MALE" />
 
                 <RadioButton
                     android:id="@+id/female"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:text="FEMALE"
-                    android:onClick="onRadioButtonClicked"/>
+                    android:onClick="onRadioButtonClicked"
+                    android:text="FEMALE" />
 
                 <RadioButton
                     android:id="@+id/not"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PREFER NOT TO SAY"
-                    android:onClick="onRadioButtonClicked"/>
+                    android:onClick="onRadioButtonClicked"
+                    android:text="PREFER NOT TO SAY" />
 
 
             </RadioGroup>

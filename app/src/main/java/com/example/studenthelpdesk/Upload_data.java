@@ -20,6 +20,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -46,11 +48,12 @@ public class Upload_data extends AppCompatActivity {
         pic=findViewById(R.id.uppic);
         profilepic=findViewById(R.id.imageView8);
         resume=findViewById(R.id.upres);
+        downloadImageFromFireBase();
     }
 
     public void showPic()
     {
-        profilepic.setImageURI(imageuri);
+        downloadImageFromFireBase();
     }
     public void uploadpicbutton(View view)
     {
@@ -80,7 +83,7 @@ public class Upload_data extends AppCompatActivity {
                 profilepic.setImageURI(imageuri);
             }
             if (resultCode == Activity.RESULT_CANCELED) {
-                Toast.makeText(Upload_data.this, "ACTIVITY CANCELED", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Upload_data.this, "ACTIVITY CANCELLED", Toast.LENGTH_SHORT).show();
             }
             }
         if (requestCode == 2) {
@@ -89,9 +92,10 @@ public class Upload_data extends AppCompatActivity {
                 dialog.setMessage("Uploading");
                 dialog.show();
                 Upload_data.imageuri2 = data.getData();
-                uploadResume();}
+                uploadResume();
+            }
             if (resultCode == Activity.RESULT_CANCELED) {
-                Toast.makeText(Upload_data.this,"ACTIVITY CANCELED",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Upload_data.this,"ACTIVITY CANCELLED",Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -147,8 +151,8 @@ public class Upload_data extends AppCompatActivity {
     public void next(View view)
     {
         startActivity(new Intent(Upload_data.this,SeeMyData.class));
-        uploadPic();
-        uploadResume();
+        //uploadPic();
+        //uploadResume();
         finish();
     }
 
@@ -227,5 +231,21 @@ public class Upload_data extends AppCompatActivity {
         ContentResolver cR=getContentResolver();
         MimeTypeMap mime=MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
+    }
+    private void downloadImageFromFireBase()
+    {
+
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference("ProfilePic").child(SignIn.data.getUname());
+        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(Upload_data.this)
+                        .load(uri).diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .error(R.drawable.profile_pic)
+                        .placeholder(R.drawable.profile_pic)
+                        .into(profilepic);
+            }
+        });
+
     }
 }
