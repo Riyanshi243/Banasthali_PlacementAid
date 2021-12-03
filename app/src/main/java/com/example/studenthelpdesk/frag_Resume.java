@@ -1,12 +1,16 @@
 package com.example.studenthelpdesk;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -14,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -28,6 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -88,6 +94,68 @@ public class frag_Resume extends Fragment {
                 download(view);
             }
         });
+        i9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UploadResume(view);
+            }
+        });
+    }
+    public void UploadResume(View view)
+    {
+        Intent intent=new Intent();
+        intent.setType("application/pdf");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,1);
+    }
+
+    ProgressDialog dialog;
+    static private Uri imageuri2;
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                dialog = new ProgressDialog(getActivity());
+                dialog.setMessage("Uploading");
+                dialog.show();
+                frag_Resume.imageuri2 = data.getData();
+                uploadResume();
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                Toast.makeText(getActivity(),"Nothing uploaded",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    public void uploadResume(){
+        if(frag_Resume.imageuri2!=null)
+        {
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference("Resume");
+            final StorageReference filepath = storageReference.child(Student_page.data.getUname());
+            Toast.makeText(getActivity(), filepath.getName()+".pdf SAVED", Toast.LENGTH_SHORT).show();
+            filepath.putFile(imageuri2).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Upload upload=new Upload(imageuri2.toString()+"."+getFileExtension((imageuri2)));
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Profile");
+                    String uploadid=databaseReference.push().getKey();
+                    Student_page.data.setResume(uploadid);
+                    if(dialog.isShowing())
+                        dialog.dismiss();
+
+                }
+            });
+        }
+        else
+        {
+            Toast.makeText(getActivity(),"No PDF selected",Toast.LENGTH_LONG).show();
+        }
+    }
+    private  String getFileExtension(Uri uri)
+    {
+        ContentResolver cR=getActivity().getContentResolver();
+        MimeTypeMap mime=MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
     }
     public void download(View v)
     {
@@ -112,7 +180,7 @@ public class frag_Resume extends Fragment {
 
 
             }
-        }).setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 

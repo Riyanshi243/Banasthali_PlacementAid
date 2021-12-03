@@ -14,11 +14,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 //underline create one
 public class Personal_Details extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
-    private EditText fullname,fathersname,mothersname,gender,dob,aadhar,phoneno,pan,address;
+    private EditText fullname,fathersname,mothersname,aadhar,phoneno,pan,address;
     private String fname,fathern,mothern,gender1,dob1,aadar1,phno,pan1,add;
     private Button btnsubmit;
     TextView tvDate;
@@ -51,8 +52,6 @@ public class Personal_Details extends AppCompatActivity implements DatePickerDia
             }
         });
         show();
-        //ONRESUME
-        //ONFINISH
 
     }
 
@@ -77,12 +76,31 @@ public class Personal_Details extends AppCompatActivity implements DatePickerDia
     public void show()
     {
         data=SignIn.data;
+        if(data==null)
+            return;
         fullname.setText(data.getName());
         fathersname.setText(data.getFname());
         mothersname.setText(data.getMname());
-        //gender set karna hai
-        //gender.setText(data.getGender());
-        //dob.setText(data.getDob());
+        String gender11 = data.getGender();
+        if(gender11!=null)
+        switch (gender11)
+        {
+            case "Female":
+                RadioButton r1=findViewById(R.id.female);
+                r1.setChecked(true);
+                break;
+            case "Male":
+                RadioButton r2=findViewById(R.id.male);
+                r2.setChecked(true);
+                break;
+            case "Prefer not to say":
+                RadioButton r3=findViewById(R.id.not);
+                r3.setChecked(true);
+                break;
+            default:
+
+        }
+        tvDate.setText(data.getDob());
         aadhar.setText(data.getAadhar());
         phoneno.setText(data.getPno());
         pan.setText(data.getPan());
@@ -99,10 +117,26 @@ public class Personal_Details extends AppCompatActivity implements DatePickerDia
         data.setFname(fathern);
         mothern=mothersname.getText().toString();
         data.setMname(mothern);
+        RadioGroup rg=findViewById(R.id.rg);
+       int i= rg.getCheckedRadioButtonId();
+        switch(i) {
+            case R.id.male:
+                gender1="Male";
+                data.setGender(gender1);
+                break;
+            case R.id.female:
+                gender1="Female";
+                data.setGender(gender1);
+                break;
+            case R.id.not:
+                gender1="Prefer not to say";
+                data.setGender(gender1);
+                break;
+        }
+        //Toast.makeText(Personal_Details.this,gender1,Toast.LENGTH_SHORT).show();
 
-        data.setGender(gender1);
-        //dob1=dob.getText().toString();
-        //data.setDob(dob1);
+        dob1=tvDate.getText().toString();
+        data.setDob(dob1);
         aadar1=aadhar.getText().toString();
         data.setAadhar(aadar1);
         phno=phoneno.getText().toString();
@@ -216,5 +250,12 @@ public class Personal_Details extends AppCompatActivity implements DatePickerDia
         mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(mCalendar.getTime());
         tvDate.setText(selectedDate);
+        SignIn.data.setDob(selectedDate);
+    }
+
+    @Override
+   protected void onRestart() {
+        super.onRestart();
+        show();
     }
 }

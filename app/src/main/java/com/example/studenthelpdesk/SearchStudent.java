@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -161,7 +162,17 @@ public class SearchStudent extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                                         StorageReference storageRef = storage.getReference("ProfilePic").child(String.valueOf(documentSnapshot.getData().get("Username")));
-                                        Glide.with(SearchStudent.this).load(storageRef).into(profile);
+                                        storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                @Override
+                                                public void onSuccess(Uri uri) {
+                                                    Glide.with(SearchStudent.this)
+                                                            .load(uri).diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                            .error(R.drawable.profile_pic)
+                                                            .placeholder(R.drawable.profile_pic)
+                                                            .into(profile);
+                                                }
+                                            });
+
                                         Toast.makeText(SearchStudent.this,documentSnapshot.getData().get("Username")+"",Toast.LENGTH_SHORT).show();
                                         resume.setOnClickListener(new View.OnClickListener() {
                                             @Override
@@ -223,7 +234,7 @@ public class SearchStudent extends AppCompatActivity {
 
 
             }
-        }).setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 

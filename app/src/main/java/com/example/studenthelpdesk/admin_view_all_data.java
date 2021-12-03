@@ -3,9 +3,12 @@ package com.example.studenthelpdesk;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -14,18 +17,21 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class admin_view_all_data extends AppCompatActivity {
-    TextView srno,email,name,gender,phoneno,DOB,rollno,enrollment,course,branch,sem,fname,mname,adhar,pan,ten,twelve,CGPA;
+    TextView srno,address,email,name,gender,phoneno,DOB,rollno,enrollment,course,branch,sem,fname,mname,adhar,pan,ten,twelve,CGPA;
     TableLayout tl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +57,7 @@ public class admin_view_all_data extends AppCompatActivity {
                     }
                     else if(validEmail((String)m.get("Email"))==true)
                     {
-                        if((Boolean)m.get("Admin")==false)
+                        if((Boolean)m.get("Admin")==false&&(Boolean) m.get("New")==false)
                         {
                             doc.document((String)m.get("Email")).collection("Change").document("change").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                 @Override
@@ -64,6 +70,7 @@ public class admin_view_all_data extends AppCompatActivity {
                                     s.setPan((String)m1.get("PAN"));
                                     s.setPno((String)m1.get("PhoneNumber"));
                                     s.setSemester((String)m1.get("Semester"));
+                                    s.setAddress((String)m1.get("Address"));
                                     DocumentReference doc2 = doc.document((String) m.get("Email")).collection("Permanent").document("perm");
                                     doc2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                         @Override
@@ -100,12 +107,15 @@ public class admin_view_all_data extends AppCompatActivity {
                                             ten=(TextView) v.findViewById(R.id.ten);
                                             twelve=(TextView) v.findViewById(R.id.twelve);
                                             CGPA=(TextView) v.findViewById(R.id.CGPA);
+                                            address=(TextView)v.findViewById(R.id.address);
+
                                             adhar.setText(s.getAadhar());
                                             DOB.setText(s.getDob());
                                             gender.setText(s.getGender());
                                             pan.setText(s.getPan());
                                             phoneno.setText(s.getPno());
                                             sem.setText(s.getSemester());
+                                            address.setText(s.getAddress());
                                             branch.setText(s.getBranch());
                                             CGPA.setText(s.getCgpa());
                                             course.setText(s.getCourse());
@@ -118,6 +128,7 @@ public class admin_view_all_data extends AppCompatActivity {
                                             ten.setText(s.getTen());
                                             twelve.setText(s.getTwel());
                                             srno.setText(c[0]+++"");
+
                                             tl.addView(v);
                                             if(c[0]==t.size())
                                                 Toast.makeText(admin_view_all_data.this,"Data loaded",Toast.LENGTH_SHORT).show();
@@ -151,6 +162,34 @@ public class admin_view_all_data extends AppCompatActivity {
         Intent intent = new Intent(admin_view_all_data.this,Admin_page.class);
         startActivity(intent);
         finish();
+    }
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+                AlertDialog.Builder ab = new AlertDialog.Builder(this);
+                ab.setTitle("LOGOUT");
+                ab.setMessage("Are you sure?");
+                ab.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                        firebaseAuth.signOut();
+                        Intent intent = new Intent(admin_view_all_data.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }).setNegativeButton("NO ", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //do nothing;
+                    }
+                });
+                ab.create().show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }
