@@ -349,7 +349,7 @@ public class frag_PersonalDetails extends Fragment {
         }, 0, 1000);
         return v;
     }
-
+//b
    private void downloadImageFromFireBase()
     {
 
