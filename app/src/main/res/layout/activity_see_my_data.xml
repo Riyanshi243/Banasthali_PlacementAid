@@ -41,10 +41,12 @@
 
             <Button
                 android:id="@+id/seeRes"
-                android:layout_width="match_parent"
+                android:layout_width="229dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
                 android:onClick="viewRes"
-                android:text="Button" />
+                android:text="VIEW RESUME" />
 
             <TextView
                 android:id="@+id/_name"
