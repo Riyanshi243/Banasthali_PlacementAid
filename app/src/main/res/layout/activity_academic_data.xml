@@ -28,12 +28,14 @@
 
             <EditText
                 android:id="@+id/rollno"
-                android:layout_width="360dp"
+                android:layout_width="340dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:ems="10"
                 android:hint="Your roll number"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:inputType="number"
                 android:minHeight="48dp"
                 android:textColor="@color/black"
@@ -41,11 +43,13 @@
 
             <EditText
                 android:id="@+id/erollno"
-                android:layout_width="360dp"
+                android:layout_width="340dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:ems="10"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
                 android:hint="Your Enrollment Number"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
@@ -54,12 +58,14 @@
 
             <EditText
                 android:id="@+id/course"
-                android:layout_width="360dp"
+                android:layout_width="340dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:ems="10"
                 android:hint="Your Course"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 android:textColor="@color/black"
@@ -67,11 +73,13 @@
 
             <EditText
                 android:id="@+id/branch"
-                android:layout_width="360dp"
+                android:layout_width="340dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="2dp"
+
+                android:layout_marginRight="10dp"
                 android:ems="10"
                 android:hint="Your Branch"
                 android:inputType="textPersonName"
@@ -82,11 +90,12 @@
 
             <EditText
                 android:id="@+id/sem1"
-                android:layout_width="360dp"
+                android:layout_width="340dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:ems="10"
                 android:hint="Your Current Semester"
                 android:inputType="number"
@@ -97,10 +106,12 @@
 
             <EditText
                 android:id="@+id/tenth"
-                android:layout_width="360dp"
+                android:layout_width="340dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:ems="10"
                 android:hint="Your 10thPercentage / CGPA"
                 android:inputType="number"
@@ -110,10 +121,12 @@
 
             <EditText
                 android:id="@+id/twelth"
-                android:layout_width="360dp"
+                android:layout_width="340dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:ems="10"
                 android:hint="Your 12th Percentage / CGPA"
                 android:inputType="number"
@@ -123,10 +136,12 @@
 
             <EditText
                 android:id="@+id/cgpa"
-                android:layout_width="360dp"
+                android:layout_width="340dp"
                 android:layout_height="62dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:ems="10"
                 android:hint="Your CGPA"
                 android:inputType="number"

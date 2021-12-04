@@ -8,15 +8,14 @@
 
     <LinearLayout
         android:id="@+id/ll"
-        android:layout_width="0dp"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="15dp"
         android:layout_marginBottom="20dp"
         android:background="@color/background_gray"
         android:duplicateParentState="true"
         android:orientation="vertical"
-
         android:radius="@dimen/fab_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -140,7 +139,7 @@
 
         <TextView
             android:id="@+id/reason_"
-            android:layout_width="362dp"
+            android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
@@ -151,7 +150,7 @@
 
         <TextView
             android:id="@+id/reason"
-            android:layout_width="364dp"
+            android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
