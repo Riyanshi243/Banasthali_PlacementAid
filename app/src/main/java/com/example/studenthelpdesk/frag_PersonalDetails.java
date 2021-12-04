@@ -3,6 +3,7 @@ package com.example.studenthelpdesk;
 import static android.app.Activity.RESULT_OK;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
@@ -55,6 +56,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -64,7 +67,7 @@ import java.util.TimerTask;
  * Use the {@link frag_PersonalDetails#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class frag_PersonalDetails extends Fragment {
+public class frag_PersonalDetails extends Fragment implements DatePickerDialog.OnDateSetListener{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -219,10 +222,25 @@ public class frag_PersonalDetails extends Fragment {
                 
             }
         });
-        editpic.setOnClickListener(new View.OnClickListener() {
+        profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    uploadpicbutton(view);
+                AlertDialog.Builder ab= new AlertDialog.Builder(getActivity());
+                ab.setTitle("Change Profile Picture");
+                ab.setMessage("Do you want to change your profile picture?");
+                ab.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        uploadpicbutton(view);
+                    }
+                });
+                ab.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //nothing
+                    }
+                });
+                ab.create().show();
             }
         });
     }
@@ -327,7 +345,7 @@ public class frag_PersonalDetails extends Fragment {
         dob.setText(data.getDob());
         address.setText(data.getAddress());
         pan.setText(data.getPan());
-        editpic=v.findViewById(R.id.editpic);
+        editpic=v.findViewById(R.id.profile);
         profile.setImageResource(R.drawable.profile_pic);
         downloadImageFromFireBase();
         Timer t = new Timer();
@@ -447,9 +465,20 @@ public class frag_PersonalDetails extends Fragment {
         });
         ab.create().show();
     }
+
+   @Override
+    public void onDateSet(android.widget.DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar mCalendar = Calendar.getInstance();
+        mCalendar.set(Calendar.YEAR, year);
+        mCalendar.set(Calendar.MONTH, month);
+        mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(mCalendar.getTime());
+        dob.setText(selectedDate);
+        SignIn.data.setDob(selectedDate);
+    }
     public void changeDOB(View v)
     {
-        AlertDialog.Builder ab=new AlertDialog.Builder(v.getContext());
+        /*AlertDialog.Builder ab=new AlertDialog.Builder(v.getContext());
         ab.setTitle("Edit Date of Birth");
         ab.setMessage("Enter new Date of Birth");
         EditText et=new EditText(v.getContext());
@@ -468,6 +497,12 @@ public class frag_PersonalDetails extends Fragment {
             }
         });
         ab.create().show();
+
+
+
+        com.example.studenthelpdesk.DatePicker mDatePickerDialogFragment;
+        mDatePickerDialogFragment = new com.example.studenthelpdesk.DatePicker();
+        mDatePickerDialogFragment.show(getActivity().getSupportFragmentManager(), "DATE PICK");*/
     }
     public void changeGender(View v)
     {
@@ -481,6 +516,9 @@ public class frag_PersonalDetails extends Fragment {
         r1.setText("Male");
         r2.setText("Female");
         r3.setText("Prefer not to say");
+        et.addView(r1);
+        et.addView(r2);
+        et.addView(r3);
         String gender11 = data.getGender();
         if(gender11!=null)
             switch (gender11)
