@@ -28,7 +28,8 @@
 
             <EditText
                 android:id="@+id/rollno"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
@@ -43,7 +44,8 @@
 
             <EditText
                 android:id="@+id/erollno"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
@@ -58,7 +60,8 @@
 
             <EditText
                 android:id="@+id/course"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
@@ -73,7 +76,8 @@
 
             <EditText
                 android:id="@+id/branch"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
@@ -90,7 +94,8 @@
 
             <EditText
                 android:id="@+id/sem1"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
@@ -106,7 +111,8 @@
 
             <EditText
                 android:id="@+id/tenth"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
@@ -121,7 +127,8 @@
 
             <EditText
                 android:id="@+id/twelth"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
@@ -136,7 +143,8 @@
 
             <EditText
                 android:id="@+id/cgpa"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="62dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
