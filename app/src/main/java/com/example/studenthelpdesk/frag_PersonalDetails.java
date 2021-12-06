@@ -515,7 +515,7 @@ public class frag_PersonalDetails extends Fragment implements DatePickerDialog.O
         RadioButton r3=new RadioButton(getActivity());
         r1.setText("Male");
         r2.setText("Female");
-        r3.setText("Prefer not to say");
+        r3.setText("Others");
         et.addView(r1);
         et.addView(r2);
         et.addView(r3);
@@ -529,7 +529,7 @@ public class frag_PersonalDetails extends Fragment implements DatePickerDialog.O
                 case "Male":
                     r1.setChecked(true);
                     break;
-                case "Prefer not to say":
+                case "Others":
                     r3.setChecked(true);
                     break;
                 default:
@@ -550,7 +550,7 @@ public class frag_PersonalDetails extends Fragment implements DatePickerDialog.O
                 if(r2.isChecked())
                     gen="Female";
                 if(r3.isChecked())
-                    gen="Prefer not to say";
+                    gen="Others";
                 data.setGender(gen);
                 gender.setText(gen);
             }

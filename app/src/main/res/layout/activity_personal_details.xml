@@ -54,7 +54,7 @@
                     android:id="@+id/male"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="15dp"
                     android:onClick="onRadioButtonClicked"
                     android:text="MALE" />
 
@@ -62,7 +62,7 @@
                     android:id="@+id/female"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="15dp"
                     android:onClick="onRadioButtonClicked"
                     android:text="FEMALE" />
 
@@ -71,7 +71,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="onRadioButtonClicked"
-                    android:text="PREFER NOT TO SAY" />
+                    android:text="OTHERS" />
 
 
             </RadioGroup>

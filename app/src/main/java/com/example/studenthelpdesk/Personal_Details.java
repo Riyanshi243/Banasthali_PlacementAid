@@ -67,7 +67,7 @@ public class Personal_Details extends AppCompatActivity implements DatePickerDia
                                 gender1="Female";
                              break;
             case R.id.not: if(checked)
-                               gender1="Prefer not to say";
+                               gender1="Others";
                            break;
         }
 
@@ -93,7 +93,7 @@ public class Personal_Details extends AppCompatActivity implements DatePickerDia
                 RadioButton r2=findViewById(R.id.male);
                 r2.setChecked(true);
                 break;
-            case "Prefer not to say":
+            case "Others":
                 RadioButton r3=findViewById(R.id.not);
                 r3.setChecked(true);
                 break;
@@ -128,7 +128,7 @@ public class Personal_Details extends AppCompatActivity implements DatePickerDia
                 data.setGender(gender1);
                 break;
             case R.id.not:
-                gender1="Prefer not to say";
+                gender1="Others";
                 data.setGender(gender1);
                 break;
         }
