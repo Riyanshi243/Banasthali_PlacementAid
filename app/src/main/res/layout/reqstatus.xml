@@ -10,8 +10,8 @@
         android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_marginBottom="20dp"
         android:background="@color/background_gray"
         android:duplicateParentState="true"
@@ -25,19 +25,21 @@
 
         <TextView
             android:id="@+id/header"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:text="Header"
             android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:inputType="textMultiLine"/>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp">
+
 
             <TextView
                 android:id="@+id/reasonofreq"
@@ -54,7 +56,8 @@
                 android:layout_height="wrap_content"
                 android:text="Reason for request"
                 android:textColor="@color/black"
-                android:textSize="18dp" />
+                android:textSize="18dp"
+                android:inputType="textMultiLine"/>
         </TableRow>
 
         <TableRow
@@ -67,14 +70,14 @@
                 android:id="@+id/appliedDateText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="2dp"
                 android:text="APPLIED DATE : "
                 android:textColor="@color/black"
                 android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/date1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:inputType="date"
                 android:text="TextView"
@@ -93,14 +96,14 @@
                 android:id="@+id/reviewedDateText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="2dp"
                 android:text="REVIEWED DATE : "
                 android:textColor="@color/black"
                 android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/date2"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:inputType="date"
                 android:text="TextView"
@@ -149,10 +152,12 @@
 
         <TextView
             android:id="@+id/reason"
-            android:layout_width="340dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
+            android:inputType="textMultiLine"
             android:layout_marginBottom="10dp"
             android:text="reason"
             android:textColor="@color/black"
