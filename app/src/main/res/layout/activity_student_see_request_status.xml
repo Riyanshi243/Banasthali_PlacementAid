@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/msg"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Hello, Here you can view the status of your request sent to Admin."

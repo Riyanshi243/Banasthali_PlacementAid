@@ -44,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:text="Upload your Passport Size Photo \n(Must be in png/jpg/jpeg format only)"
                 android:textColor="@color/black"
                 android:textSize="18dp" />

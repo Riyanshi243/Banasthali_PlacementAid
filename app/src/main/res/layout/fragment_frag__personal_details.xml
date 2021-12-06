@@ -21,7 +21,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="203dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -29,15 +29,16 @@
                     android:layout_width="176dp"
                     android:layout_height="150dp"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="100dp"
                     android:layout_marginTop="20dp"
-                    tools:src="@tools:sample/avatars"
-                    android:layout_marginLeft="100dp"/>
+                    tools:src="@drawable/profile_pic" />
 
             </LinearLayout>
 
             <TextView
                 android:id="@+id/name"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
@@ -47,7 +48,8 @@
 
             <TextView
                 android:id="@+id/editName"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
@@ -62,7 +64,8 @@
 
             <TextView
                 android:id="@+id/gender"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
@@ -72,7 +75,8 @@
 
             <TextView
                 android:id="@+id/editGender"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
@@ -87,7 +91,8 @@
 
             <TextView
                 android:id="@+id/dob"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
@@ -97,7 +102,8 @@
 
             <TextView
                 android:id="@+id/editdob"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
@@ -113,7 +119,8 @@
 
             <TextView
                 android:id="@+id/fathername"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
@@ -123,7 +130,8 @@
 
             <TextView
                 android:id="@+id/editfathername"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
@@ -139,7 +147,8 @@
 
             <TextView
                 android:id="@+id/mothersname"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
@@ -149,7 +158,8 @@
 
             <TextView
                 android:id="@+id/editmothersname"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
@@ -164,7 +174,8 @@
 
             <TextView
                 android:id="@+id/phonenumber"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
@@ -175,7 +186,8 @@
 
             <TextView
                 android:id="@+id/editphone"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
@@ -190,7 +202,8 @@
 
             <TextView
                 android:id="@+id/address"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
@@ -200,7 +213,8 @@
 
             <TextView
                 android:id="@+id/editaddesss"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
@@ -216,7 +230,8 @@
 
             <TextView
                 android:id="@+id/aadhar"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
@@ -226,7 +241,8 @@
 
             <TextView
                 android:id="@+id/editaadhar"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
@@ -240,7 +256,8 @@
 
             <TextView
                 android:id="@+id/pan"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
@@ -250,7 +267,8 @@
 
             <TextView
                 android:id="@+id/editpan"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
