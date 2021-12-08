@@ -69,6 +69,7 @@
                 android:textColorLink="@color/black"
                 tools:ignore="SpeakableTextPresentCheck" />
 
+
             <EditText
                 android:id="@+id/password2"
                 android:layout_width="match_parent"
