@@ -262,7 +262,13 @@ public class Data {
     {
         Map<String,Object> m=new HashMap<>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        if (db==null)
+            return 0;
+        if(email==null)
+            return 0;
         documentReference = db.collection("AllowedUser").document(email).collection("Change").document("change");
+        if(documentReference==null)
+                return 0;
         m.put("Address",address);
         m.put("PhoneNumber",Pno);
         m.put("Aadhar",aadhar);

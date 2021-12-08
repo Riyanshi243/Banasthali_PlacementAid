@@ -439,6 +439,8 @@ public class frag_PersonalDetails extends Fragment implements DatePickerDialog.O
             public void onClick(DialogInterface dialogInterface, int i) {
                 data.setAadhar(et.getText().toString());
                 aadhar.setText(et.getText().toString());
+                if(Student_page.data!=null)
+                    Student_page.data.ToDatabase();
             }
         });
         ab.create().show();
@@ -446,8 +448,8 @@ public class frag_PersonalDetails extends Fragment implements DatePickerDialog.O
     public void changeAddress(View v)
     {
         AlertDialog.Builder ab=new AlertDialog.Builder(v.getContext());
-        ab.setTitle("Edit Name");
-        ab.setMessage("Enter new Name");
+        ab.setTitle("Edit Address");
+        ab.setMessage("Enter New Address");
         EditText et=new EditText(v.getContext());
         et.setText(data.getAddress());
         ab.setView(et);
@@ -461,6 +463,8 @@ public class frag_PersonalDetails extends Fragment implements DatePickerDialog.O
             public void onClick(DialogInterface dialogInterface, int i) {
                 data.setAddress(et.getText().toString());
                 address.setText(et.getText().toString());
+                if(Student_page.data!=null)
+                    Student_page.data.ToDatabase();
             }
         });
         ab.create().show();
@@ -497,12 +501,9 @@ public class frag_PersonalDetails extends Fragment implements DatePickerDialog.O
             }
         });
         ab.create().show();
+*/
 
-
-
-        com.example.studenthelpdesk.DatePicker mDatePickerDialogFragment;
-        mDatePickerDialogFragment = new com.example.studenthelpdesk.DatePicker();
-        mDatePickerDialogFragment.show(getActivity().getSupportFragmentManager(), "DATE PICK");*/
+        
     }
     public void changeGender(View v)
     {
@@ -553,6 +554,8 @@ public class frag_PersonalDetails extends Fragment implements DatePickerDialog.O
                     gen="Others";
                 data.setGender(gen);
                 gender.setText(gen);
+                if(Student_page.data!=null)
+                    Student_page.data.ToDatabase();
             }
         });
         ab.create().show();
@@ -575,6 +578,8 @@ public class frag_PersonalDetails extends Fragment implements DatePickerDialog.O
             public void onClick(DialogInterface dialogInterface, int i) {
                 data.setPan(et.getText().toString());
                 pan.setText(et.getText().toString());
+                if(Student_page.data!=null)
+                    Student_page.data.ToDatabase();
             }
         });
         ab.create().show();
@@ -597,6 +602,8 @@ public class frag_PersonalDetails extends Fragment implements DatePickerDialog.O
             public void onClick(DialogInterface dialogInterface, int i) {
                 data.setPno(et.getText().toString());
                 pno.setText(et.getText().toString());
+                if(Student_page.data!=null)
+                    Student_page.data.ToDatabase();
             }
         });
         ab.create().show();

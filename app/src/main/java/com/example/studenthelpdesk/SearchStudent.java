@@ -55,7 +55,6 @@ public class SearchStudent extends AppCompatActivity {
         if(iseaxta) {
             Bundle bundle = getIntent().getExtras();
             SEARCH = bundle.getString("message");
-            Toast.makeText(this,"HI "+SEARCH,Toast.LENGTH_SHORT).show();
             emails.setText(SEARCH);
             show(getWindow().getCurrentFocus());
         }

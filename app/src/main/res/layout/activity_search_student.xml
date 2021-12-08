@@ -58,8 +58,8 @@
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="369dp"
-        android:layout_height="wrap_content"
+        android:layout_width="371dp"
+        android:layout_height="443dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="272dp"
         android:layout_marginRight="10dp"
@@ -93,10 +93,10 @@
             <TextView
                 android:id="@+id/_name"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:paddingLeft="5dp"
                 android:text="NAME"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
@@ -104,21 +104,21 @@
             <TextView
                 android:id="@+id/name"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray"
+                android:paddingLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/_fathersname"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:paddingLeft="5dp"
                 android:text="FATHER'S NAME"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
@@ -126,21 +126,21 @@
             <TextView
                 android:id="@+id/fathersname1"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray"
+                android:paddingLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/_mothersname"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:paddingLeft="5dp"
                 android:text="MOTHER'S NAME"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
@@ -148,21 +148,21 @@
             <TextView
                 android:id="@+id/mothersname"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray"
+                android:paddingLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/_phone"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:paddingLeft="5dp"
                 android:text="PHONE NUMBER"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
@@ -170,21 +170,21 @@
             <TextView
                 android:id="@+id/phonenumber"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray"
+                android:paddingLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/_address"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:paddingLeft="5dp"
                 android:text="ADDRESS"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
@@ -192,21 +192,21 @@
             <TextView
                 android:id="@+id/address"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray"
+                android:paddingLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/_dob"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:paddingLeft="5dp"
                 android:text="DATE OF BIRTH"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
@@ -214,21 +214,21 @@
             <TextView
                 android:id="@+id/dob1"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray"
+                android:paddingLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/_gender"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:paddingLeft="5dp"
                 android:text="GENDER"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
@@ -236,21 +236,21 @@
             <TextView
                 android:id="@+id/gender1"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray"
+                android:paddingLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/_aadhar"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:paddingLeft="5dp"
                 android:text="AADHAR NUMBER"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
@@ -258,21 +258,21 @@
             <TextView
                 android:id="@+id/aadhar"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray"
+                android:paddingLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/_pan"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:paddingLeft="5dp"
                 android:text="PAN NUMBER"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
@@ -280,21 +280,21 @@
             <TextView
                 android:id="@+id/pan1"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray"
+                android:paddingLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/_email"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:paddingLeft="5dp"
                 android:text="EMAIL ID"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
@@ -302,21 +302,21 @@
             <TextView
                 android:id="@+id/email1"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray"
+                android:paddingLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/_rollno"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:paddingLeft="5dp"
                 android:text="ROLL NUMBER"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
@@ -324,21 +324,21 @@
             <TextView
                 android:id="@+id/rollno1"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray"
+                android:paddingLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/_enrollno"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:paddingLeft="5dp"
                 android:text="ENROLLMENT NUMBER"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
@@ -346,21 +346,21 @@
             <TextView
                 android:id="@+id/enrollment"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray"
+                android:paddingLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/_course"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:paddingLeft="5dp"
                 android:text="COURSE"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
@@ -368,21 +368,21 @@
             <TextView
                 android:id="@+id/course1"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray"
+                android:paddingLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/_branch"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:paddingLeft="5dp"
                 android:text="BRANCH"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
@@ -390,21 +390,21 @@
             <TextView
                 android:id="@+id/branch1"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray"
+                android:paddingLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/_sem"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:paddingLeft="5dp"
                 android:text="SEMESTER"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
@@ -412,21 +412,21 @@
             <TextView
                 android:id="@+id/sem1"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray"
+                android:paddingLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/_tenth"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:paddingLeft="5dp"
                 android:text="10th PERCENTAGE / CGPA"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
@@ -434,21 +434,21 @@
             <TextView
                 android:id="@+id/ten"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray"
+                android:paddingLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/_twe"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:paddingLeft="5dp"
                 android:text="12th PERCENTAGE / CGPA"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
@@ -456,21 +456,21 @@
             <TextView
                 android:id="@+id/twe"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="34dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray"
+                android:paddingLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/_cgpa"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:paddingLeft="5dp"
                 android:text="CURRENT CGPA"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
@@ -479,12 +479,12 @@
             <TextView
                 android:id="@+id/cgpa1"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="30dp"
                 android:background="@android:color/darker_gray"
+                android:paddingLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 

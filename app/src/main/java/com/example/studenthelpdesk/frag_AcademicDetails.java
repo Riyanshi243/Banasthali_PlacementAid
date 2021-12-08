@@ -250,7 +250,7 @@ public class frag_AcademicDetails extends Fragment {
                 //intent to student send request
                 Intent intent=new Intent(view.getContext(),student_send_request.class);
                 startActivity(intent);
-                getActivity().finish();
+               // getActivity().finish();
 
             }
         }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
@@ -280,6 +280,8 @@ public class frag_AcademicDetails extends Fragment {
             public void onClick(DialogInterface dialogInterface, int i) {
                 data.setSemester(et.getText().toString());
                 semester.setText(et.getText().toString());
+                if(Student_page.data!=null)
+                    Student_page.data.ToDatabase();
             }
         });
         ab.create().show();

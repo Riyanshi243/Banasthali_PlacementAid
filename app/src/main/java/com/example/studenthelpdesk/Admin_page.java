@@ -21,6 +21,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class Admin_page extends AppCompatActivity {
@@ -33,6 +35,24 @@ public class Admin_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_page);
         lock_data_base = (ImageView) findViewById(R.id.lockdatabase);
+        Timer t = new Timer();
+        t.scheduleAtFixedRate(new TimerTask() {
+
+            @Override
+            public void run() {
+                //check lock status
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                DocumentReference documentReference = db.collection("AllowedUser").document("AdminSettings");
+                documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                       // flag[0]=m.get(Lock)
+
+                    }
+                });
+            }
+
+        }, 0, 1000);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference documentReference = db.collection("AllowedUser").document("AdminSettings");
         documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -152,6 +172,7 @@ public class Admin_page extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     public void new_user(View v)

@@ -49,7 +49,6 @@
             <TextView
                 android:id="@+id/editName"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
@@ -57,9 +56,12 @@
                 android:ems="10"
                 android:minHeight="48dp"
                 android:onClick="compulsory"
+                android:paddingLeft="5dp"
+                android:paddingRight="10dp"
                 android:text="Name"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
 
             <TextView
@@ -76,7 +78,6 @@
             <TextView
                 android:id="@+id/editGender"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
@@ -84,9 +85,11 @@
                 android:ems="10"
                 android:minHeight="48dp"
                 android:onClick="changeGender"
+                android:paddingLeft="5dp"
                 android:text="Gender"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
 
             <TextView

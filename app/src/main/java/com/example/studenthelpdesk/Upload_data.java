@@ -113,41 +113,6 @@ public class Upload_data extends AppCompatActivity {
         finish();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.main,menu);
-        return super.onCreateOptionsMenu(menu);
-    }//logout
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId())
-        {
-            case R.id.action_logout:
-                AlertDialog.Builder ab=new AlertDialog.Builder(this);
-                ab.setTitle("LOGOUT");
-                ab.setMessage("Are you sure?");
-                ab.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //logout
-                        FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
-                        firebaseAuth.signOut();
-                        Intent intent = new Intent(Upload_data.this,LoginActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }).setNegativeButton("NO ", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //do nothing;
-                    }
-                });
-                ab.create().show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
     public void next(View view)
     {
         startActivity(new Intent(Upload_data.this,SeeMyData.class));
