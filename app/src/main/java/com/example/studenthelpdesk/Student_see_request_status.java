@@ -63,7 +63,7 @@ static RequestData rd[];
         del=(ImageView) v.findViewById(R.id.DELETE);
         header.setText(rd[j].getHeader());
         reason.setText(rd[j].getReason());
-        dateapp.setText(rd[j].getReason());
+        dateapp.setText(rd[j].getApplieddate());
         long status=rd[j].getStatus();
         if(status==1)
         {
@@ -237,6 +237,7 @@ static RequestData rd[];
                             Calendar cal = Calendar.getInstance(Locale.ENGLISH);
                             cal.setTimeInMillis(t.getSeconds() * 1000L);
                             String date = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal).toString();
+                           // dateapp.setText("hi");
                             dateapp.setText(date);
                             long status = (long) details.get("Status");
                             TextView stat = (TextView) v.findViewById(R.id.status);

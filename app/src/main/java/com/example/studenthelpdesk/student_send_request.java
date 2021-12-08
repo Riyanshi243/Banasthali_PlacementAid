@@ -93,6 +93,7 @@ TextView wel,curval,newcurval,rsn,title;
         ab.setTitle("Confirm Request");
         ab.setMessage("Are you sure you want to send request");
         ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 FirebaseFirestore f=FirebaseFirestore.getInstance();
@@ -119,7 +120,9 @@ TextView wel,curval,newcurval,rsn,title;
                                 public void onSuccess(Void unused) {
                                     doc.set(m);
                                     Toast.makeText(student_send_request.this,"Request Sent",Toast.LENGTH_SHORT).show();
-
+                                    Intent intent = new Intent(student_send_request.this,Student_viewData.class);
+                                    startActivity(intent);
+                                    finish();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
@@ -205,12 +208,6 @@ TextView wel,curval,newcurval,rsn,title;
                 return super.onOptionsItemSelected(item);
         }
     }
-    /*public void submit(View v)
-    {
-        TextView textView = (TextView)spinnerEditDetails.getSelectedView();
-        String result = textView.getText().toString();
-        Toast.makeText(this,result,Toast.LENGTH_LONG);
-    }*/
 
     @Override
     public void onBackPressed() {
