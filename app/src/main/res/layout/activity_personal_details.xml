@@ -56,7 +56,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
                     android:onClick="onRadioButtonClicked"
-                    android:text="MALE" />
+                    android:text="MALE"
+                    android:checked="true"/>
 
                 <RadioButton
                     android:id="@+id/female"

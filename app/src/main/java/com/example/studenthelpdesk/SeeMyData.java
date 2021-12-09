@@ -219,7 +219,7 @@ public class SeeMyData extends AppCompatActivity {
                                                     m.put("New",false);
                                                     documentReference.set(m);
                                                     Intent intent=new Intent(SeeMyData.this,LoginActivity.class);
-                                                    Toast.makeText(SeeMyData.this,"SIGN UP SUCCESSFULL",Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(SeeMyData.this,"SIGN UP SUCCESSFULL, YOU MAY LOGIN NOW!",Toast.LENGTH_SHORT).show();
                                                     firebaseAuth.signOut();
                                                     startActivity(intent);
                                                     finish();

@@ -108,7 +108,7 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:onClick="forgetPassword"
-                android:text="@string/forget_password"
+                android:text="Forgot Password"
                 android:textColor="@color/blue_text"
                 android:textStyle="italic" />
         </LinearLayout>
