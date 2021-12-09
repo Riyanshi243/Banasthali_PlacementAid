@@ -66,6 +66,16 @@ public class CreateStudents extends AppCompatActivity {
 
         uname = unameet.getText().toString().toLowerCase();
         email = Email.getText().toString();
+        if(uname.toString().trim().length()==0)
+        {
+            unameet.setError("ENTER USERNAME");
+            return;
+        }
+        if(Email.getText().toString().trim().length()==0)
+        {
+            Email.setError("ENTER EMAIL ID");
+            return;
+        }
         isadmin=checkBox.isChecked();
         mAuth = FirebaseAuth.getInstance();
         Boolean[] flag = {true};
