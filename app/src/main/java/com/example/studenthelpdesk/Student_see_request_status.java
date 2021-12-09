@@ -48,7 +48,6 @@ static RequestData rd[];
     }
     public int display(RequestData rd[],int j)
     {
-        Toast.makeText(Student_see_request_status.this,j+" h"+r[0]+"",Toast.LENGTH_SHORT).show();
         if(rd[j].getDelforme()==1)
             return -1;
         View v = LayoutInflater.from(Student_see_request_status.this).inflate(R.layout.reqstatus, null);
@@ -167,6 +166,9 @@ static RequestData rd[];
                                 String dat2 = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal2).toString();
                                 rd[j[0]].setReviewedDate(dat2);
                                 display(rd,j[0]);
+                                {
+
+                                }
                                 Toast.makeText(Student_see_request_status.this,j[0]+" "+r[0]+"",Toast.LENGTH_SHORT).show();
 
                             }
@@ -179,11 +181,16 @@ static RequestData rd[];
                                 rd[j[0]].setReviewedDate(dat2);
                                 rd[j[0]].setReviewReason((String) details.get("Reason return"));
                                 display(rd,j[0]);
+                                {
+
+                                }
                             }
                             else
                             {
                                 display(rd,j[0]);
-                                Toast.makeText(Student_see_request_status.this,j[0]+" "+r[0]+"",Toast.LENGTH_SHORT).show();
+                                {
+
+                                }
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {

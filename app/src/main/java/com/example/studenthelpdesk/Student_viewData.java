@@ -5,20 +5,22 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.DatePicker;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Student_viewData extends AppCompatActivity {
+import java.text.DateFormat;
+import java.util.Calendar;
+
+public class Student_viewData extends AppCompatActivity  implements DatePickerDialog.OnDateSetListener{
     public static String change;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,5 +105,17 @@ public class Student_viewData extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
+    //static String date;
+    @Override
+    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+        Calendar mCalendar = Calendar.getInstance();
+        mCalendar.set(Calendar.YEAR, year);
+        mCalendar.set(Calendar.MONTH, month);
+        mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(mCalendar.getTime());
+        Student_page.data.setDob(selectedDate);
+        frag_PersonalDetails.dob.setText(selectedDate);
+        if(Student_page.data!=null)
+            Student_page.data.ToDatabase();
+    }
 }

@@ -67,7 +67,7 @@ import java.util.TimerTask;
  * Use the {@link frag_PersonalDetails#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class frag_PersonalDetails extends Fragment implements DatePickerDialog.OnDateSetListener{
+public class frag_PersonalDetails extends Fragment{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -76,7 +76,7 @@ public class frag_PersonalDetails extends Fragment implements DatePickerDialog.O
     private Data data=Student_page.data;
     private  ImageView profile,editpic;
 
-    TextView name, pno, gender, dob, fname, mname, aadhar,address,pan;
+    static TextView name, pno, gender, dob, fname, mname, aadhar,address,pan;
     
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -336,7 +336,7 @@ public class frag_PersonalDetails extends Fragment implements DatePickerDialog.O
         address=v.findViewById(R.id.editaddesss);
         pan=v.findViewById(R.id.editpan);
         profile=v.findViewById(R.id.profile);
-        name.setText(data.getName());
+        name.setText(Student_page.data.getName());
         pno.setText(data.getPno());
         mname.setText(data.getMname());
         fname.setText(data.getFname());
@@ -470,40 +470,12 @@ public class frag_PersonalDetails extends Fragment implements DatePickerDialog.O
         ab.create().show();
     }
 
-   @Override
-    public void onDateSet(android.widget.DatePicker view, int year, int month, int dayOfMonth) {
-        Calendar mCalendar = Calendar.getInstance();
-        mCalendar.set(Calendar.YEAR, year);
-        mCalendar.set(Calendar.MONTH, month);
-        mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(mCalendar.getTime());
-        dob.setText(selectedDate);
-        SignIn.data.setDob(selectedDate);
-    }
     public void changeDOB(View v)
     {
-        /*AlertDialog.Builder ab=new AlertDialog.Builder(v.getContext());
-        ab.setTitle("Edit Date of Birth");
-        ab.setMessage("Enter new Date of Birth");
-        EditText et=new EditText(v.getContext());
-        et.setText(data.getDob());
-        ab.setView(et);
-        ab.setNegativeButton("N0", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                //close;
-            }
-        }).setPositiveButton("Save", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                data.setDob(et.getText().toString());
-                dob.setText(et.getText().toString());
-            }
-        });
-        ab.create().show();
-*/
-
-        
+        com.example.studenthelpdesk.DatePicker mDatePickerDialogFragment;
+        mDatePickerDialogFragment = new com.example.studenthelpdesk.DatePicker();
+        mDatePickerDialogFragment.show(getActivity().getSupportFragmentManager(), "DATE PICK");
+        dob.setText(Student_page.data.getDob());
     }
     public void changeGender(View v)
     {
