@@ -160,7 +160,6 @@ public class Personal_Details extends AppCompatActivity implements DatePickerDia
                btnsubmit.setEnabled(true);
                return;
            }
-
          if(tvDate.getText().toString().trim().length()==0)
          {
             tvDate.setError("SELECT YOU DOB");
