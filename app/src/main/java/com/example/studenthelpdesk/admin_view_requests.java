@@ -127,7 +127,6 @@ private LinearLayout scroll;
                                         cal.setTimeInMillis(t.getSeconds() * 1000L);
                                         String date = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal).toString();
                                         request_D.setText(date);
-
                                         long status=(long)details.get("Status");
                                         if(status==1l) {
                                             getitem(cur[0],v,d1,change,id);
@@ -177,19 +176,48 @@ private LinearLayout scroll;
                 ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        String changeWhat=change[0],changeTO=change[1];
+                        DocumentReference userloc = FirebaseFirestore.getInstance().collection("AllowedUser").document(id).collection("Permanent").document("perm");
 
-                        changeinuser(change[0],change[1],id);
-                        if(flag1[0]==true)
-                        {
-                            scroll.removeView(v);
-                            cur.put("Status",2);
-                            d1.set(cur);
-                            Date time = Calendar.getInstance().getTime();
-                            cur.put("Reviewed Date",time);
-                            d1.set(cur);
+                        userloc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
-                            Toast.makeText(admin_view_requests.this,"REQUEST ACCEPTED",Toast.LENGTH_SHORT).show();
-                        }
+                                Map<String, Object> m = task.getResult().getData();
+                                if(m==null) {
+                                    Toast.makeText(admin_view_requests.this,  "Invalid request", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                                m.put(changeWhat,changeTO);
+                                userloc.set(m).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        scroll.removeView(v);
+                                        cur.put("Status",2);
+                                        d1.set(cur);
+                                        Date time = Calendar.getInstance().getTime();
+                                        cur.put("Reviewed Date",time);
+                                        d1.set(cur);
+
+                                        Toast.makeText(admin_view_requests.this,"REQUEST ACCEPTED",Toast.LENGTH_SHORT).show();
+
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(admin_view_requests.this,e.toString(),Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                            }
+
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(admin_view_requests.this,e.toString(),Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
                     }
                 }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
@@ -197,6 +225,7 @@ private LinearLayout scroll;
                         //do nothing
                     }
                 });
+
                 ab.create().show();
             }
         });
@@ -263,42 +292,5 @@ private LinearLayout scroll;
                 return super.onOptionsItemSelected(item);
         }
     }
-    boolean flag1[]={false};
-    public void changeinuser(String changeWhat,String changeTO,String id)
-    {
-        DocumentReference userloc = FirebaseFirestore.getInstance().collection("AllowedUser").document(id).collection("Permanent").document("perm");
 
-        userloc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-
-                Map<String, Object> m = task.getResult().getData();
-                    if(m==null) {
-                        Toast.makeText(admin_view_requests.this,  "Invalid request", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    m.put(changeWhat,changeTO);
-                    userloc.set(m).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                            flag1[0]=true;
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            flag1[0]=false;
-                            Toast.makeText(admin_view_requests.this,e.toString(),Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-                }
-
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                flag1[0]=false;
-                Toast.makeText(admin_view_requests.this,e.toString(),Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 }

@@ -160,14 +160,7 @@ public class Personal_Details extends AppCompatActivity implements DatePickerDia
                btnsubmit.setEnabled(true);
                return;
            }
-            /*
-           if(dob.getText().toString().trim().length()==0)
-           {
-              dob.setError("ENTER DOB");
-               pbar.setVisibility(View.INVISIBLE);
-               btnsubmit.setEnabled(true);
-               return;
-           }*/
+
            if(fathersname.getText().toString().trim().length()==0)
            {
                fathersname.setError("ENTER FATHERS NAME");
