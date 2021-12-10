@@ -59,6 +59,7 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="10dp"
                 android:text="Name"
+                android:inputType="textMultiLine"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
@@ -223,7 +224,7 @@
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine"
                 android:onClick="changeAddress"
                 android:text="Address"
                 android:textColor="@color/black"

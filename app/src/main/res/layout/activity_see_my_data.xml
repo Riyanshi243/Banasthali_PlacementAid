@@ -71,6 +71,7 @@
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray"
                 android:textColor="@color/black"
+                android:inputType="textMultiLine"
                 android:textSize="20dp" />
 
             <TextView
@@ -156,6 +157,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
+                android:inputType="textMultiLine"
                 android:textColor="@color/black"
                 android:background="@android:color/darker_gray"
                 android:textSize="20dp" />
