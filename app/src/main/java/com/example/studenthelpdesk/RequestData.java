@@ -1,7 +1,21 @@
 package com.example.studenthelpdesk;
 
-public class RequestData {
+import com.google.firebase.Timestamp;
+
+import java.util.Date;
+
+public class RequestData implements Comparable<RequestData>{
     String header,reason,Applieddate,ReviewedDate,reviewReason;
+    Timestamp applied;
+
+    public Timestamp getApplied() {
+        return applied;
+    }
+
+    public void setApplied(Timestamp applied) {
+        this.applied = applied;
+    }
+
     long status,id,delforme;
     RequestData()
     {
@@ -76,5 +90,8 @@ public class RequestData {
 
     public long getStatus() {
         return status;
+    }
+    public int compareTo(RequestData o) {
+        return o.applied.compareTo(this.applied);
     }
 }

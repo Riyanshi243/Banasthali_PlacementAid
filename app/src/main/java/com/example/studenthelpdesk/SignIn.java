@@ -30,7 +30,7 @@ import java.util.Map;
 
 public class SignIn extends AppCompatActivity {
     private DocumentReference documentReference;
-    private EditText name, email,password;
+    private EditText name, email,password,confirmpassword;
     private Button btnsubmit;
     static Data data;
     protected Map<String, Object> doc;
@@ -41,6 +41,7 @@ public class SignIn extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
          name=(EditText) findViewById(R.id.uname2);
          password=(EditText) findViewById(R.id.password2);
+         confirmpassword=(EditText) findViewById(R.id.confirmpassword2);
          email=(EditText) findViewById(R.id.email2);
         btnsubmit= (Button) findViewById(R.id.button2);
 
@@ -86,6 +87,10 @@ public class SignIn extends AppCompatActivity {
             pbar.setVisibility(View.INVISIBLE);
             btnsubmit.setEnabled(true);
             return;
+        }
+        if(confirmpassword.getText()!=password.getText())
+        {
+         return;
         }
         String uname = name.getText().toString().toLowerCase();
         String email1 = email.getText().toString();

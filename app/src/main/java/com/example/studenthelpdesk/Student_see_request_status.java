@@ -1,11 +1,16 @@
 package com.example.studenthelpdesk;
 
 import static com.example.studenthelpdesk.R.color.green_bg;
+import static com.example.studenthelpdesk.R.color.red_bg;
+
+import static java.util.concurrent.TimeUnit.*;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,17 +31,28 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.type.Date;
 
+import org.w3c.dom.Text;
+
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class Student_see_request_status extends AppCompatActivity {
 LinearLayout scroll;
-ImageView del;
 long r[]={0};
 static RequestData rd[];
     @Override
@@ -46,307 +62,175 @@ static RequestData rd[];
         scroll=(LinearLayout) findViewById(R.id.lll);
         set();
     }
-    public int display(RequestData rd[],int j)
-    {
-        if(rd[j].getDelforme()==1)
-            return -1;
-        View v = LayoutInflater.from(Student_see_request_status.this).inflate(R.layout.reqstatus, null);
-        TextView header = (TextView) v.findViewById(R.id.header);
-        TextView reason = (TextView) v.findViewById(R.id.description);
-        TextView dateapp = (TextView) v.findViewById(R.id.date1);
-        TextView stat = (TextView) v.findViewById(R.id.status);
-        TextView date2 = (TextView) v.findViewById(R.id.date2);
-        TextView rev = v.findViewById(R.id.reviewedDateText);
-        TextView reson2 = (TextView) v.findViewById(R.id.reason);
-        TextView reason1 = (TextView) v.findViewById(R.id.reason_);
-        del=(ImageView) v.findViewById(R.id.DELETE);
-        header.setText(rd[j].getHeader());
-        reason.setText(rd[j].getReason());
-        dateapp.setText(rd[j].getApplieddate());
-        long status=rd[j].getStatus();
-        if(status==1)
-        {
-            stat.setText("Under Consideration");
-            date2.setVisibility(View.GONE);
-            rev.setVisibility(View.GONE);
-            reson2.setVisibility(View.GONE);
-            reason1.setVisibility(View.GONE);
-        }
-        if(status==2)
-        {
-            stat.setText("ACCEPTED");
-            date2.setText(rd[j].getReviewedDate());
-            stat.setBackgroundColor((getResources().getColor(green_bg)));
-            reson2.setVisibility(View.GONE);
-            reason1.setVisibility(View.GONE);
-        }
-        if(status==0)
-        {
-            stat.setText("REJECTED");
-            date2.setText(rd[j].getReviewedDate());
-            reson2.setText(rd[j].getReviewReason());
-            stat.setBackgroundColor((getResources().getColor(R.color.red_bg)));
-            reason1.setVisibility(View.VISIBLE);
-        }
-        del.setId(j);
-        Toast.makeText(Student_see_request_status.this,j+" "+r[0]+"",Toast.LENGTH_SHORT).show();
-        del.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder ab=new AlertDialog.Builder(Student_see_request_status.this);
-                ab.setTitle("Delete?");
-                ab.setPositiveButton("Delete for me", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        rd[j].setDelforme(1);
-                        scroll.removeView(v);
-                    }
-                }).setNegativeButton("Delete for everyone", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(Student_see_request_status.this,del.getId()+"",Toast.LENGTH_SHORT).show();
-                    }
-                }).setNeutralButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //do nothing
-                    }
-                });
-                ab.create().show();
-            }
-        });
-        scroll.addView(v);
-            return 2;
-    }
     public void set()
     {
         FirebaseFirestore fs=FirebaseFirestore.getInstance();
-        DocumentReference doc=fs.collection("Request").document(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        DocumentReference doc=fs.collection("Request").document(FirebaseAuth.getInstance().getCurrentUser().getEmail().toString());
         doc.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Map<String, Object> m = documentSnapshot.getData();
-                if(m==null)
+                //user's particular request map
+                Map<String, Object> req = documentSnapshot.getData();
+                int rnum=Integer.parseInt(String.valueOf( req.get("Request Number")));
+                Map<Long,Boolean> m = null;
+                if(req.containsKey("Deleted"))
                 {
-                    Toast.makeText(Student_see_request_status.this,"NO REQUESTS HERE",Toast.LENGTH_SHORT).show();
-                    return;
+                    m= (Map<Long, Boolean>) req.get("Deleted");
                 }
-                r[0] = (long) m.get("Request Number");
-                if(r[0]==0)
+                RequestData requestData[]=new RequestData[rnum+1];
+                requestData[0]=new RequestData();
+                requestData[0].setId(0);
+                requestData[0].setApplied((Timestamp.now()));
+
+                for(int i = 1; i<=rnum; i++)
                 {
-                    Toast.makeText(Student_see_request_status.this,"NO REQUESTS HERE",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                rd=new RequestData[(int)r[0]+2];
-                for(int j[]={1};j[0]<=r[0];)
-                {
-                    Toast.makeText(Student_see_request_status.this,j[0]+" "+r[0]+"",Toast.LENGTH_SHORT).show();
-                    doc.collection("Request " + j[0]).document("Request").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                        @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                            Map<String, Object> details = documentSnapshot.getData();
-                            rd[j[0]]=new RequestData();
-                            rd[j[0]].setHeader("Change " + details.get("Change what") + " to " + details.get("Value"));
-                            rd[j[0]].setReason((String) details.get("Reason"));
-                            rd[j[0]].setStatus((long)details.get("Status"));
-                            Timestamp t = (Timestamp) details.get("Applied Date");
-                            Calendar cal = Calendar.getInstance(Locale.ENGLISH);
-                            cal.setTimeInMillis(t.getSeconds() * 1000L);
-                            String date = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal).toString();
-                            rd[j[0]].setApplieddate(date);
-                            rd[j[0]].setId(j[0]);
-                            if(details.containsKey("Delete for me"))
-                            {
-                                rd[j[0]].setDelforme((long)details.get("Delete for me"));
-                            }
-                            if(rd[j[0]].getStatus()==2) {
-                                Timestamp t1 = (Timestamp) details.get("Reviewed Date");
-                                Calendar cal2 = Calendar.getInstance(Locale.ENGLISH);
-                                cal2.setTimeInMillis(t1.getSeconds() * 1000L);
-                                String dat2 = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal2).toString();
-                                rd[j[0]].setReviewedDate(dat2);
-                                display(rd,j[0]);
-                                {
-
-                                }
-                                Toast.makeText(Student_see_request_status.this,j[0]+" "+r[0]+"",Toast.LENGTH_SHORT).show();
-
-                            }
-                            else if(rd[j[0]].getStatus()==0)
-                            {
-                                Timestamp t1 = (Timestamp) details.get("Reviewed Date");
-                                Calendar cal2 = Calendar.getInstance(Locale.ENGLISH);
-                                cal2.setTimeInMillis(t1.getSeconds() * 1000L);
-                                String dat2 = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal2).toString();
-                                rd[j[0]].setReviewedDate(dat2);
-                                rd[j[0]].setReviewReason((String) details.get("Reason return"));
-                                display(rd,j[0]);
-                                {
-
-                                }
-                            }
-                            else
-                            {
-                                display(rd,j[0]);
-                                {
-
-                                }
-                            }
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(Student_see_request_status.this,e.toString(),Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    if(j[0]==r[0]){
-                        ProgressBar progressBar=findViewById(R.id.progressBar);
-                        progressBar.setVisibility(View.GONE);
+                    DocumentReference rq = doc.collection("Request " + i).document("Request");
+                    int finalI = i;
+                    final Map<Long, Boolean>[] finalM = new Map[]{m};
+                    if(finalM[0]!=null)
+                    {
+                        if(finalM[0].containsKey(i))
+                            continue;
                     }
-                    j[0]++;
-                }
-
-            }
-        });
-    }
-    public void set(int i)
-    {
-        FirebaseFirestore fs=FirebaseFirestore.getInstance();
-        DocumentReference doc = fs.collection("Request").document(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-        doc.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Map<String, Object> m = documentSnapshot.getData();
-                if(m==null)
-                {
-                    Toast.makeText(Student_see_request_status.this,"NO REQUESTS HERE",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                long r = (long) m.get("Request Number");
-                if(r==0)
-                {
-                    Toast.makeText(Student_see_request_status.this,"NO REQUESTS HERE",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                outer: for (int j[] = {1}; j[0] <= r; j[0]++) {
-                    View v = LayoutInflater.from(Student_see_request_status.this).inflate(R.layout.reqstatus, null);
-                    doc.collection("Request " + j[0]).document("Request").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    rq.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
-                            Map<String, Object> details = documentSnapshot.getData();
-                            TextView header = (TextView) v.findViewById(R.id.header);
-                            header.setText("Change " + details.get("Change what") + " to " + details.get("Value"));
-                            TextView reason = (TextView) v.findViewById(R.id.description);
-                            reason.setText((String) details.get("Reason"));
-                            TextView dateapp = (TextView) v.findViewById(R.id.date1);
-                            Timestamp t = (Timestamp) details.get("Applied Date");
-                            Calendar cal = Calendar.getInstance(Locale.ENGLISH);
-                            cal.setTimeInMillis(t.getSeconds() * 1000L);
-                            String date = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal).toString();
-                           // dateapp.setText("hi");
-                            dateapp.setText(date);
-                            long status = (long) details.get("Status");
-                            TextView stat = (TextView) v.findViewById(R.id.status);
-                            TextView date2 = (TextView) v.findViewById(R.id.date2);
-                            TextView rev = v.findViewById(R.id.reviewedDateText);
-                            TextView reson2 = (TextView) v.findViewById(R.id.reason);
-                            del=(ImageView) v.findViewById(R.id.DELETE);
-                            if(details.containsKey("Deleted for me")&&(long)details.get("Deleted for me")==1) {
-                                Toast.makeText(Student_see_request_status.this,"hi",Toast.LENGTH_SHORT).show();
+                            //accept 2
+                            //reject 0
+                            //1 peding
+                            //
+                            Map<String, Object> det = documentSnapshot.getData();
+                            if (det==null)
+                                return;
+                            //Toast.makeText(Student_see_request_status.this,finalI+"",Toast.LENGTH_SHORT).show();
+                            requestData[finalI]=new RequestData();
+                            requestData[finalI].setId(finalI);
+                            Timestamp appliedDate = (Timestamp) det.get("Applied Date");
+                            requestData[finalI].setApplied(appliedDate);
+                            String changew = (String) det.get("Change what");
+                            String reason = (String) det.get("Reason");
+                            requestData[finalI].setReason(reason);
+                            Long status = (Long) det.get("Status");
+                            requestData[finalI].setStatus(status);
+                            String value = (String) det.get("Value");
+                            requestData[finalI].setHeader("Change "+changew +" to "+value);
+                            if(status!=1)
+                            {
+                                Timestamp t = (Timestamp) det.get("Reviewed Date");
+                                Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+                                cal.setTimeInMillis(t.getSeconds() * 1000L);
+                                String date = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal).toString();
+                                requestData[finalI].setReviewedDate(date);
                             }
-
-                            v.setId(j[0]);
-                            del.setId(j[0]);
-                            //res_
-                                  TextView reason1 = (TextView) v.findViewById(R.id.reason_);
-                            if (status == 1) {
-                                stat.setText("Under Consideration");
-                                date2.setVisibility(View.GONE);
-                                rev.setVisibility(View.GONE);
-                                reson2.setVisibility(View.GONE);
-                                reason1.setVisibility(View.GONE);
+                            if(status==0)
+                            {
+                                String rreason = (String) det.get("Reason return");
+                                requestData[finalI].setReviewReason(rreason);
                             }
-                            if (status == 2) {
-                                stat.setText("ACCEPTED");
-                                Timestamp t1 = (Timestamp) details.get("Reviewed Date");
-                                Calendar cal2 = Calendar.getInstance(Locale.ENGLISH);
-                                cal2.setTimeInMillis(t1.getSeconds() * 1000L);
-                                String dat2 = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal2).toString();
-                                date2.setText(dat2);
-                                reson2.setText((String) details.get("Reason return"));
-                                stat.setBackgroundColor((getResources().getColor(green_bg)));
-                                reson2.setVisibility(View.GONE);
-                                reason1.setVisibility(View.GONE);
-                            }
-                            if (status == 0) {
-                                stat.setText("REJECTED");
-                                Timestamp t1 = (Timestamp) details.get("Reviewed Date");
-                                Calendar cal2 = Calendar.getInstance(Locale.ENGLISH);
-                                cal2.setTimeInMillis(t1.getSeconds() * 1000L);
-                                String dat2 = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal2).toString();
-                                date2.setText(dat2);
-                                reson2.setText((String) details.get("Reason return"));
-                                stat.setBackgroundColor((getResources().getColor(R.color.red_bg)));
-                                reason1.setVisibility(View.VISIBLE);
-                            }
-                            //on
-                            del.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-
-                                    AlertDialog.Builder ab=new AlertDialog.Builder(Student_see_request_status.this);
-                                    ab.setTitle("DELETE");
-                                    ab.setMessage("Are you sure want to delete ?");
-                                    ab.setPositiveButton("Delete for me", new DialogInterface.OnClickListener() {
+                            if(finalI==rnum)
+                            {
+                                Arrays.sort(requestData);
+                                for(int i1=1;i1<=rnum;i1++)
+                                {
+                                    View v=LayoutInflater.from(Student_see_request_status.this).inflate(R.layout.reqstatus,null);
+                                    TextView header = v.findViewById(R.id.header);
+                                    TextView date1=v.findViewById(R.id.date1);
+                                    TextView date2=v.findViewById(R.id.date2);
+                                    TextView date3=v.findViewById(R.id.reviewedDateText);
+                                    TextView reasonapp=v.findViewById(R.id.description);
+                                    TextView returnreason=v.findViewById(R.id.reason);
+                                    TextView _reason=v.findViewById(R.id.reason_);
+                                    TextView status1=v.findViewById(R.id.status);
+                                    ImageView del=v.findViewById(R.id.DELETE);
+                                    Timestamp t = requestData[i1].getApplied();
+                                    Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+                                    cal.setTimeInMillis(t.getSeconds() * 1000L);
+                                    String date = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal).toString();
+                                    date1.setText(date);
+                                    header.setText(requestData[i1].getHeader());
+                                    reasonapp.setText(requestData[i1].getReason());
+                                    long stat=  requestData[i1].getStatus();
+                                    if(stat==1)
+                                    {
+                                        status1.setText("Under Consideration");
+                                        date2.setVisibility(View.GONE);
+                                        returnreason.setVisibility(View.GONE);
+                                        date3.setVisibility(View.GONE);
+                                        _reason.setVisibility(View.GONE);
+                                    }
+                                    else if(stat==2)
+                                    {
+                                        status1.setText("Accepted");
+                                        status1.setBackgroundColor(getResources().getColor(green_bg));
+                                        date2.setText(requestData[i1].getReviewedDate());
+                                        returnreason.setVisibility(View.GONE);
+                                        _reason.setVisibility(View.GONE);
+                                    }
+                                    else
+                                    {
+                                        status1.setText("Rejected");
+                                        status1.setBackgroundColor(getResources().getColor(red_bg));
+                                        date2.setText(requestData[i1].getReviewedDate());
+                                        returnreason.setText(requestData[i1].getReviewReason());
+                                    }
+                                    if(i1==rnum)
+                                    {
+                                        ProgressBar p=findViewById(R.id.progressBar);
+                                        p.setVisibility(View.GONE);
+                                    }
+                                    long id=requestData[i1].getId();
+                                    del.setOnClickListener(new View.OnClickListener() {
                                         @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-
-                                        }
-                                    }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            //do nothing;
-                                        }
-                                    }).setNeutralButton("Delete for Everyone", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            DocumentReference doc1 = FirebaseFirestore.getInstance().collection("Request").document(Student_page.data.getEmail());
-                                            doc1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                        public void onClick(View view) {
+                                            AlertDialog.Builder ab=new AlertDialog.Builder(Student_see_request_status.this);
+                                            ab.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                                                 @Override
-                                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                                    Map<String, Object> map = task.getResult().getData();
-                                                    long req=(long)map.get("Request Number");
-                                                    Map<String,Object> m[]=new Map[(int)req];
-                                                    int t[]={0};
-                                                    deleteforeever(m,t,v,1,req);
-                                                    map.put("Request Number",req-1);
-                                                    doc1.set(map);
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+                                                    //delete using id
+                                                    DocumentReference db = fs.collection("Request").document(FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()).collection("Request " + id).document("Request");
+                                                    db.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void unused) {
+                                                            Toast.makeText(Student_see_request_status.this,id+" Request Deleted",Toast.LENGTH_SHORT).show();
+                                                            if(finalM[0] !=null)
+                                                                finalM[0].put(id,true);
+                                                            else
+                                                            {
+                                                                finalM[0] =new HashMap<>();
+                                                                finalM[0].put(id,true);
+                                                                Map<Object,Object> map=new HashMap<>();
+                                                                map.put("Request Number",rnum);
+                                                                map.put("Deleted",finalM[0]);
+                                                                doc.set(finalM[0]).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                    @Override
+                                                                    public void onSuccess(Void unused) {
+                                                                        Toast.makeText(Student_see_request_status.this,id+" Done",Toast.LENGTH_SHORT).show();
+
+                                                                    }
+                                                                });
+
+                                                            }
+                                                        }
+                                                    });
+                                                    scroll.removeView(v);
                                                 }
                                             });
+                                            ab.create().show();
                                         }
-                               });
-                                    ab.create().show();
-
+                                    });
+                                    scroll.addView(v);
                                 }
-                            });
-
+                            }
                         }
                     });
 
-                    scroll.addView(v);
                 }
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(Student_see_request_status.this,e.toString(),Toast.LENGTH_SHORT).show();
-            }
         });
-        ProgressBar pb=findViewById(R.id.progressBar);
-        pb.setVisibility(View.GONE);
 
     }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
