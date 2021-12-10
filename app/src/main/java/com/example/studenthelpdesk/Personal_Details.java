@@ -52,7 +52,18 @@ public class Personal_Details extends AppCompatActivity implements DatePickerDia
             }
         });
         show();
+    }
 
+    @Override
+    public void onDateSet(android.widget.DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar mCalendar = Calendar.getInstance();
+        mCalendar.set(Calendar.YEAR, year);
+        mCalendar.set(Calendar.MONTH, month);
+        mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+        String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(mCalendar.getTime());
+        tvDate.setText(selectedDate);
+        SignIn.data.setDob(selectedDate);
     }
 
     public String onRadioButtonClicked(View view) {
@@ -240,16 +251,6 @@ public class Personal_Details extends AppCompatActivity implements DatePickerDia
         finish();
     }
 
-    @Override
-    public void onDateSet(android.widget.DatePicker view, int year, int month, int dayOfMonth) {
-        Calendar mCalendar = Calendar.getInstance();
-        mCalendar.set(Calendar.YEAR, year);
-        mCalendar.set(Calendar.MONTH, month);
-        mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(mCalendar.getTime());
-        tvDate.setText(selectedDate);
-        SignIn.data.setDob(selectedDate);
-    }
 
     @Override
    protected void onRestart() {

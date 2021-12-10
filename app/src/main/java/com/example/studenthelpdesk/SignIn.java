@@ -88,9 +88,12 @@ public class SignIn extends AppCompatActivity {
             btnsubmit.setEnabled(true);
             return;
         }
-        if(confirmpassword.getText()!=password.getText())
+        if(!confirmpassword.getText().toString().equals(password.getText().toString()))
         {
-         return;
+            confirmpassword.setError("PASSWORDS DO NOT MATCH");
+            pbar.setVisibility(View.INVISIBLE);
+            btnsubmit.setEnabled(true);
+            return;
         }
         String uname = name.getText().toString().toLowerCase();
         String email1 = email.getText().toString();
@@ -131,7 +134,7 @@ public class SignIn extends AppCompatActivity {
                         }
                         else if(doc.containsKey("Username"))
                         {
-                            if(doc.get("Username").toString().equalsIgnoreCase(uname))
+                            if(doc.get("Username").toString().trim().equalsIgnoreCase(uname))
                             {
                                 if(doc.containsKey("New")&&(Boolean) doc.get("New")==true)
                                 {
