@@ -10,11 +10,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +31,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collection;
@@ -51,13 +54,16 @@ TextView wel,curval,newcurval,rsn,title;
         wel=(TextView)findViewById(R.id.welcome);
         title=(TextView)findViewById(R.id.currentVal_);
         curval=(TextView)findViewById(R.id.currentVal);
-        newcurval=(TextView)findViewById(R.id.newcurrentval);
-        rsn=(TextView)findViewById(R.id.reason);
+        newcurval=(EditText)findViewById(R.id.newcurrentval);
+        rsn=(EditText)findViewById(R.id.reason);
         data=Student_page.data;
         wel.setText("HELLO "+data.getUname());
         String t=title.getText().toString()+" "+Student_viewData.change;
         title.setText(t);
         t=getVal(Student_viewData.change);
+        String change=Student_viewData.change;
+        if(change.equals("Tenth") || change.equals("Twelth") || change.equals("CGPA") || change.equals("Roll Number"))
+            newcurval.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         curval.setText(t);
     }
     public  String getVal(String val)
@@ -104,12 +110,18 @@ TextView wel,curval,newcurval,rsn,title;
                         DocumentSnapshot do1 = task.getResult();
                         if(do1.exists())
                         {
+
                             Map<String , Object> m=do1.getData();
                             long no= (long) m.get("Request Number");
                             m.put("Request Number",no+1);
                             DocumentReference d2 = doc.collection("Request "+(no+1)).document("Request");
                             Map<String , Object> m2=new HashMap<String, Object>();
                             m2.put("Change what",Student_viewData.change);
+                            String changeval=Student_viewData.change;
+
+
+
+
                             m2.put("Value",newcurval.getText().toString());
                             m2.put("Reason",rsn.getText().toString());
                             m2.put("Status",1);//under consideration //2 suceeded
@@ -138,6 +150,8 @@ TextView wel,curval,newcurval,rsn,title;
                             DocumentReference d2 = doc.collection("Request 1").document("Request");
                             Map<String , Object> m2=new HashMap<String, Object>();
                             m2.put("Change what",Student_viewData.change);
+
+
                             m2.put("Value",newcurval.getText().toString());
                             m2.put("Status",1);//under consideration //2 suceeded
                             m2.put("Reason",rsn.getText().toString());

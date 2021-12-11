@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -268,6 +269,7 @@ public class frag_AcademicDetails extends Fragment {
         ab.setTitle("Edit Semester");
         ab.setMessage("Enter new Semester");
         EditText et=new EditText(v.getContext());
+        et.setInputType(InputType.TYPE_CLASS_NUMBER);
         et.setText(data.getSemester());
         ab.setView(et);
         ab.setNegativeButton("NO", new DialogInterface.OnClickListener() {

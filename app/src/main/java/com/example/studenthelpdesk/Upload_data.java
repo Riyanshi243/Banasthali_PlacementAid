@@ -10,6 +10,9 @@ import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -115,6 +118,7 @@ public class Upload_data extends AppCompatActivity {
 
     public void next(View view)
     {
+
         startActivity(new Intent(Upload_data.this,SeeMyData.class));
         //uploadPic();
         //uploadResume();
