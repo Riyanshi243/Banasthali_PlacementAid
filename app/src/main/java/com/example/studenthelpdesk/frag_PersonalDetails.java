@@ -20,6 +20,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -427,6 +428,7 @@ public class frag_PersonalDetails extends Fragment{
         ab.setTitle("Edit Aadhar");
         ab.setMessage("Enter new Aadhar number");
         EditText et=new EditText(v.getContext());
+        et.setInputType(InputType.TYPE_CLASS_NUMBER);
         et.setText(data.getAadhar());
         ab.setView(et);
         ab.setNegativeButton("NO", new DialogInterface.OnClickListener() {
@@ -562,6 +564,7 @@ public class frag_PersonalDetails extends Fragment{
         ab.setTitle("Edit Phone Number");
         ab.setMessage("Enter new Phone Number");
         EditText et=new EditText(v.getContext());
+        et.setInputType(InputType.TYPE_CLASS_NUMBER);
         et.setText(data.getPno());
         ab.setView(et);
         ab.setNegativeButton("NO", new DialogInterface.OnClickListener() {
