@@ -15,6 +15,7 @@ import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -118,33 +119,37 @@ public class Upload_data extends AppCompatActivity {
 
     public void next(View view)
     {
-
-                //uploadPic();
+        //uploadPic();
         //uploadResume();
         //code here ki agar khali
         StorageReference storageReference = FirebaseStorage.getInstance().getReference("ProfilePic").child(SignIn.data.getUname());
         storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                if(uri==null)
-                    Toast.makeText(Upload_data.this,"Profile Picture Not Found",Toast.LENGTH_LONG).show();
+                StorageReference storageReference1 = FirebaseStorage.getInstance().getReference("Resume").child(SignIn.data.getUname());
+                storageReference1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        startActivity(new Intent(Upload_data.this,SeeMyData.class));
+                        finish();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(Upload_data.this,"Please Upload your RESUME",Toast.LENGTH_LONG).show();
+                    }
+                });
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(Upload_data.this,"Please Upload your PROFILE PICTURE",Toast.LENGTH_LONG).show();
             }
         });
 
-        if(storageReference==null)
-        {
-            //
-             Toast.makeText(this,"Profile Picture Not Found",Toast.LENGTH_LONG).show();
-            return;
-        }
-        StorageReference storageReference1 = FirebaseStorage.getInstance().getReference("Resume").child(SignIn.data.getUname());
-        if(storageReference1==null)
-        {
-            Toast.makeText(this,"Resume Not Found",Toast.LENGTH_LONG).show();
-            return;
-        }
-        startActivity(new Intent(Upload_data.this,SeeMyData.class));
-        finish();
+
+
     }
 
     @Override
