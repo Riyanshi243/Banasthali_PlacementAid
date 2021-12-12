@@ -119,11 +119,18 @@ public class Upload_data extends AppCompatActivity {
     public void next(View view)
     {
 
-        startActivity(new Intent(Upload_data.this,SeeMyData.class));
-        //uploadPic();
+                //uploadPic();
         //uploadResume();
         //code here ki agar khali
         StorageReference storageReference = FirebaseStorage.getInstance().getReference("ProfilePic").child(SignIn.data.getUname());
+        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                if(uri==null)
+                    Toast.makeText(Upload_data.this,"Profile Picture Not Found",Toast.LENGTH_LONG).show();
+            }
+        });
+
         if(storageReference==null)
         {
             //
