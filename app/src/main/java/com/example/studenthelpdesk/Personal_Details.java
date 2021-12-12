@@ -49,10 +49,12 @@ public class Personal_Details extends AppCompatActivity implements DatePickerDia
                 com.example.studenthelpdesk.DatePicker mDatePickerDialogFragment;
                 mDatePickerDialogFragment = new com.example.studenthelpdesk.DatePicker();
                 mDatePickerDialogFragment.show(getSupportFragmentManager(), "DATE PICK");
+
             }
         });
         show();
     }
+
 
     @Override
     public void onDateSet(android.widget.DatePicker view, int year, int month, int dayOfMonth) {

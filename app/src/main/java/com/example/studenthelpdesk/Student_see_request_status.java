@@ -15,6 +15,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -78,10 +79,7 @@ static RequestData rd[];
                     m= (Map<Long, Boolean>) req.get("Deleted");
                 }
                 RequestData requestData[]=new RequestData[rnum+1];
-                requestData[0]=new RequestData();
-                requestData[0].setId(0);
-                requestData[0].setApplied((Timestamp.now()));
-
+                final int[] rdlen = {0};
                 for(int i = 1; i<=rnum; i++)
                 {
                     DocumentReference rq = doc.collection("Request " + i).document("Request");
@@ -103,34 +101,36 @@ static RequestData rd[];
                             if (det==null)
                                 return;
                             //Toast.makeText(Student_see_request_status.this,finalI+"",Toast.LENGTH_SHORT).show();
-                            requestData[finalI]=new RequestData();
-                            requestData[finalI].setId(finalI);
+                            requestData[rdlen[0]]=new RequestData();
+                            requestData[rdlen[0]].setId(finalI);
                             Timestamp appliedDate = (Timestamp) det.get("Applied Date");
-                            requestData[finalI].setApplied(appliedDate);
+                            requestData[rdlen[0]].setApplied(appliedDate);
                             String changew = (String) det.get("Change what");
                             String reason = (String) det.get("Reason");
-                            requestData[finalI].setReason(reason);
+                            requestData[rdlen[0]].setReason(reason);
                             Long status = (Long) det.get("Status");
-                            requestData[finalI].setStatus(status);
+                            requestData[rdlen[0]].setStatus(status);
                             String value = (String) det.get("Value");
-                            requestData[finalI].setHeader("Change "+changew +" to "+value);
+
+                            requestData[rdlen[0]].setHeader("Change "+changew +" to "+value);
                             if(status!=1)
                             {
                                 Timestamp t = (Timestamp) det.get("Reviewed Date");
                                 Calendar cal = Calendar.getInstance(Locale.ENGLISH);
                                 cal.setTimeInMillis(t.getSeconds() * 1000L);
                                 String date = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal).toString();
-                                requestData[finalI].setReviewedDate(date);
+                                requestData[rdlen[0]].setReviewedDate(date);
                             }
                             if(status==0)
                             {
                                 String rreason = (String) det.get("Reason return");
-                                requestData[finalI].setReviewReason(rreason);
-                            }
+                                requestData[rdlen[0]].setReviewReason(rreason);
+                            }Log.e("datad,",rdlen[0]+"");
+                            rdlen[0]++;
                             if(finalI==rnum)
                             {
-                                Arrays.sort(requestData);
-                                for(int i1=1;i1<=rnum;i1++)
+                                Arrays.sort(requestData,0,rdlen[0]-1);
+                                for(int i1=0;i1<rdlen[0];i1++)
                                 {
                                     View v=LayoutInflater.from(Student_see_request_status.this).inflate(R.layout.reqstatus,null);
                                     TextView header = v.findViewById(R.id.header);
@@ -183,6 +183,7 @@ static RequestData rd[];
                                         @Override
                                         public void onClick(View view) {
                                             AlertDialog.Builder ab=new AlertDialog.Builder(Student_see_request_status.this);
+                                            ab.setTitle("Are you sure you want to delete?");
                                             ab.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -201,7 +202,7 @@ static RequestData rd[];
                                                                 Map<Object,Object> map=new HashMap<>();
                                                                 map.put("Request Number",rnum);
                                                                 map.put("Deleted",finalM[0]);
-                                                                doc.set(finalM[0]).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                doc.set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                     @Override
                                                                     public void onSuccess(Void unused) {
                                                                         Toast.makeText(Student_see_request_status.this,id+" Done",Toast.LENGTH_SHORT).show();
@@ -214,11 +215,21 @@ static RequestData rd[];
                                                     });
                                                     scroll.removeView(v);
                                                 }
+                                            }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+                                                    //do nothing
+                                                }
                                             });
                                             ab.create().show();
                                         }
                                     });
                                     scroll.addView(v);
+                                    if(i1==rdlen[0]-1)
+                                    {
+                                        ProgressBar pb=findViewById(R.id.progressBar);
+                                        pb.setVisibility(View.GONE);
+                                    }
                                 }
                             }
                         }
