@@ -150,11 +150,27 @@ public class Personal_Details extends AppCompatActivity implements DatePickerDia
         dob1=tvDate.getText().toString();
         data.setDob(dob1);
         aadar1=aadhar.getText().toString();
+         if(aadar1.length()==0)
+        {
+        data.setAadhar("NA");    
+        }
+         else
+        {
+            data.setAadhar(aadar1);
+        }
         data.setAadhar(aadar1);
         phno=phoneno.getText().toString();
         data.setPno(phno);
+
         pan1=pan.getText().toString();
-        data.setPan(pan1);
+         if(pan1.length()==0)
+        {
+        data.setPno("NA");
+        }
+         else
+        {
+            data.setPan(pan1);
+        }
         add=address.getText().toString();
         data.setAddress(add);
 
@@ -223,6 +239,7 @@ public class Personal_Details extends AppCompatActivity implements DatePickerDia
                   return;
 
               }
+
            if((pan.getText().toString().length()!=0)&& (pan.getText().toString().length()<10 || pan.getText().toString().trim().length()>10))
            {
               pan.setError("ENTER VALID PAN");
