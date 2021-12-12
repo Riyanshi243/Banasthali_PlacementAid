@@ -5,7 +5,7 @@ import com.google.firebase.Timestamp;
 import java.util.Date;
 
 public class RequestData implements Comparable<RequestData>{
-    String header,reason,Applieddate,ReviewedDate,reviewReason;
+    String header,reason,Applieddate,ReviewedDate,reviewReason,email;
     Timestamp applied;
 
     public Timestamp getApplied() {
@@ -14,6 +14,14 @@ public class RequestData implements Comparable<RequestData>{
 
     public void setApplied(Timestamp applied) {
         this.applied = applied;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     long status,id,delforme;

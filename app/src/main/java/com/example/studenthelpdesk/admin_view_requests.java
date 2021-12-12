@@ -86,8 +86,19 @@ private LinearLayout scroll;
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             Map<String, Object> m = documentSnapshot.getData();
                             long r= (long) m.get("Request Number");
+                            Map<Long,Boolean> m1 = null;
+                            if(m.containsKey("Deleted"))
+                            {
+                                m1= (Map<Long, Boolean>) m.get("Deleted");
+                            }
                            for(int j=1;j<=r;j++)
                             {
+                                final Map<Long, Boolean>[] finalM = new Map[]{m};
+                                if(finalM[0]!=null)
+                                {
+                                    if(finalM[0].containsKey(i))
+                                        continue;
+                                }
                                 String change[]=new String[2];
                                 View v= LayoutInflater.from(admin_view_requests.this).inflate(R.layout.adminallreq, null);
                                 TextView name,header,reason,request_D;
@@ -118,6 +129,8 @@ private LinearLayout scroll;
                                     @Override
                                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                                         Map<String, Object> details =documentSnapshot.getData();
+                                        if(details==null)
+                                            return;
                                         cur[0]=details;
                                         change[0]=(String) details.get("Change what");
                                         change[1]= (String) details.get("Value");

@@ -115,9 +115,23 @@ public class Upload_data extends AppCompatActivity {
 
     public void next(View view)
     {
-        startActivity(new Intent(Upload_data.this,SeeMyData.class));
         //uploadPic();
         //uploadResume();
+        //code here ki agar khali
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference("ProfilePic").child(SignIn.data.getUname());
+        if(storageReference==null)
+        {
+            //
+             Toast.makeText(this,"Profile Picture Not Found",Toast.LENGTH_LONG).show();
+            return;
+        }
+        StorageReference storageReference1 = FirebaseStorage.getInstance().getReference("Resume").child(SignIn.data.getUname());
+        if(storageReference1==null)
+        {
+            Toast.makeText(this,"Resume Not Found",Toast.LENGTH_LONG).show();
+            return;
+        }
+        startActivity(new Intent(Upload_data.this,SeeMyData.class));
         finish();
     }
 
