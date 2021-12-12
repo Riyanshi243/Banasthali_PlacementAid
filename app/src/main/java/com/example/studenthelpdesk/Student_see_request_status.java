@@ -184,7 +184,7 @@ static RequestData rd[];
                                         public void onClick(View view) {
                                             AlertDialog.Builder ab=new AlertDialog.Builder(Student_see_request_status.this);
                                             ab.setTitle("Are you sure you want to delete?");
-                                            ab.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                                    ab.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialogInterface, int i) {
                                                     //delete using id
