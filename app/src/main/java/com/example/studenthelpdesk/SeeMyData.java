@@ -254,7 +254,7 @@ public class SeeMyData extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         //intent to acedemic
-        Intent intent = new Intent(SeeMyData.this,Academic_data.class);
+        Intent intent = new Intent(SeeMyData.this,Upload_data.class);
         startActivity(intent);
         finish();
     }
