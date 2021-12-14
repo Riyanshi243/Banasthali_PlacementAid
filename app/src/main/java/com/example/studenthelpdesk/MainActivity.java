@@ -3,10 +3,16 @@ package com.example.studenthelpdesk;
 import androidx.annotation.NonNull;
 //package com.example.hp.splashscreen;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 //import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -137,6 +143,38 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-             }
 
-         }
+
+    }
+    public void letTheUserLoggedIn(View view)
+    {
+     if(!isConnected(this)){
+         showCustomDialog();
+     }
+
+    }
+
+    private void showCustomDialog() {
+        AlertDialog.Builder builder= new AlertDialog.Builder(MainActivity.this);
+        builder.setMessage("Please Connect to the Internet to proceed further")
+                .setCancelable(false);
+        //builder.setPositiveButton("")
+
+
+    }
+
+    private boolean isConnected(MainActivity mainActivity) {
+
+        ConnectivityManager connectivityManager= (ConnectivityManager) mainActivity.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifiConn=connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+         NetworkInfo mobileC=connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+        if(wifiConn!=null && wifiConn.isConnected() || mobileC!=null && mobileC.isConnected()){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}

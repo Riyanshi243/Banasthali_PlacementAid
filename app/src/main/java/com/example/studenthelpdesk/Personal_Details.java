@@ -25,10 +25,16 @@ public class Personal_Details extends AppCompatActivity implements DatePickerDia
     TextView tvDate;
     Button btPickDate;
     Data data;
+    String backto="0";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_details);
+        boolean iseaxta=getIntent().hasExtra("End");
+        if(iseaxta) {
+            Bundle bundle = getIntent().getExtras();
+            backto= (bundle.getString("End"));
+        }
         fullname=(EditText) findViewById(R.id.fullname);
         fathersname=(EditText) findViewById(R.id.fathersname);
         mothersname=(EditText) findViewById(R.id.mothersname);
@@ -116,7 +122,10 @@ public class Personal_Details extends AppCompatActivity implements DatePickerDia
         tvDate.setText(data.getDob());
         aadhar.setText(data.getAadhar());
         phoneno.setText(data.getPno());
-        pan.setText(data.getPan());
+        if(data!=null&&data.getPan()!=null&&data.getPan().length()==2)
+            pan.setText("");
+        else
+            pan.setText(data.getPan());
         address.setText(data.getAddress());
         address.setText(data.getAddress());
     }
@@ -165,7 +174,7 @@ public class Personal_Details extends AppCompatActivity implements DatePickerDia
         pan1=pan.getText().toString();
          if(pan1.length()==0)
         {
-        data.setPno("NA");
+        data.setPan("NA");
         }
          else
         {
@@ -265,9 +274,17 @@ public class Personal_Details extends AppCompatActivity implements DatePickerDia
         super.onBackPressed();
         //alert builder to are you sure you will lose ur data
         //intent to signin
-        Intent intent = new Intent(Personal_Details.this,SignIn.class);
-        startActivity(intent);
-        finish();
+        if(backto.equalsIgnoreCase("1")) {
+            Intent intent = new Intent(Personal_Details.this, SeeMyData.class);
+            startActivity(intent);
+            finish();
+        }
+        else {
+
+            Intent intent = new Intent(Personal_Details.this, SignIn.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
 

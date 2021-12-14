@@ -35,24 +35,45 @@ public class Admin_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_page);
         lock_data_base = (ImageView) findViewById(R.id.lockdatabase);
-        Timer t = new Timer();
-        t.scheduleAtFixedRate(new TimerTask() {
+        Thread t = new Thread() {
 
             @Override
             public void run() {
-                //check lock status
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
-                DocumentReference documentReference = db.collection("AllowedUser").document("AdminSettings");
-                documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                       // flag[0]=m.get(Lock)
-
+                try {
+                    while (!isInterrupted()) {
+                        Thread.sleep(1000);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                DocumentReference documentReference = db.collection("AllowedUser").document("AdminSettings");
+                                documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                        // flag[0]=m.get(Lock)
+                                        Map<String, Object> m = documentSnapshot.getData();
+                                        if((Boolean) m.get("Lock")==false)
+                                        {
+                                            flag=1;
+                                            lock_data_base.setImageResource(R.drawable.lock_database);
+                                        }
+                                        else
+                                        {
+                                            flag=0;
+                                            lock_data_base.setImageResource(R.drawable.unlock_database);
+                                        }
+                                    }
+                                });
+                            }
+                        });
                     }
-                });
+                } catch (InterruptedException e) {
+                }
             }
+        };
 
-        }, 0, 1000);
+        t.start();
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference documentReference = db.collection("AllowedUser").document("AdminSettings");
         documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {

@@ -45,9 +45,16 @@ public class Upload_data extends AppCompatActivity {
     static private Uri imageuri,imageuri2;
     ImageView profilepic;
     Data data;
+    String backto="0";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        boolean iseaxta=getIntent().hasExtra("End");
+        if(iseaxta) {
+            Bundle bundle = getIntent().getExtras();
+            backto= (bundle.getString("End"));
+        }
         setContentView(R.layout.activity_upload_data);
         pic=findViewById(R.id.uppic);
         profilepic=findViewById(R.id.imageView8);
@@ -109,19 +116,9 @@ public class Upload_data extends AppCompatActivity {
     }
     ProgressDialog dialog;
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent(Upload_data.this,Academic_data.class);
-        startActivity(intent);
-        finish();
-    }
 
     public void next(View view)
     {
-        //uploadPic();
-        //uploadResume();
-        //code here ki agar khali
         StorageReference storageReference = FirebaseStorage.getInstance().getReference("ProfilePic").child(SignIn.data.getUname());
         storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
@@ -243,5 +240,23 @@ public class Upload_data extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //intent to login
+        if(backto.equalsIgnoreCase("1")) {
+            Intent intent = new Intent(Upload_data.this, SeeMyData.class);
+            startActivity(intent);
+            finish();
+        }
+        else
+        {
+            Intent intent = new Intent(Upload_data.this,Academic_data.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }

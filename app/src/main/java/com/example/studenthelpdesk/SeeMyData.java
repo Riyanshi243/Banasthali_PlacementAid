@@ -144,6 +144,7 @@ public class SeeMyData extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Intent intent=new Intent(SeeMyData.this,Personal_Details.class);
+                intent.putExtra("End","1");
                 startActivity(intent);
                 finish();
             }
@@ -151,6 +152,7 @@ public class SeeMyData extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Intent intent=new Intent(SeeMyData.this,Academic_data.class);
+                intent.putExtra("End","1");
                 startActivity(intent);
                 finish();
             }
@@ -158,6 +160,7 @@ public class SeeMyData extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Intent intent=new Intent(SeeMyData.this,Upload_data.class);
+                intent.putExtra("End","1");
                 startActivity(intent);
                 finish();
             }
@@ -221,6 +224,7 @@ public class SeeMyData extends AppCompatActivity {
                                                     Intent intent=new Intent(SeeMyData.this,LoginActivity.class);
                                                     Toast.makeText(SeeMyData.this,"SIGN UP SUCCESSFULL, YOU MAY LOGIN NOW!",Toast.LENGTH_SHORT).show();
                                                     firebaseAuth.signOut();
+                                                    SignIn.data=null;
                                                     startActivity(intent);
                                                     finish();
                                                 }

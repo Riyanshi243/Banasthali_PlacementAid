@@ -10,16 +10,24 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import java.security.acl.AclEntry;
+
 public class Academic_data extends AppCompatActivity {
     private EditText course,branch,rollno,erollno,cgpa,tenth,twelth,semester;
     private String course1,branch1,rno,erno;
     private String tenthm,twelthm,cgpa1,sem;
     private Button btnsubmit;
     Data data;
+    String backto="0";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_academic_data);
+        boolean iseaxta=getIntent().hasExtra("End");
+        if(iseaxta) {
+            Bundle bundle = getIntent().getExtras();
+            backto= (bundle.getString("End"));
+        }
         course=(EditText) findViewById(R.id.course);
         branch=(EditText) findViewById(R.id.branch);
         rollno=(EditText) findViewById(R.id.rollno);
@@ -186,10 +194,15 @@ public class Academic_data extends AppCompatActivity {
     public void onBackPressed() {
 
         super.onBackPressed();
-        //intent to personal data
-        //if()
-        Intent intent = new Intent(Academic_data.this,Personal_Details.class);
-                startActivity(intent);
-                finish();
+        if(backto.equalsIgnoreCase("1")) {
+            Intent intent = new Intent(Academic_data.this, SeeMyData.class);
+            startActivity(intent);
+            finish();
+        }
+        else {
+            Intent intent = new Intent(Academic_data.this, Personal_Details.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }

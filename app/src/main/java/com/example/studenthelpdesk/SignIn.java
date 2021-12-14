@@ -51,6 +51,7 @@ public class SignIn extends AppCompatActivity {
     {
         Intent intent = new Intent(SignIn.this,LoginActivity.class);
         startActivity(intent);
+        data=null;
         finish();
     }
     public void submit(View view)
@@ -120,6 +121,7 @@ public class SignIn extends AppCompatActivity {
                                     public void onSuccess(AuthResult authResult) {
                                         Toast.makeText(SignIn.this,"YOU MAY LOGIN NOW",Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(SignIn.this,LoginActivity.class));
+                                        data=null;
                                         finish();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
@@ -151,6 +153,7 @@ public class SignIn extends AppCompatActivity {
                                     Toast.makeText(SignIn.this,"YOU ARE ALREADY A USER.\nYou must log in",Toast.LENGTH_SHORT).show();
                                     //intent to login
                                     Intent intent = new Intent(SignIn.this,LoginActivity.class);
+                                    data=null;
                                     startActivity(intent);
                                     finish();
                                 }
@@ -196,6 +199,11 @@ public class SignIn extends AppCompatActivity {
             name.setText(data.getUname());
             email.setText(data.getEmail());
         }
+        else
+        {
+            name.setText("");
+            email.setText("");
+        }
 
     }
 
@@ -205,6 +213,23 @@ public class SignIn extends AppCompatActivity {
         if(data!=null){
             name.setText(data.getUname());
             email.setText(data.getEmail());
+        }else
+        {
+            name.setText("");
+            email.setText("");
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(data!=null){
+            name.setText(data.getUname());
+            email.setText(data.getEmail());
+        }else
+        {
+            name.setText("");
+            email.setText("");
         }
     }
 }
